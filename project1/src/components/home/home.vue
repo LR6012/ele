@@ -23,7 +23,7 @@ export default {
           title: "外卖",
           src1: require("./imgs/饿了么.png"),
           src2: require("./imgs/饿了么1.png"),
-          path:'/shop',
+          path:'/takeaway',
           flag:true,
           id: 1
         },

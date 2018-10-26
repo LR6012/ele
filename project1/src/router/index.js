@@ -1,5 +1,8 @@
 import Vue from 'vue'
 import Router from 'vue-router'
+import City from '../components/1-Takeaway/component/city'
+import SearchPath from '../components/1-Takeaway/component/search'
+import Takeaway from '../components/1-Takeaway/takeaway'
 import Order from '../components/home/order'
 import Search from '../components/home/search'
 import Mine from '../components/home/mine'
@@ -20,11 +23,16 @@ export default new Router({
   routes: [
     {
       path:"/",
-      component:Home
+      component:City
+    },{
+      path: '/city/:id',
+      name: 'search',
+      component: SearchPath
     },
     {
-      path:'/shop',
-      component:Home
+      path: '/takeaway',
+      name: 'takeaway',
+      component: Takeaway
     },
     {
       path:"/search",
