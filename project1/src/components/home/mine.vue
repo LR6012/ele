@@ -10,7 +10,7 @@
        <router-link to="/login">
       <li><img :src="img" alt="" class="img2"></li>
       <li class="dl">
-        <p v-if="flag">登录/注册</p>
+        <p>登录/注册</p>
         <!-- <p v-else>345</p> -->
        <img :src="img1" alt="" class="img1">
        <span>暂无绑定手机号</span>

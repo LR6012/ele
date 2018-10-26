@@ -31,7 +31,7 @@ export default {
           title: "搜索",
           src1: require("./imgs/指南针.png"),
           src2: require("./imgs/指南针1.png"),
-          path:'/search',
+          path:'/search3',
           flag:true,
           id: 2
         },
@@ -77,6 +77,7 @@ export default {
   /* text-align: center; */
   justify-content: space-around;
   /* border: 1px solid red; */
+  background-color: white;
 }
 .home li {
   margin: 0.06rem;

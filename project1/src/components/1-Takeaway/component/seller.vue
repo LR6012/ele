@@ -1,6 +1,6 @@
 <template>
-    
-    <ol>
+    <router-link to="/shopdetail">
+    <ol class="ll">
         <li v-for="item in data" :key="item.id" class="total">
             <div id="div1">
                 <div id="div1_1">
@@ -53,7 +53,8 @@
                 </div>
             </div>     
         </li>
-    </ol>    
+    </ol> 
+</router-link>
 </template>
 
 <script>
@@ -82,6 +83,15 @@ export default {
 </script>
 
 <style scoped>
+.ll{
+  /* margin-top: ; */
+  /* overflow: auto; */
+  width: 100%;
+  height: 80%;
+  /* border: 1px solid blue; */
+  background-color: white;
+  color: black
+}
 div#div1 {
     border: 1px solid rgb(231, 231, 236);
     border-top-color: transparent;
@@ -131,11 +141,13 @@ div#div1 {
   font-weight:550;
 }
 .seller_service {
-  width: 0.1rem;
-  font-size: 0.1rem;
+  width: 0.01rem;
+  font-size: 0.01rem;
   padding: 0.01rem;
+  border-radius:0.03rem; 
   border: 0.005rem solid rgb(148, 143, 143);
   display: inline;
+  color: #999
 }
 .el-rate {
   display: inline;

@@ -15,10 +15,12 @@
             <input type="button" id="search_box2" @click="submit(inputValue)" value="提交">
         </div>
         <ul>
+            <router-link to="./../Takeaway">
             <li class="search_li" v-for="(item,index) in add" :key="index">
                 <h4>{{item.name}}</h4>
                 <p>{{item.address}}</p>
             </li>
+            </router-link>
         </ul>
         <div v-show="Action">
             <header id="search_history">搜索历史</header> 

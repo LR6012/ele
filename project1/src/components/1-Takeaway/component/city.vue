@@ -188,10 +188,12 @@ nav {
   text-align: center;
   border-right: 0.01rem solid #e4e4e4;
   border-bottom: 0.01rem solid #e4e4e4;
-  color: #666;
+  /* color: #666; */
+      color: #7e8c8d;
   background-color: #fff;
   overflow: hidden;
   text-overflow: ellipsis;
   white-space: nowrap;
 }
+
 </style>

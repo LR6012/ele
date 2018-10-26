@@ -1,6 +1,6 @@
 <template>
 <div class="search">
-  <router-link to="/search">
+  <router-link to="/mine">
   <span class="sp1"><</span>
   </router-link>
   <span class="sp2">订单列表</span>
