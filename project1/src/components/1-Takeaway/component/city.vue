@@ -5,9 +5,9 @@
                 <!-- <router-link to="/city" id="city_header_ele">ele.me</router-link>  -->
                 <div id="city_header_ele" @click="aa">ele</div>
                 <div id="city_header_land">
-                    <router-link to=""><span>登陆</span></router-link>
+                    <router-link to="/login"><span>登陆</span></router-link>
                     <span>|</span>
-                    <router-link to=" "><span>注册</span></router-link> 
+                    <router-link to="/login1"><span>注册</span></router-link> 
                 </div>
             </div>
             <div id="city_tip">
@@ -24,7 +24,7 @@
         <div id="city_hot">
             <h4 id="city_hot_title">热门城市</h4>
             <li class="city_hot_li" v-for="item in data" :key="item.id">
-                <router-link :to="'/city/'+item.id">{{item.name}}</router-link> 
+                <router-link :to="'/city/'+item.id" class="router1">{{item.name}}</router-link> 
             </li>
         </div>
         <div id="city_title">
@@ -33,7 +33,7 @@
                 <li class="city_title_letter" v-if="index != 'A'">{{index}}</li>
                 
                 <li class="city_title_li" v-for="a in key" :key="a.id">
-                  <router-link :to="'/city/'+a.id">{{a.name}}</router-link>
+                  <router-link :to="'/city/'+a.id" class="router2">{{a.name}}</router-link>
                 </li>
                  
             </ol>
@@ -160,7 +160,7 @@ nav {
   font-size: 0.14rem;
   text-align: center;
   border: 0.01rem solid #e4e4e4; 
-  color: #3190e8;
+ 
   background-color: #fff;
 }
 .city_title_letter {
@@ -187,13 +187,16 @@ nav {
   line-height: 0.41rem;
   text-align: center;
   border-right: 0.01rem solid #e4e4e4;
-  border-bottom: 0.01rem solid #e4e4e4;
-  /* color: #666; */
-      color: #7e8c8d;
+  border-bottom: 0.01rem solid #e4e4e4;  
   background-color: #fff;
   overflow: hidden;
   text-overflow: ellipsis;
   white-space: nowrap;
 }
-
+.router1{
+   color: #3190e8;
+}
+.router2{
+    color: #7e8c8d;
+}
 </style>

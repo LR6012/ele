@@ -1,6 +1,6 @@
 import Vue from 'vue'
 //导入vuex模块
-// import Vuex from 'vuex'
+import Vuex from 'vuex'
 //导入状态state
 import state from './state'
 //引入getters
@@ -10,7 +10,7 @@ import mutations from './mutations'
 //引入actions
 import actions from './actions'
 //配置vuex
-// Vue.use(Vuex);
+Vue.use(Vuex);
 
 
 //配置vuex

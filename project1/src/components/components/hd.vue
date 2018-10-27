@@ -1,72 +1,89 @@
 <template>
-       <div class="toubu">
-          
-        <div class="ss">
-        <router-link to='/search'><img src="../../assets/左箭头.png" alt=""></router-link>
+  <div class="toubu">
+    <div id="header">
+        <router-link to='/search3'><img src="../../assets/搜索.png" alt=""></router-link>
+        <router-link to='/' id="span1"><span >{{data.name}}</span></router-link>
+        <div id="span2">
+          <router-link to='/login' id="span3"><span>登陆</span></router-link>
+          <span>|</span>
+          <router-link to='/login1' id="span4"><span>注册</span></router-link>
         </div>
-        
-        <div class="dl">
-            <router-link to='/login'><a href="###">登陆 |</a></router-link>
-            <router-link to='/login1'><a href="###">注册</a></router-link>
-        </div>
-
+    </div>
     <router-view></router-view>
     <div>
-<Nv></Nv>
-<!-- <Takeaway></Takeaway> -->
+      <Nv></Nv>
     </div>
     
-       </div>
+</div>
        
 </template>
 
 <script>
-// import Takeaway from '../1-Takeaway/takeaway'
 import Nv from "./nv";
-// import { Loading } from "element-ui";
 export default {
   name: "hd",
+  data(){
+    return{
+      data:''
+    }
+  },
   components: {
-    Nv,
-    // Takeaway
+    Nv
   },
   //   data:()=>({
   // data: [],
   // loading:"true"
   //   }),
   created() {
-    // let api = "https://elm.cangdu.org/shopping/restaurants";
+    var geohash = this.$route.query.geohash;
+    // console.log(geohash);
+    let api = "https://elm.cangdu.org/v2/pois/"+geohash;
+    this.$http.get(api).then(data =>{
+      this.data = data.data;
+      console.log(this.data);
+    })
   }
 };
 </script>
 
 <style scoped>
-.toubu {
+/* .toubu {
   width: 100%;
   background-color: rgba(75, 122, 224, 0.61);
   display: flex;
   justify-content: space-around;
-  /* position: fixed; */
-  top: 0;
-  left: 0;
+} */
+#header{
+        height: 0.257rem;
+        background-color: #3190e8;
+        padding: .10rem;
+        display: flex;
+        justify-content: space-between;
+    }
+#header img{
+    width: 0.21rem;
+    height: 0.21rem;
 }
-.ss img {
-  /* margin-left: -1rem; */
-  width: 0.25rem;
-  height: 0.25rem;
-  padding: 0.1rem;
+#span1{
+    width: 1.876rem;
+    font-size: .18rem;
+    font-weight: 500;
+    line-height: .25rem;
+    color: #fff;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
 }
-img {
-  width: 1rem;
-  height: 1rem;
+#span2{
+  font-size: .15rem;
+  line-height: .25rem;
+  font-weight: 400;
+  color: #fff;
 }
-.dl {
-  margin-top: 0.16rem;
-  margin-left: 2rem;
+#span3{
+  color: #fff;
 }
-.dl a {
-  color: white;
-  /* border: 1px solid black */
-  font-size: 0.18rem;
+#span4{
+  color: #fff;
 }
 </style>

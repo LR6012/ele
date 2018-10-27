@@ -14,9 +14,11 @@ Vue.use(ElementUI);
 Vue.config.productionTip = false
 Vue.use(VueAxios, axios)
 /* eslint-disable no-new */
+import store from "./store"
 new Vue({
   el: '#app',
   router,
+  store,
   // store,
   components: { App },
   template: '<App/>'

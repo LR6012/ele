@@ -1,7 +1,7 @@
 <template>
     <div>
         <div id="search_header">
-            <router-link to="/city">
+            <router-link to="/">
                 <img src="../../../../static/img/左箭头.png" alt="">
             </router-link> 
             <span>{{position.name}}</span>
@@ -15,12 +15,14 @@
             <input type="button" id="search_box2" @click="submit(inputValue)" value="提交">
         </div>
         <ul>
-            <router-link to="./../Takeaway">
+            
             <li class="search_li" v-for="(item,index) in add" :key="index">
-                <h4>{{item.name}}</h4>
-                <p>{{item.address}}</p>
+                <router-link :to="{path:'/Takeaway',query:{geohash:item.geohash}}">
+                    <h4>{{item.name}}</h4>
+                    <p>{{item.address}}</p>
+                </router-link>
             </li>
-            </router-link>
+            
         </ul>
         <div v-show="Action">
             <header id="search_history">搜索历史</header> 

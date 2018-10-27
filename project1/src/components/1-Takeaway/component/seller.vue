@@ -71,7 +71,7 @@ export default {
     this.$http.get(api).then(data => {
       // console.log(data);
       this.data = data.data;
-      console.log(this.data);
+      // console.log(this.data);
       for(var i=0;i<this.data.length;i++){
          this.data[i].image ='https://elm.cangdu.org/img/'+this.data[i].image_path;
       };

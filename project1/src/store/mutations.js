@@ -15,5 +15,9 @@
              //测试结果:可以同步刷新
             state.count -= n;
           //  },1000)
+      },
+      // 赋值测试
+      Givetext(state,el){
+        this.state.count = el
       }
 }

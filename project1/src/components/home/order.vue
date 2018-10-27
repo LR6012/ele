@@ -29,10 +29,12 @@
       </div>
     </ul>
   </div>
-
+  <Home></Home>
 </div>
+  
 </template>
 <script>
+import Home from './home'
 import img1 from './imgs/小箭头.png'
 export default {
   name: "order",
@@ -41,6 +43,9 @@ export default {
       data: [],
       img:img1
     };
+  },
+  components: {
+    Home
   },
   created() {
     let api = "https://elm.cangdu.org/bos/orders?offset=0&limit=10";

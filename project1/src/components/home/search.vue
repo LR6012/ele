@@ -1,7 +1,7 @@
 <template>
 <div>
 <div class="search">
-  <router-link to="/shop">
+  <router-link to="/takeaway">
   <span class="sp1"><</span>
   </router-link>
   <span class="sp2">搜索</span>
