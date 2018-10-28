@@ -27,17 +27,12 @@
             <p @click="change()" v-show="bbol">清空历史记录</p>
         </ul>
     </ol>
-
-<!-- <router-link to="/shopdetail"><button class="oo">点击去往店铺页</button>"></router-link> -->
-    <Home></Home>
-
     </div>
     
 </template>
 
 <script>
 import $ from "jquery";
-import Home from "../home/home";
 export default {
   name: "search2",
   data() {
@@ -47,9 +42,6 @@ export default {
       arr: [],
       bbol: false
     };
-  },
-  components: {
-    Home  
   },
   methods: {
     submit() {
@@ -130,6 +122,7 @@ export default {
 }
 .sp1 img {
   margin-top: 0.05rem;
+  width: 0.25rem;
 }
 .sp2 {
   position: absolute;

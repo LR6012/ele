@@ -1,12 +1,11 @@
 <template>
     <div>
-<Hd></Hd>
+       <Hd></Hd>
       <div id="seller_header">
         <img src="../../../static/img/商家.png" alt="">
         <p>附近商家</p>
       </div>
       <Seller></Seller>
-      <Home></Home> 
     </div>
     
 </template>
@@ -14,17 +13,14 @@
 <script>
 import Hd from '../../components/components/hd'
 import Seller from "./component/seller.vue";
-import Home from "../home/home"
 export default {
   name: "takeaway",
   data() {
-    return {
-      
+    return {     
     }
   },
   components: {
     Seller,
-    Home,
     Hd
   }
 

@@ -1,7 +1,9 @@
 <template>
 <div class="search">
-  <router-link to="/mine">
-  <span class="sp1"><</span>
+  <router-link to="/search2">
+    <span class="sp1">
+    <img :src="img2" alt="">
+    </span>
   </router-link>
   <span class="sp2">订单列表</span>
   <div class="orderList">
@@ -29,23 +31,20 @@
       </div>
     </ul>
   </div>
-  <Home></Home>
+
 </div>
-  
 </template>
 <script>
-import Home from './home'
+import img2 from './imgs/左 (1).png'
 import img1 from './imgs/小箭头.png'
 export default {
   name: "order",
   data() {
     return {
       data: [],
-      img:img1
+      img:img1,
+      img2:img2
     };
-  },
-  components: {
-    Home
   },
   created() {
     let api = "https://elm.cangdu.org/bos/orders?offset=0&limit=10";
@@ -68,10 +67,9 @@ export default {
   background-color: #3190e8;
   position: relative;
 }
-.sp1 {
-  color: white;
-  font-size: 0.25rem;
-  margin-left: 0.05rem;
+.sp1 img{
+  margin-top: 0.05rem;
+  width: 0.25rem;
 }
 .sp2 {
   position: absolute;

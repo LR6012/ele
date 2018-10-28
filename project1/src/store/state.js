@@ -1,8 +1,7 @@
 export default {
-    count: 10,
-    count2:20,
-    count3:30,
-    count4:40,
-    count5:50,
-    todos:[{text:"张三",vip:true},{text:"李四",vip:false},{text:"王五",vip:true}]
+    count:0,
+    usermsg:{},//登录成功后返回的用户信息
+    denglu:false,
+    // 存放返回的收货地址信息
+    info:{},
 }

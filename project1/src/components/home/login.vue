@@ -7,8 +7,9 @@
     </li>
 </ul>
 <ul class="inp">
-    <li><input type="text" placeholder="账号"></li>
-<li class="pw"><input type="text" placeholder="密码">
+<li><input type="text" placeholder="账号" v-model="username"></li>
+<li class="pw">
+<input type="password" placeholder="密码" v-model="password">
 <span class="dd">
     <el-switch
   v-model="value2"
@@ -29,8 +30,7 @@
 </ul>
 <p>温馨提示：未注册过的账号，登录时将自动注册</p>
 <p>注册过的用户可凭账号密码登录</p>
-<router-link to="/hd"><button class="btn" @click="login()">登陆</button></router-link>
-
+<button class="btn" @click="login()">登录</button>
 <div class="rt"><router-link to="/forget">
 <span>重置密码?</span>
 </router-link></div>
@@ -39,12 +39,12 @@
 </template>
 
 <script>
-import img1 from './imgs/左 (1).png'
+import img1 from "./imgs/左 (1).png";
 export default {
   name: "login",
   data() {
     return {
-    img:img1,
+      img: img1,
       value1: true,
       value2: true,
       data: [],
@@ -54,11 +54,9 @@ export default {
       password: ""
     };
   },
-
   created() {
     this.getCode();
   },
-
   methods: {
     getCode() {
       const url = "https://elm.cangdu.org/v1/captchas";
@@ -69,10 +67,10 @@ export default {
         //用于表示用户代理是否应该在跨域请求的情况下从其他域发送cookies。
         withCredentials: true // 默认false
       }).then(res => {
-        console.log("tap", res);
-        if (res.data.status == 200) {
-        }
-        this.code = res.data.code;
+        // console.log("tap", res);
+        // if (res.data.status == 200) {
+           this.code = res.data.code;
+        // }  
       });
     },
     login() {
@@ -82,14 +80,22 @@ export default {
         url: api,
         withCredentials: true, // 默认的
         data: {
-          captcha_code: this.codeNumer,
-          password: "syq1122",
-          username: "syq1122"
+          captcha_code: this.codeNumber,
+          password: this.password,
+          username: this.username
         }
       }).then(res => {
         // alert("登陆成功");
         //给vuex保存用户信息
-        this.$router.push({ name: "mine", query: res.data });
+        // this.$router.push({ name: "mine"});
+        if(res.data.message){
+          //  alert(res.data.message);
+            console.log(res.data.message);
+        }else{
+          this.$store.commit("change",true)
+          this.$store.commit("changeusermsg",res.data)
+          this.$router.push({name:"mine"})
+        }
       });
     }
   }
@@ -97,11 +103,10 @@ export default {
 </script>
 
 <style scoped>
-
-.bb{
-   position: absolute;
+.bb {
+  position: absolute;
   top: 1.3rem;
-  right: 20%; 
+  right: 20%;
   width: 0.7rem;
 }
 .aa {
@@ -124,13 +129,12 @@ p {
   color: red;
   font-size: 0.12rem;
   margin: 0.2rem 0.1rem;
-  
 }
-.rt span{
+.rt span {
   position: fixed;
   top: 4.2rem;
   right: 5%;
-  font-size: 0.16rem;  
+  font-size: 0.16rem;
   color: blue;
 }
 .btn {
@@ -144,10 +148,10 @@ p {
   top: 3.2rem;
   left: 0.2rem;
 }
-.dd{
+.dd {
   margin-left: 2.9rem;
   position: absolute;
-  top:-43%;
+  top: -43%;
   right: 5%;
 }
 .ss {
@@ -155,13 +159,10 @@ p {
   top: 1.4rem;
   right: 7%;
   opacity: 0.5;
-
 }
 
 .inp {
   backface-visibility: white;
-
-
 }
 .inp li {
   width: 100%;

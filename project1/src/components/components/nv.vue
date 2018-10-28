@@ -1,8 +1,7 @@
 <template>
    <div class='nav'>
   
-<ul @onmousemove="enter()">
-  
+<ul @onmousemove="enter()"> 
     <li v-for="item in custom" :key="item.id" >
         <router-link :to="{name:item.name,params:{id:item.id}}">
         <img :src="item.src" alt="">
@@ -98,11 +97,9 @@ export default {
 <style scoped>
 .nav {
   position: absolute;
-  /* margin-left:-1rem ; */
   top: 0.43rem;
   left: 0rem;
   width: 100%;
-  padding: 0 0 0 0.15rem;
   height: 2.1rem;
   background-color: white;
   overflow: auto;

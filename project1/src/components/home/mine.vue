@@ -2,18 +2,19 @@
 <div>
 <div class="search">
   <router-link to="/order">
-  <span class="sp1"><</span>
+  <span class="sp1">
+    <img :src="img2" alt="">
+    </span>
   </router-link>
   <span class="sp2">我的</span>
   </div>
-    <ul>
-       <router-link to="/login">
+    <ul class="uu">
+       <router-link :to="this.router">
       <li><img :src="img" alt="" class="img2"></li>
       <li class="dl">
-        <p>登录/注册</p>
-        <!-- <p v-else>345</p> -->
+        <p>{{username}}</p>
        <img :src="img1" alt="" class="img1">
-       <span>暂无绑定手机号</span>
+       <span>{{defaultphone}}</span>
       </li>
       <li class="guide">
       <span>></span>
@@ -41,49 +42,63 @@
      </li>
      </router-link>
     </div>
-    
     <Wd></Wd>
-     <!-- 尾部组件显示 -->
-    <Home></Home>
  </div>
 </template>
 
 <script>
-import Home from "./home"
-import img01 from "./imgs/头像.png";
-import img02 from "./imgs/手机.png";
+import img01 from "./imgs/头像.png"
+import img02 from "./imgs/手机.png"
 import Wd from './wd';
-
+import img1 from './imgs/左 (1).png'
 export default {
   name: "mine",
   data() {
     return {
       img: img01,
       img1:img02,
-      // flag:true
+      img2:img1,
+      username:'',
+      defaultusername:"登录/注册",
+      defaultsrcc:img01,
+      defaultphone:"暂无绑定手机号",
+      router:'',
+      router1:'/login',
+      router2:'/mine/logindetail'
     };
   },
   components:{
       Wd,
-      Home
+  },
+  created(){
+    if(this.$store.state.denglu){
+      this.username = this.$store.state.usermsg.username;
+      // 图片地址需要拼接
+      this.img = 'https://elm.cangdu.org/img/'+this.$store.state.usermsg.avatar,
+      this.router = this.router2;
+    }else{
+      this.username = this.defaultusername;
+      this.img = this.defaultsrcc;
+      this.router = this.router1;
+    }
   }
 };
 </script>
 <style scoped>
+.uu{
+  margin-top: -0.1rem
+}
 .search {
   height: 0.46rem;
-  /* border: 1px solid red; */
   line-height: 0.46rem;
   color: white;
   background-color: #3190e8;
   position: relative;
-  border: 0.02rem solid #3190e8;
+  /* border: 0.02rem solid #3190e8; */
 }
-.sp1 {
-  color: white;
-  margin-left: 0.05rem;
-  font-size: 0.27rem;
-  /* border: 1px solid black; */
+.sp1 img{
+  margin-top: 0.05rem;
+  width: 0.25rem;
 }
 .sp2 {
   position: absolute;
@@ -141,6 +156,7 @@ ul li img {
 }
 .wode {
   position: relative;
+  margin-top: -0.1rem;
 }
 .wode li span{
   color: black;
@@ -152,12 +168,12 @@ ul li img {
   display: flex;
   justify-content: space-around;
   width: 33%;
-  height: 1rem;
+  height: 0.9rem;
   float: right;
 }
 .wode li span {
   position: absolute;
-  margin-top: 0.2rem;
+  margin-top: 0.15rem;
 }
 .aaa {
   top: 0.45rem;

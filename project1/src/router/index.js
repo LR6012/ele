@@ -21,9 +21,14 @@ import Hd from '../../src/components/components/hd'
 import Mlt from "../components/components/mlt"
 import Cxg from "../components/components/cxg"
 import Bzzp from '../components/components/bzzp'
-import Forget from '../components/components/forget'
 import Shopdetail from '../components/components/shopdetail'
 import Critic from '../components/components/critic'
+import LoginDetail from '../components/home/loginDetail'
+import SetUsername  from '../components/home/setusername'
+import Address  from '../components/home/address'
+import Add  from '../components/home/add'
+import AddDetail  from '../components/home/adddetail'
+import Forget from '../components/home/forget'
 
 Vue.use(Router)
 
@@ -37,33 +42,40 @@ export default new Router({
     {
       path:"/",
       component:City
-    },{
+    },
+    {
       path: '/city/:id',
       name: 'search',
       component: SearchPath
     },
     {
       path: '/takeaway',
-      name: 'takeaway',
-      component: Takeaway
+      component:Home,
+      children:[
+        {
+          path:"/search3",
+          component:Search3,
+          name:"search3"
+        },
+        {
+          path:"/order",
+          component:Order
+        },
+        {
+          path:"/mine",
+          component:Mine,
+          name:'mine'
+        },
+        {
+          path: '/takeaway',
+          name: 'takeaway',
+          component: Takeaway
+        },
+      ]
     },
     {
       path:"/search",
       component:Search,
-    },
-    {
-      path:"/search3",
-      component:Search3,
-      name:"search3"
-    },
-    {
-      path:"/order",
-      component:Order
-    },
-    {
-      path:"/mine",
-      component:Mine,
-      name:'mine'
     },
     {
       path:"/balance",
@@ -131,7 +143,28 @@ export default new Router({
       path:"/critic",
       component:Critic,
       name:"critic"
-    }
+    },
+    {
+      path:'/mine/logindetail',
+      name:'logindetail',
+      component:LoginDetail
+    },
+    {
+      path:'/setusername',
+      component:SetUsername
+    },
+    {
+      path:'/address',
+      component:Address
+    },
+    {
+      path:'/address/add',
+      component:Add
+    },
+    {
+      path:'/add/adddetail',
+      component:AddDetail
+    },
 
   ]
 })

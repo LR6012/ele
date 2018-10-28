@@ -55,7 +55,7 @@ export default {
 .wd {
   /* border: 1px solid red; */
   position: absolute;
-  top: 2.5rem;
+  top: 2.3rem;
   width: 100%;
   height: 2.1rem;
   margin: 0.05rem 0;

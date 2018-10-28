@@ -3,7 +3,7 @@
 <!-- 头部 -->
  <div class="search">
       <span class="sp1">
-        <router-link to="/head">
+        <router-link to="/takeaway">
     <img src="../../../static/img/右.png" alt="">
     </router-link>
     </span>
@@ -79,10 +79,12 @@
       </li>
     </ul>
     </ul>
+   <!-- <Takeaway></Takeaway> -->
   </div>
 </template>
 
 <script>
+// import Takeaway from '@/components/1-Takeaway/takeaway'
 import $ from "jquery";
 export default {
   name: "bzzp",
@@ -94,6 +96,9 @@ export default {
       flag2:false,
       flag3:false,
     };
+  },
+  components:{
+    // Takeaway
   },
   methods: {
     change() {
