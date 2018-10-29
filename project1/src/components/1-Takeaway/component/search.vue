@@ -16,7 +16,7 @@
         </div>
         <ul>
             
-            <li class="search_li" v-for="(item,index) in add" :key="index" @click="choose(item.geohash,item.name)">
+            <li class="search_li" v-for="(item,index) in add" :key="index" @click="choose(item.geohash,item.name,inputValue)">
                 <router-link to="/Takeaway">
                     <h4>{{item.name}}</h4>
                     <p>{{item.address}}</p>
@@ -45,6 +45,7 @@
             return{
                 data:[],
                 inputValue:"",
+                arr:[],
                 add:"",
                 Action:true,
                 cityname:localStorage.getItem("cityname")
@@ -65,15 +66,21 @@
                 var search = "https://elm.cangdu.org/v1/pois?city_id="+id1+"&keyword="+inputValue+"&type=search";
                 this.$http.get(search).then(data =>{
                     this.add = this.objKeySort(data.data);
-                })
+                });
+                
             },
-            choose(geohash,name){
+            choose(geohash,name,inputValue){
                 // console.log(geohash);
                 // vuex传值
                 // this.$store.commit("receivegeohash",geohash);
-                //
+                var value = inputValue;
+                this.arr.push(value);
+                console.log(this.arr);
+                value = "";
+                //存储到localstorage中
                 localStorage.setItem("geohash",geohash);
                 localStorage.setItem("locationname",name);
+
             }
         }
     }
