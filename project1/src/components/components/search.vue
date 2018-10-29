@@ -74,11 +74,6 @@ export default {
   },
   created () {
       var api = "https://elm.cangdu.org/v4/restaurants?geohash"+ geohash +"&keyword"+keyword;
-
-    console.log(this.$store.state.count+".................")
-    // 得到公共内容
-    this.$store.commit("Givetext",123123)
-    console.log(this.$store.state.count+".................")
   }
 };
 </script>

@@ -15,8 +15,8 @@ import Login from '../components/home/login'
 import VipCard from "../components/home/vipCard"
 import DownLoad from "../components/home/download"
 import Service from "../components/home/service"
-import  Questiondetail from "../components/home/questiondetail"
-import  Home from '../components/home/home'
+import Questiondetail from "../components/home/questiondetail"
+import Home from '../components/home/home'
 import Hd from '../../src/components/components/hd'
 import Mlt from "../components/components/mlt"
 import Cxg from "../components/components/cxg"
@@ -29,22 +29,24 @@ import Address  from '../components/home/address'
 import Add  from '../components/home/add'
 import AddDetail  from '../components/home/adddetail'
 import Forget from '../components/home/forget'
+import Hongbao from '../components/home/hongbao'
+import Daijinquan from '../components/home/daijinquan'
 
 Vue.use(Router)
 
 export default new Router({
   routes: [
-    {
-      path: '/head',
-      name: 'hd',
-      component: Hd
-    },
+    // {
+    //   path: '/head',
+    //   name: 'hd',
+    //   component: Hd
+    // },
     {
       path:"/",
       component:City
     },
     {
-      path: '/city/:id',
+      path: '/search',
       name: 'search',
       component: SearchPath
     },
@@ -83,7 +85,14 @@ export default new Router({
     },
     {
       path:"/benefit",
-      component:Benefit
+      component:Benefit,
+      children:[{
+        path:"/benefit/hongbao",
+        component:Hongbao 
+      },{
+        path:"/benefit/daijinquan",
+        component:Daijinquan
+      }]
     },
     {
       path:"/points",

@@ -3,7 +3,7 @@
         <nav>
             <div id="city_header">
                 <!-- <router-link to="/city" id="city_header_ele">ele.me</router-link>  -->
-                <div id="city_header_ele" @click="aa">ele</div>
+                <div id="city_header_ele" @click="aa">ele.me</div>
                 <div id="city_header_land">
                     <router-link to="/login"><span>登陆</span></router-link>
                     <span>|</span>
@@ -14,8 +14,8 @@
                 <span>当前定位城市：</span>
                 <span>定位不准时，请在列表中选择</span>
             </div>
-            <router-link :to="'/city/'+position.id">
-                <div id="city_location">
+            <router-link to="/search" >
+                <div id="city_location" @click="choose(position.id,position.name)">
                     <span>{{position.name}}</span>
                     <img src="../../../../static/img/右箭头.png" alt="">
                 </div>
@@ -23,8 +23,8 @@
         </nav>
         <div id="city_hot">
             <h4 id="city_hot_title">热门城市</h4>
-            <li class="city_hot_li" v-for="item in data" :key="item.id">
-                <router-link :to="'/city/'+item.id" class="router1">{{item.name}}</router-link> 
+            <li class="city_hot_li" v-for="item in data" :key="item.id" @click="choose(item.id,item.name)">
+                <router-link to="/search" class="router1">{{item.name}}</router-link> 
             </li>
         </div>
         <div id="city_title">
@@ -32,8 +32,8 @@
                 <li class="city_title_letter" v-if="index == 'A'">{{index}} <span>(按字母排序)</span> </li>
                 <li class="city_title_letter" v-if="index != 'A'">{{index}}</li>
                 
-                <li class="city_title_li" v-for="a in key" :key="a.id">
-                  <router-link :to="'/city/'+a.id" class="router2">{{a.name}}</router-link>
+                <li class="city_title_li" v-for="a in key" :key="a.id" @click="choose(a.id,a.name)">
+                  <router-link to="/search"  class="router2">{{a.name}}</router-link>
                 </li>
                  
             </ol>
@@ -53,24 +53,30 @@ export default {
     };
   },
   created() {
+
+    // 请求定位城市
     let guess = "https://elm.cangdu.org/v1/cities?type=guess";
     this.$http.get(guess).then(data => {
       this.position = data.data;
-      // console.log(data);
     });
+
+    // 请求热门城市
     let api = "https://elm.cangdu.org/v1/cities?type=hot";
     this.$http.get(api).then(data => {
       this.data = data.data;
       // console.log(this.data);
     });
+
+    //请求所有城市
     let add = "https://elm.cangdu.org/v1/cities?type=group";
     this.$http.get(add).then(data => {
       this.list = this.objKeySort(data.data);
-      // console.log(this.list);
-      // console.log(this.list.A[1].id);
     });
   },
   methods: {
+    aa(){
+       this.$router.go(0)
+     },
     objKeySort(arys) {
       var newkey = Object.keys(arys).sort();
       var newObj = {};
@@ -79,9 +85,11 @@ export default {
       }
       return newObj;
      },
-     aa(){
-       this.$router.go(0)
-     }
+     choose(id,cityname){
+       alert(id);
+       localStorage.cityid=id;
+       localStorage.setItem('cityname',cityname);
+     }   
   }
 };
 </script>

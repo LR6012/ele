@@ -2,7 +2,7 @@
   <div class="toubu">
     <div id="header">
         <router-link to='/search3'><img src="../../assets/搜索.png" alt=""></router-link>
-        <router-link to='/' id="span1"><span >{{data.name}}</span></router-link>
+        <router-link to='/' id="span1"><span >{{locationname}}</span></router-link>
         <div id="span2">
           <router-link to='/login' id="span3"><span>登陆</span></router-link>
           <span>|</span>
@@ -24,26 +24,13 @@ export default {
   name: "hd",
   data(){
     return{
-      data:''
+     locationname:localStorage.getItem("locationname")
     }
   },
   components: {
     Nv
-  },
-  //   data:()=>({
-  // data: [],
-  // loading:"true"
-  //   }),
-  created() {
-    var geohash = this.$route.query.geohash;
-    // console.log(geohash);
-    let api = "https://elm.cangdu.org/v2/pois/"+geohash;
-    this.$http.get(api).then(data =>{
-      this.data = data.data;
-      console.log(this.data);
-    })
   }
-};
+  };
 </script>
 
 <style scoped>
@@ -70,6 +57,7 @@ export default {
     font-weight: 500;
     line-height: .25rem;
     color: #fff;
+    text-align: center;
     overflow: hidden;
     text-overflow: ellipsis;
     white-space: nowrap;

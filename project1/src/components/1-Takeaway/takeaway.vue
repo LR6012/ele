@@ -5,7 +5,8 @@
         <img src="../../../static/img/商家.png" alt="">
         <p>附近商家</p>
       </div>
-      <Seller></Seller>
+        <Seller></Seller>
+      
     </div>
     
 </template>
@@ -16,14 +17,21 @@ import Seller from "./component/seller.vue";
 export default {
   name: "takeaway",
   data() {
-    return {     
+    return {  
+        // id1:localStorage.getItem("geohash")
     }
   },
   components: {
     Seller,
     Hd
   }
-
+  /*
+  利用计算属性取出vuex中的数据
+  computed: {
+    id(){
+      return this.$store.state.id;
+    }
+  }*/
   };
 </script>
 
