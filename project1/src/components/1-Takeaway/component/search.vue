@@ -83,9 +83,7 @@
                  list.unshift(comment);
                  localStorage.setItem("cmts",JSON.stringify(list));
                  this.name = this.address = '';
-                //从本地的localstorage中加载历史记录
-                this.history= JSON.parse(localStorage.getItem("cmts"));
-                console.log(this.history,"1");         
+                         
             }
         },
         created () {

@@ -3,7 +3,7 @@
     <div class="search">
   <router-link to="/vipcard">
      <span class="sp1">
-    <img :src="img01" alt="">
+    <!-- <img :src="img01" alt=""> -->
     </span>
   </router-link>
   <span class="sp2">我的优惠</span>
@@ -12,7 +12,7 @@
 </template>
 
 <script>
-import img01 from './imgs/左 (1).png'
+// import img01 from '../home/imgs/左(1).png'
 export default {
 name:"benefit",
 data(){
