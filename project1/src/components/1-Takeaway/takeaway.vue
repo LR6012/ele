@@ -1,19 +1,18 @@
 <template>
     <div>
-       <Hd></Hd>
+       <!-- <Hd></Hd> -->
+       <Swiper></Swiper>
       <div id="seller_header">
         <img src="../../../static/img/商家.png" alt="">
         <p>附近商家</p>
       </div>
         <Seller></Seller>
-      
     </div>
-    
 </template>
-
 <script>
-import Hd from '../../components/components/hd'
+// import Hd from '../../components/components/hd'
 import Seller from "./component/seller.vue";
+import Swiper from '../../components/components/swiper'
 export default {
   name: "takeaway",
   data() {
@@ -23,7 +22,8 @@ export default {
   },
   components: {
     Seller,
-    Hd
+    // Hd
+    Swiper
   }
   /*
   利用计算属性取出vuex中的数据
@@ -38,7 +38,7 @@ export default {
 <style scoped>
   #seller_header{
     padding: 0.1rem .1rem;
-    margin-top: 2.2rem;
+    /* margin-top: 2.2rem; */
     background-color: white;
   }
   #seller_header img{

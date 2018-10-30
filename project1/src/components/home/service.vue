@@ -2,7 +2,9 @@
     <div>
        <div class="search">
   <router-link to="/mine">
-  <span class="sp1"><</span>
+  <span class="sp1">
+    <img :src="img" alt="">
+    </span>
   </router-link>
   <span class="sp2">服务中心</span>
 </div>
@@ -27,16 +29,16 @@
         </li>
     </ul>
 </div>
-
-
     </div>
 </template>
 
 <script>
+import img2 from './imgs/左 (1).png'
 export default {
   name:"service",
   data(){
       return{
+          img:img2,
           arr:[
     {title:"超级会员权益问题",id:1,name:"supervipCaption"},
     {title:"签到规则",id:2,name:"signCaption"},

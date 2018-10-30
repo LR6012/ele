@@ -2,19 +2,23 @@
 <div>
 <div class="search">
   <router-link to="/mine">
-  <span class="sp1"><</span>
+   <span class="sp1">
+    <img :src="img01" alt="">
+    </span>
   </router-link>
   <span class="sp2">会员中心</span>
 </div>
 <div class="vipInfo">
-  <p>为账户<span>2</span>购买会员</p>
+  <p>为账户<span>{{name}}</span>购买会员</p>
   <ul>
+    <router-link to='/vipcard/vipdesciption'>
     <li class="des">
       <span>会员特权</span>
       <span>会员说明
         <img :src="img" alt="" class="img1">
       </span>
     </li>
+    </router-link>
     <li class="free">
       <img :src="img1" alt="">
       <div>
@@ -37,26 +41,33 @@
     <li class="on">
       <div>
         <div>1个月<span class="sp1">¥20</span></div>
+        <router-link to='/payline'>
         <div class="buy"><span>购买</span></div>
+        </router-link>
       </div>
     </li>
+    <router-link to="/vipcard/usecard">
     <li class="des des1">
        <span>兑换会员</span>
       <span>使用卡号卡密
         <img :src="img" alt="" class="img1">
       </span>
     </li>
+    </router-link>
+    <router-link to='/vipcard/record'>
    <li class="des des1">
        <span>购买记录</span>
       <span>开发票
         <img :src="img" alt="" class="img1">
       </span>
     </li>
+    </router-link>
   </ul>
 </div>
 </div>
 </template>
 <script>
+import img01 from './imgs/左 (1).png'
 import img1 from "./imgs/左箭头 (1).png";
 import img2 from "./imgs/省.png";
 import img3 from "./imgs/免.png";
@@ -66,8 +77,19 @@ export default {
     return {
       img: img1,
       img1: img2,
-      img2: img3
+      img2: img3,
+      img01:img01,
+      name:'',
+      data:[]
     };
+  },
+  created(){
+    this.name = this.$store.state.usermsg.username;
+    let api = 'https://elm.cangdu.org/v1/user';
+    this.$http.get(api).then(data => {
+      this.data = data.data;
+      console.log(this.data);
+    })
   }
 };
 </script>
@@ -81,10 +103,9 @@ export default {
   background-color: #3190e8;
   position: relative;
 }
-.sp1 {
-  color: white;
-  font-size: 0.25rem;
-  margin-left: 0.05rem;
+.sp1 img{
+  margin-top: 0.05rem;
+  width: 0.25rem;
 }
 .sp2 {
   position: absolute;

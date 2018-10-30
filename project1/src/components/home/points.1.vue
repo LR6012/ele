@@ -2,25 +2,27 @@
     <div>   
  <div class="search">
   <router-link to="/mine">
-   <span class="sp1">
+     <span class="sp1">
     <img :src="img01" alt="">
     </span>
   </router-link>
-  <span class="sp2">我的余额</span>
+  <span class="sp2">我的积分</span>
   </div>
   <div class="info">
       <div id='div1'>
-          <li><span class="sp3">当前余额</span><span>余额说明</span></li>
-          <p><b>0.00</b><span>元</span></p>
-          <p class="p1">提现</p>
+          <li><span class="sp3">当前积分</span><span>积分说明</span></li>
+          <p><b>0</b><span>分</span></p>
+          <p class="p1">积分兑换商品</p>
       </div>
       <!-- 交易明细 -->
       <div id="div2">
-          <p>交易明细</p>
+          <p>最近30天积分记录</p>
           <img :src="img" alt="">
-          <div><p class="p2">暂无交易明细</p></div>
+          <div>
+              <p>最近30天积分记录</p>
+              <p>快去下单赚钱大量积分吧</p>
+          </div>
      </div>
-      
   </div>
     </div>
 </template>
@@ -29,7 +31,7 @@
 import img1 from './imgs/下载.png'
 import img01 from './imgs/左 (1).png'
 export default {
-  name:'balance',
+  name:'points',
   data(){
       return {
           img:img1,
@@ -40,6 +42,9 @@ export default {
 </script>
 
 <style scoped>
+/* div{
+    width: 100%
+} */
 .search {
   height: 0.46rem;
   /* border: 1px solid red; */
@@ -97,7 +102,7 @@ li span{
     line-height: 0.46rem;
     width:100%;
     height: 0.46rem;
-    background-color: #ccc;
+    background-color: #fe6d47;
     border-radius: 0.05rem;
     color: white;
     font-size: 0.2rem;
@@ -123,7 +128,15 @@ li span{
     margin-left: 0;
 }
 #div2 div{
-    text-align: center;
-    font-size: 0.15rem;
+    text-align: center;  
+}
+#div2 div>p{
+     color: black;
+     font-size: 0.17rem;   
+}
+#div2 div>p+p{
+    line-height: 0.3rem;
+    font-size: 0.05rem;
+    color: #999;
 }
 </style>

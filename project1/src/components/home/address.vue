@@ -10,6 +10,12 @@
   <span class="sp3" v-if="bol" @click="change()">编辑</span>
   <span class="sp3" v-else  @click="change()">完成</span>
 </div>
+<ul class="list">
+    <li>
+        <p>3545</p>
+        <p>454354</p>
+    </li>
+</ul>
   <div class="addsite">
       <router-link to='/address/add' class="aa">
       <p>
@@ -32,7 +38,9 @@ export default {
        return {
            img:img2,
            img2:img1,
-           bol:true
+           bol:true,
+        //    name:localStorage.getItem('name'),
+        //    phone:localStorage.getItem('phone')
        }
    },
    methods:{
@@ -84,7 +92,7 @@ export default {
     display: flex;
     justify-content: space-between;
     padding: 0.15rem;
-    border:0.01rem solid #d9d9d9
+    border:0.01rem solid #d9d9d9;
 }
 .addsite p .img2{
     width: 0.15rem;
@@ -92,5 +100,15 @@ export default {
 }
 .aa{
     color:black;
+}
+.list{
+    border: 1px solid red;
+    padding: 0.1rem;    
+    background-color: #fff8c3;
+    /* display: none;  */
+}
+.list p{
+    line-height: 0.15rem;
+    font-size: 0.15rem;
 }
 </style>

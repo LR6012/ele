@@ -9,15 +9,15 @@
   <span class="sp2">新增地址</span>
 </div>
 <div class="adddetail">
-    <input type="text" placeholder="请输入你的名字">
+    <input type="search" placeholder="请输入你的名字" v-model="name">
     <router-link to='/add/adddetail'>
-    <input type="text" placeholder="小区/写字楼/学校等">
+    <input type="search" placeholder="小区/写字楼/学校等" v-model='address'>
     </router-link>
-    <input type="text" placeholder="请填写详细送餐地址">
-    <input type="text" placeholder="请填写能够联系到您的手机号">
-    <input type="text" placeholder="备用联系电话(选填)">
+    <input type="search" placeholder="请填写详细送餐地址" v-model="detail">
+    <input type="search" placeholder="请填写能够联系到您的手机号" v-model="phone">
+    <input type="search" placeholder="备用联系电话(选填)" v-model="spare">
 </div>
-    <button>新增地址</button>
+    <button @click="plus()">新增地址</button>
     </div>
 </template>
 
@@ -27,8 +27,49 @@ export default {
   name:'adds',
   data(){
       return {
-          img:img2
+          img:img2,
+          address:'',
+          address:localStorage.getItem('address'),
+          name:'',
+        //   name1:localStorage.getItem('name'),
+          detail:'',
+        //   detail1:localStorage.getItem('detailadd'),
+          phone:'',
+          spare:''
       }
+  },
+  methods:{
+    plus(){
+        console.log("12");
+    //   localStorage.setItem('detailadd',this.detail); 
+    //   localStorage.setItem('name',this.name);
+    //   localStorage.setItem('phone',this.phone); 
+    //   this.$router.push({name:'address'});
+  }
+  },
+  created(){
+    var userId = this.$store.state.usermsg.user_id;
+    // console.log(userId);
+    let api = 'https://elm.cangdu.org/v1/users/'+userId+'/addresses';
+    this.$http({
+        method:'post',
+        url:api,
+        withCredentials: true, // 默认的
+        data:{
+            user_id:userId,
+            address:this.address,
+            address_detail:123,
+            geohash:localStorage.getItem('geohash'),
+            name:13,
+            phone:13298027854,
+            tag:'12',
+            sex:1,
+            phone_bk:'',
+            tag_type:'家'
+        }
+    }).then(res => {
+        console.log(res.data);
+    })
   }
 }
 </script>

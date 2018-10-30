@@ -9,7 +9,7 @@
   <span class="sp2">修改用户名</span>
 </div>
 <div class="list">
-    <input type="text" placeholder="输入用户名">
+    <input type="text" placeholder="输入用户名" v-model="name">
     <p>用户名只能修改一次（5-24字符之间</p>
     <button @click="edit()">确认修改</button>
 </div>
@@ -23,12 +23,14 @@ export default {
   data(){
       return {
           img:img2,
-          data:[]
+          data:[],
+          name:''
       }
   },
   methods:{
       edit(){
-          console.log('34');
+        //   console.log(this.name);
+          this.$store.state.usermsg.username = this.name;
           this.$router.push({name:"logindetail"});
       }
   }
