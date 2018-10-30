@@ -86,7 +86,7 @@ export default {
       return newObj;
      },
      choose(id,cityname){
-       alert(id);
+      //  alert(id);
        localStorage.cityid=id;
        localStorage.setItem('cityname',cityname);
      }   

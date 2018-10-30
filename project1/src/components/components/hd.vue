@@ -2,7 +2,7 @@
   <div class="toubu">
     <div id="header">
         <router-link to='/search3'><img src="../../assets/搜索.png" alt=""></router-link>
-        <router-link to='/' id="span1"><span >{{locationname}}</span></router-link>
+        <router-link to='/search' id="span1"><span >{{locationname}}</span></router-link>
         <div id="span2">
           <router-link to='/login' id="span3"><span>登陆</span></router-link>
           <span>|</span>

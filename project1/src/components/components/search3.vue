@@ -10,7 +10,9 @@
         </div>
         <div class="sh">
             <div class="search1">
-            <input type="search" placeholder="请输入商家或美食名称"  id='input1' v-model="title">
+            <form action="">
+              <input type="search" placeholder="请输入商家或美食名称"  id='input1' v-model="title">
+            </form>
             <button @click="submit()">提交</button>
         </div>
   
@@ -75,7 +77,7 @@ export default {
         title: this.title
       };
       this.arr.push(data);
-      this.title = "";
+      // this.title = "";
       $("ul").css("display", "block");
     },
 
