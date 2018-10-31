@@ -1,7 +1,7 @@
 <template>
     <div class="total">
         <div class="search">
-          <router-link to="/vipcard">
+          <router-link to="/mine">
             <span class="sp1">
             <img :src="img01" alt="">
             </span>

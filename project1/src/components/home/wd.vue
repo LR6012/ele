@@ -25,7 +25,7 @@ export default {
           src: "../../../static/img/购物袋.png",
           title: "积分商城",
           id: 2,
-          path: "/order"
+          path: ""
         },
         {
           src: "../../../static/img/皇冠.png",

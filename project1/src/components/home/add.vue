@@ -14,7 +14,8 @@
     <input type="search" placeholder="小区/写字楼/学校等" v-model='address'>
     </router-link>
     <input type="search" placeholder="请填写详细送餐地址" v-model="detail">
-    <input type="search" placeholder="请填写能够联系到您的手机号" v-model="phone">
+    <input type="search" placeholder="请填写能够联系到您的手机号" v-model="phone" @input="edit()" @blur="change()">
+    <p class="p1"></p>
     <input type="search" placeholder="备用联系电话(选填)" v-model="spare">
 </div>
     <button @click="plus()">新增地址</button>
@@ -22,34 +23,34 @@
 </template>
 
 <script>
+import  $ from 'jquery'
 import img2 from './imgs/左 (1).png'
 export default {
   name:'adds',
   data(){
       return {
           img:img2,
-          address:'',
           address:localStorage.getItem('address'),
           name:'',
-        //   name1:localStorage.getItem('name'),
           detail:'',
-        //   detail1:localStorage.getItem('detailadd'),
           phone:'',
           spare:''
       }
   },
   methods:{
+      edit(){
+        $('.p1').text('请输入正确的手机号');
+        $('.p1').css({
+            'color':'#ea3106',
+            'font-size':'0.15rem',
+            'margin-top':'0.05rem'
+        });
+      },
+      change(){
+          $('.p1').text('');
+      },
     plus(){
-        console.log("12");
-    //   localStorage.setItem('detailadd',this.detail); 
-    //   localStorage.setItem('name',this.name);
-    //   localStorage.setItem('phone',this.phone); 
-    //   this.$router.push({name:'address'});
-  }
-  },
-  created(){
     var userId = this.$store.state.usermsg.user_id;
-    // console.log(userId);
     let api = 'https://elm.cangdu.org/v1/users/'+userId+'/addresses';
     this.$http({
         method:'post',
@@ -58,19 +59,25 @@ export default {
         data:{
             user_id:userId,
             address:this.address,
-            address_detail:123,
-            geohash:localStorage.getItem('geohash'),
-            name:13,
-            phone:13298027854,
+            address_detail:'345453',
+            geohash:'11',
+            name:this.name,
+            phone:this.phone,
             tag:'12',
             sex:1,
             phone_bk:'',
-            tag_type:'家'
+            tag_type:'2'
         }
     }).then(res => {
-        console.log(res.data);
+        if(res.data.message){
+            alert(res.data.message);
+        }else{
+            alert('添加地址成功');
+            this.$router.push({name:'address'});
+        }
     })
   }
+}
 }
 </script>
 
@@ -110,9 +117,9 @@ export default {
 }
 input{
     background-color: #f2f2f2;
-    width: 90%;
+    width: 95%;
     padding: 0.1rem;
-    margin-top: 0.1rem;
+    margin-top: 0.15rem;
     font-size: 0.16rem;
 }
 input,button{
@@ -132,4 +139,8 @@ button{
     font-size: 0.15rem;
     margin-top: 0.15rem;
 }
+/* .p1{
+    margin-top: 0.05rem;
+    display: none;
+} */
 </style>

@@ -11,9 +11,10 @@
   <span class="sp3" v-else  @click="change()">完成</span>
 </div>
 <ul class="list">
-    <li>
-        <p>3545</p>
-        <p>454354</p>
+    <li v-for="(item,index) in data" :key="index" class="list1">
+        <p>{{item.name}}</p>
+        <p>{{item.address}}</p>
+        <a href="#" @click="clear(index)">X</a>
     </li>
 </ul>
   <div class="addsite">
@@ -30,6 +31,7 @@
 </template>
 
 <script>
+import $ from 'jquery'
 import img2 from './imgs/左 (1).png'
 import img1 from "./imgs/左箭头 (1).png"
 export default {
@@ -39,14 +41,30 @@ export default {
            img:img2,
            img2:img1,
            bol:true,
-        //    name:localStorage.getItem('name'),
-        //    phone:localStorage.getItem('phone')
+           data:[]
        }
    },
    methods:{
        change(){
            //点击,当前布尔值取反    
            this.bol = !this.bol;
+           $(".list a").css('display','block');        
+       },
+       clear(n){
+           $(".list .list1").eq(n).hide();
+       }
+   },
+   created(){
+       var userId = this.$store.state.usermsg.user_id;
+       let api = 'https://elm.cangdu.org/v1/users/'+userId+'/addresses';
+       this.$http.get(api).then(data => {
+           this.data = data.data;
+           console.log(this.data);
+       });
+       if(this.data.length === 0){
+         $('.list').css('display','none');
+       }else{
+         $('.list').css('display','block');
        }
    }
 }
@@ -102,13 +120,30 @@ export default {
     color:black;
 }
 .list{
-    border: 1px solid red;
-    padding: 0.1rem;    
+    /* border: 1px solid red; */
+    /* padding: 0.1rem;     */
     background-color: #fff8c3;
     /* display: none;  */
 }
+.list li{
+    border-bottom:0.01rem solid gainsboro;
+     background-color:white;
+     position: relative;
+}
+.list li:first-child{
+     background-color: #fff8c3;
+}
 .list p{
+    padding: 0.05rem;
+    margin-left: 0.1rem;
     line-height: 0.15rem;
     font-size: 0.15rem;
+}
+.list a{
+    display: none;
+    position:absolute;
+    right:0.1rem;
+    top:0.15rem;;
+    color:#999
 }
 </style>

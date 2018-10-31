@@ -7,10 +7,10 @@
     </li>
 </ul>
 <ul class="ul2">
-    <li><input type="text" placeholder="账号" v-model="name"></li>
-    <li><input type="text" placeholder="旧密码" v-model="pwd"></li>
-    <li><input type="password" placeholder="请输入新密码"></li>
-    <li><input type="password" placeholder="请输入密码"></li>
+    <li><input type="text" placeholder="账号" v-model="username"></li>
+    <li><input type="text" placeholder="旧密码" v-model="oldpassWord"></li>
+    <li><input type="password" placeholder="请输入新密码" v-model="newpassword"></li>
+    <li><input type="password" placeholder="请输入密码" v-model="confirmpassword"></li>
     <li>
         <input type="text" placeholder="验证码" v-model="codeNumber"> 
         <span class="aa">看不清</span>
@@ -34,17 +34,15 @@ export default {
       data: [],
       codeNumber: "",
       code: "",
-      name:'',
-      pwd:'',
       username: "",
-      password: "",
+      oldpassWord: "",
+      newpassword:'',
+      confirmpassword:'',
       bol:true
     };
   },
   created() {
     this.getCode();
-    this.username = this.$store.state.usermsg.username;
-    this.password = this.$store.state.usermsg.passWord;
   },
   methods: {
     getCode() {
@@ -63,24 +61,26 @@ export default {
       });
     },
     alter() {
-      // let api = "https://elm.cangdu.org/v2/changepassword";
-      // this.$http({
-      //   method: "post",
-      //   url: api,
-      //   withCredentials: true, // 默认的
-      //   data: {
-      //     captcha_code: this.codeNumber,
-      //     password: this.username,
-      //     username: this.password
-      //   }
-      // }).then(res => {
-      //   if(res.data.message){
-      //      console.log(res.data.message);
-      //   }else{
-      //      this.$store.commit("change",true);
-      //      this.$store.commit("changeusermsg",res.data);
-      //   }
-      // });
+      let api = "https://elm.cangdu.org/v2/changepassword";
+      this.$http({
+        method: "post",
+        url: api,
+        withCredentials: true, // 默认的
+        data: {
+          captcha_code: this.codeNumber,
+          oldpassWord: this.oldpassWord,
+          username: this.username,
+          newpassword:this.newpassword,
+          confirmpassword:this.confirmpassword
+        }
+      }).then(res => {
+        console.log(res.data);
+        if(res.data.message){
+           alert(res.data.message);
+        }else{
+           alert('密码修改成功');
+        }
+      });
     },
   }
 
