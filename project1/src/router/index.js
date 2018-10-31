@@ -27,7 +27,12 @@ import Add from '../components/home/add'
 import AddDetail from '../components/home/adddetail'
 import Forget from '../components/home/forget'
 import Hongbao from '../components/1-Takeaway/hongbao'
+import HbDescription from '../components/1-Takeaway/hbDescription'
+import HbHistory from '../components/1-Takeaway/hbHistory'
+import Exchange from '../components/1-Takeaway/exchange'
+import Commend from '../components/1-Takeaway/commend'
 import Daijinquan from '../components/1-Takeaway/daijinquan'
+import DjqDescription from '../components/1-Takeaway/djqDescription'
 import PayLine from '../components/home/payline'
 import VipDescription from '../components/home/vipdescription'
 import Record from '../components/home/record'
@@ -78,7 +83,7 @@ export default new Router({
       component: Balance
     },
     {
-      path: "/benefit",
+      path: "/benefit/hongbao",
       component: Benefit,
       children: [{
         path: "/benefit/hongbao",
@@ -87,6 +92,26 @@ export default new Router({
         path: "/benefit/daijinquan",
         component: Daijinquan
       }]
+    },
+    {
+      path: "/benefit/hongbao/hbDescription",
+      component: HbDescription
+    },
+    {
+      path: "/benefit/hongbao/hbHistory",
+      component: HbHistory
+    },
+    {
+      path: "/benefit/hongbao/exchange",
+      component: Exchange
+    },
+    {
+      path: "/benefit/hongbao/commend",
+      component: Commend
+    },
+    {
+      path: "/benefit/daijinquan/djqDescription",
+      component: DjqDescription
     },
     {
       path: "/points",

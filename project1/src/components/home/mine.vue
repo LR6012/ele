@@ -29,7 +29,7 @@
        <span  class="aaa">我的积分</span>
      </li>
      </router-link>
-<router-link to="/benefit">
+<router-link to="/benefit/hongbao">
     <li class="yue2">
        <span><b>0</b>个</span>
        <span class="aaa">我的优惠</span>

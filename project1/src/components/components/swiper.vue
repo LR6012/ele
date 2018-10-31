@@ -170,7 +170,7 @@ export default {
 
 <style scoped>
 #sum {
-  border: 1px solid lightgray;
+  /* border: 1px solid lightgray; */
   margin-top: 3%;
   width: 100%;
   height: 0.3rem;
@@ -189,7 +189,7 @@ export default {
 #d6 {
   width: 100%;
   height: 40%;
-  border: 1px solid lightgray;
+  /* border: 1px solid lightgray; */
   background-color: white;
 }
 #d1 {
