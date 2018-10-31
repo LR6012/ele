@@ -80,8 +80,6 @@ export default {
     },
 
     change() {
-      // document.getElementsByTagName("ol").remove();
-      // $("li").slideUp("500");
       $("li").remove();
       $("ul").css("display", "none");
       this.title = "";
@@ -100,7 +98,7 @@ export default {
 };
 </script>
 
-<style>
+<style scoped>
 .oo {
   position: fixed;
   top: 3rem;

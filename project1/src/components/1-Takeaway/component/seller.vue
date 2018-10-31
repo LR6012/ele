@@ -1,7 +1,7 @@
 <template>
-    <router-link to="/shopdetail">
     <ol class="ll">
-        <li v-for="item in data" :key="item.id" class="total">
+        <li v-for="item in data" :key="item.id" class="total" @click="change(item.name)">
+          <router-link to="/shopdetail" >
             <div id="div1">
                 <div id="div1_1">
                     <img :src="item.image" alt="" class="seller_img">
@@ -51,10 +51,10 @@
                     </div>
            
                 </div>
-            </div>     
+            </div>  
+          </router-link>   
         </li>
     </ol> 
-</router-link>
 </template>
 
 <script>
@@ -64,6 +64,12 @@ export default {
     return {
       data: []
     };
+  },
+  methods:{
+    change(shopname){
+        localStorage.shop_name=shopname;
+        console.log(localStorage.shop_name);
+    }
   },
   created() {
     let api =

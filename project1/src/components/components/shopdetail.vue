@@ -8,7 +8,7 @@
     <img src="../../../static/img/zuo.png" class="oneImg">
 </router-link>
     <img src="../../../static/img/小帅.jpg" alt="" class="twoImg">
-<h4>效果演示</h4>
+<h4>{{shopname}}</h4>
 <p class="one">商家配送／分钟送达／配送费¥5</p>
 <p class="two">公告:欢迎光临,用餐高峰请提前下单,谢谢</p>
 <router-link to="/shopdetail/dpdetail">
@@ -29,9 +29,10 @@
     
 </div>
 <div class="lll" v-show="!bol">
- <ul class="bk" @click="slide()">
+ <ul class="bk" @click="slide(index)">
    <div class="slide"></div>
     <li  v-for="(itemss, index) in da" :key="index">
+      
     <span>{{itemss.name}}</span>
   </li>
   
@@ -102,7 +103,9 @@
 <div class="bb">
     <ul class="boby1" v-for="(item, index) in dat" :key="index">
 <li>
-<img :src="'https://fuss10.elemecdn.com/1/5f/'+item.avatar" class="img1">
+<img src="{'https://fuss10.elemecdn.com/'+item.image
+_hash+'.jpeg' ?'//elm.cangdu.org/'+item.image
+_hash+'.jpg'}?{'https://fuss10.elemecdn.com/'+item.avatar+'.jpeg'}+{'//elm.cangdu.org/'+item.avatar+'.jpg'}" class="img1">
 </li>     
 <li>
 <p class="bp1">
@@ -121,7 +124,7 @@
 </li>
 <li class="xs" v-for="(itm, index) in item" :key="index">
   <span v-for="(iem, index) in itm" :key="index">
- <img :src="'https://fuss10.elemecdn.com/1/5f/'+iem.image_hash">
+ <img :src="'https://fuss10.elemecdn.com/'+iem.image_hash+'.jpeg'">
   </span>
    
 </li>
@@ -145,11 +148,7 @@
 <div class="ppp1" v-model="count">${{count}}</div>
 <div class="ppp2">运送费$5</div>
 <p class="js">去结算</p>
-
   </div>
-   
-
-
     </div>
 </template>
 
@@ -168,12 +167,14 @@ export default {
       da: [],
       count: 0,
       val:0,
-      vall:0
-      
+      vall:0,
+      shopname:localStorage.getItem('shop_name')  
     };
   },
 
   methods: {
+    
+
     jj(){
       if(this.val<=0|this.count<=0|this.vall<=0){
 alert("不能再减了");
@@ -202,7 +203,7 @@ this.val--;
     handle() {
       this.bol = false;
     },
-    slide() {
+    slide(index) {
       $(".slide").css(
         {
           top: -$(this.li).index() * $(".slide").height() + "px"
@@ -233,7 +234,7 @@ this.val--;
     this.$http.get(dp).then(data => {
       this.da = data.data;
       // console.log(data.data[0].foods[0].name);
-      console.log(this.da[0].foods[0].attributes[1].icon_name);
+      // console.log(this.da[0].foods[0].attributes[1].icon_name);
     });
   }
 };
@@ -386,8 +387,8 @@ padding: 0;
   margin: 0.1rem 0;
 }
 .pl li {
-  width: 10%;
-  padding: 0.02rem 0.15rem;
+  /* width: 10%; */
+  padding: 0.02rem 0.1rem;
   text-align: center;
   /* line-height: 0.1rem; */
   margin: 0.08rem 0.03rem 0.08rem;
@@ -497,7 +498,7 @@ padding: 0;
 }
 .lk {
   width: 100%;
-  height: 2rem;
+  height: 1.7rem;
   margin-bottom: 0.05rem;
   background-color: white;
   padding-bottom: 0.1rem;
