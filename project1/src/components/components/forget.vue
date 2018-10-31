@@ -2,15 +2,15 @@
     <div>
     <ul class="ul1">
     <li class="ll">
-        <router-link to='/mine/logindetail'><img :src="img" alt=""></router-link>
+        <router-link to='/login'><img src="../../../static/img/右.png" alt=""></router-link>
         <span>重置密码</span>
     </li>
 </ul>
 <ul class="ul2">
-    <li><input type="text" placeholder="账号" v-model="username"></li>
-    <li><input type="text" placeholder="旧密码" v-model="oldpassWord"></li>
-    <li><input type="password" placeholder="请输入新密码" v-model="newpassword"></li>
-    <li><input type="password" placeholder="请输入密码" v-model="confirmpassword"></li>
+    <li><input type="text" placeholder="账号"></li>
+    <li><input type="password" placeholder="旧密码"></li>
+    <li><input type="password" placeholder="请输入新密码"></li>
+    <li><input type="password" placeholder="请输入密码"></li>
     <li>
         <input type="text" placeholder="验证码" v-model="codeNumber"> 
         <span class="aa">看不清</span>
@@ -19,31 +19,30 @@
     </li>  
 </ul>
 <img :src="code&&code" alt="" class="bb">
-<button @click="alter()">确认修改</button>
+<button @click="login">确认修改</button>
+
     </div>
 </template>
 <script>
-import img1 from './imgs/左 (1).png'
 export default {
-  name: "frt",
+  name: "forget",
    data() {
     return {
-      img:img1,
       value1: true,
       value2: true,
       data: [],
       codeNumber: "",
       code: "",
       username: "",
-      oldpassWord: "",
-      newpassword:'',
-      confirmpassword:'',
+      password: "",
       bol:true
     };
   },
+
   created() {
     this.getCode();
   },
+
   methods: {
     getCode() {
       const url = "https://elm.cangdu.org/v1/captchas";
@@ -54,32 +53,27 @@ export default {
         //用于表示用户代理是否应该在跨域请求的情况下从其他域发送cookies。
         withCredentials: true // 默认false
       }).then(res => {
-        // console.log("tap", res);
-        // if (res.data.status == 200) {
-        // }
+        console.log("tap", res);
+        if (res.data.status == 200) {
+        }
         this.code = res.data.code;
       });
     },
-    alter() {
-      let api = "https://elm.cangdu.org/v2/changepassword";
+    login() {
+      let api = "https://elm.cangdu.org/v2/login";
       this.$http({
         method: "post",
         url: api,
         withCredentials: true, // 默认的
         data: {
           captcha_code: this.codeNumber,
-          oldpassWord: this.oldpassWord,
-          username: this.username,
-          newpassword:this.newpassword,
-          confirmpassword:this.confirmpassword
+          password: "syq1122",
+          username: "syq1122"
         }
       }).then(res => {
-        console.log(res.data);
-        if(res.data.message){
-           alert(res.data.message);
-        }else{
-           alert('密码修改成功');
-        }
+        alert("修改成功");
+        //给vuex保存用户信息
+        this.$router.push({ name: "takeaway", query: res.data });
       });
     },
   }

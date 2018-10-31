@@ -12,12 +12,14 @@
 </div>
 </template>
 <script>
+import img1 from '../home/imgs/左 (1).png'
 import img01 from './imgs/图标.png'
 export default {
   name:"download",
   data(){
       return {
-          img:img01
+          img:img01,
+          img01:img1
       }
   },
   methods:{
@@ -95,10 +97,9 @@ export default {
   background-color:#3190e8;
   position: relative;
 }
-.sp1{
-  color:white;
-  font-size: 0.25rem;
-  margin-left: 0.05rem;
+.sp1 img{
+  margin-top: 0.05rem;
+  width: 0.25rem;
 }
 .sp2{
   position: absolute;

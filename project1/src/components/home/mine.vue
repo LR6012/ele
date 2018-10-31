@@ -75,6 +75,7 @@ export default {
       this.username = this.$store.state.usermsg.username;
       // 图片地址需要拼接
       this.img = 'https://elm.cangdu.org/img/'+this.$store.state.usermsg.avatar,
+      console.log(this.img);
       this.router = this.router2;
     }else{
       this.username = this.defaultusername;

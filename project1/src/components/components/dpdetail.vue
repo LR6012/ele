@@ -78,7 +78,11 @@ export default {
   data() {
     return {
       data: [],
+<<<<<<< HEAD
+      bol:true
+=======
       bol:false
+>>>>>>> 47ab1e2ee1160f441a3834ddc0bc608776052f25
     };
   },
   created() {
@@ -92,7 +96,11 @@ export default {
 show(){
     this.bol=!this.bol;
     $('.dd').css('display','block');
+<<<<<<< HEAD
+    $('.dd').css('filter','blur(0.05rem)');
+=======
     // $('.dd').css('filter','blur(0.05rem)');
+>>>>>>> 47ab1e2ee1160f441a3834ddc0bc608776052f25
 
 }
 }
@@ -102,14 +110,24 @@ show(){
 <style scoped>
 .dd{
   height:9rem;
+<<<<<<< HEAD
+  border: 1px solid blue;
+margin: -7.2rem 0;
+background-color: rgb(226, 228, 230 , 0.9);
+=======
   /* border: 1px solid blue; */
 margin: -7.2rem 0;
 background-color: rgba(13, 13, 14, 0.1);
+>>>>>>> 47ab1e2ee1160f441a3834ddc0bc608776052f25
 display: none;
 }
 .zz{
 position: absolute;
+<<<<<<< HEAD
+z-index: 6;
+=======
 z-index: 16;
+>>>>>>> 47ab1e2ee1160f441a3834ddc0bc608776052f25
 top:2.4rem;
 width: 100%;
 
