@@ -14,7 +14,7 @@
   <ul class="ddh">
     <li @click="change()">
       包子粥店
-      <img src="../../../static/img/下.png" alt="">
+      <img src="../../../static/img/下.png" alt="" >
       </li>
     <li @click="change1()">排序
       <img src="../../../static/img/下.png" alt="">
@@ -23,7 +23,7 @@
       <img src="../../../static/img/下.png" alt="">
     </li>
   </ul>
-   <ul class="info" v-show="flag1">
+   <ul class="info"  >
       <div>
         <li v-for="(item,index) in arr" :key="item.id" @click="add(index)">
           <span>
@@ -93,7 +93,7 @@
 import Seller from "../../components/1-Takeaway/component/seller";
 import $ from "jquery";
 export default {
-  name: "bzzp",
+  name: "zsd",
   data() {
     return {
       arr: [],
@@ -102,6 +102,7 @@ export default {
       flag2: false,
       flag3: false,
       boll: false,
+      bol:false,
       arrs: [
         { title: "品", content: "品牌商家" },
         { title: "保", content: "外卖保" },
@@ -119,16 +120,17 @@ export default {
     change() {
       $(".info2").css("display", "none");
       $(".info1").css("display", "none");
-       $('.info').slideToggle(400);
-      this.flag1 = !this.flag1;
-      if (this.flag1 == true) {
-        $("li")
+      
+    $('.info').slideToggle(400);
+this.bol = !this.bol;
+   if (this.bol==true) {
+      $("li")
           .eq(0)
-          .css("color", "#3190e8");
+          .css("color", "");
         $("li")
           .eq(0)
           .find("img")
-          .attr("src", "../../static/img/上.png");
+          .attr("src", "../../static/img/下.png");
           $("li")
           .eq(1)
           .css("color", "");
@@ -143,111 +145,55 @@ export default {
           .eq(2)
           .find("img")
           .attr("src", "../../static/img/下.png");
-      } else {
-        $("li")
-          .eq(0)
-          .css("color", "");
-        $("li")
-          .eq(0)
-          .find("img")
-          .attr("src", "../../static/img/下.png");
-      }
-    },
-    change1() {
+   }else{
+$("li").eq(0).css("color", "#3190e8");
+        $("li").eq(0).find("img").attr("src", "../../static/img/上.png");
+   }
+
+    }
+    ,
+   change1(){
+         $(".info2").css("display", "none");
       $(".info").css("display", "none");
-      $(".info2").css("display", "none");
-       $('.info1').slideToggle(400);
-      this.flag2 = !this.flag2;
-      if (this.flag2 == true) {
-        $("li")
-          .eq(1)
-          .css("color", "#3190e8");
-        $("li")
-          .eq(1)
-          .find("img")
-          .attr("src", "../../static/img/上.png");
-          $("li")
-          .eq(0)
-          .css("color", "");
-        $("li")
-          .eq(0)
-          .find("img")
-          .attr("src", "../../static/img/下.png");
-          $("li")
-          .eq(2)
-          .css("color", "");
-        $("li")
-          .eq(2)
-          .find("img")
-          .attr("src", "../../static/img/下.png");
-      } else {
-        $("li")
-          .eq(1)
-          .css("color", "");
-        $("li")
-          .eq(1)
-          .find("img")
-          .attr("src", "../../static/img/下.png");
-      }
-    },
-    change2() {
+$('.info1').slideToggle(400);
+this.flag1 = !this.flag1;
+   if (this.flag1==false) {
+       $("li").eq(1).css("color", "#3190e8");
+        $("li").eq(1).find("img").attr("src", "../../static/img/上.png");
+        $("li").eq(0).css("color", "");
+        $("li").eq(0).find("img").attr("src", "../../static/img/下.png");
+        $("li").eq(2).css("color", "");
+        $("li").eq(2).find("img").attr("src", "../../static/img/下.png");
+   }else{
+$("li").eq(1).css("color", "");
+        $("li").eq(1).find("img").attr("src", "../../static/img/下.png");
+   }
+   },
+
+
+change2(){
       $(".info").css("display", "none");
       $(".info1").css("display", "none");
-       $('.info2').slideToggle(400);
-      this.flag3 = !this.flag3;
-      if (this.flag3 == true) {
-        $("li")
-          .eq(2)
-          .css("color", "#3190e8");
-        $("li")
-          .eq(2)
-          .find("img")
-          .attr("src", "../../static/img/上.png");
-          $("li")
-          .eq(0)
-          .css("color", "");
-        $("li")
-          .eq(0)
-          .find("img")
-          .attr("src", "../../static/img/下.png");
-          $("li")
-          .eq(1)
-          .css("color", "");
-        $("li")
-          .eq(1)
-          .find("img")
-          .attr("src", "../../static/img/下.png");
-      } else {
-        $("li")
-          .eq(2)
-          .css("color", "");
-        $("li")
-          .eq(2)
-          .find("img")
-          .attr("src", "../../static/img/下.png");
-      }
-    },
-    add(index) {
+$('.info2').slideToggle(400);
+
+},
+add(index) {
       console.log(this.arr);
       this.data = this.arr[index].sub_categories;
     },
     cl(index) {
       console.log(index);
-      $(".list li")
-        .eq(index)
-        .css({
+      $(".list li").eq(index).css({
           color: "blue",
           fontWeight: "900"
         });
-      $(".list li img")
-        .eq(index)
-        .attr("src", "../../../static/img/对.png");
+      $(".list li img").eq(index).attr("src", "../../../static/img/对.png");
     },
     noshow() {
-      $(".info2").slideUp(200, function() {
+      $(".info2").slideToggle(200, function() {
         console.log("动画执行完毕");
       });
-      // this.flag3=false;
+      
     }
   },
 

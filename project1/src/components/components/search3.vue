@@ -48,30 +48,24 @@ export default {
       this.bol = !this.bol;
       this.bbol = true;
       // console.log("我要这天,再遮不住我眼");
-      var data = {
-        title: this.title
-      };
+      var data = {title: this.title};
       this.arr.push(data);
       this.title = "";
       $("ul").css("display", "block");
     },
-
     change() {
-      // document.getElementsByTagName("ol").remove();
-      // $("li").slideUp("500");
       $("li").remove();
       $("ul").css("display", "none");
       this.title = "";
     },
     handle(index) {
-      //  this.bbol=!true;
       this.arr.splice(index, 1);
     }
   }
 };
 </script>
 
-<style>
+<style scoped>
 .oo {
   position: fixed;
   top: 3rem;

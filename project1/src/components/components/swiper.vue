@@ -184,7 +184,7 @@ export default {
 .s1 {
   /* border: 1px solid yellow; */
   width: 25%;
-  height: 40%;
+  height: 30%;
   text-align: center;
 }
 #d6 {
@@ -260,8 +260,8 @@ export default {
 
 </style>
 <style>
-.el-rate__icon {
+/* .el-rate__icon {
   font-size: 10px;
   z-index: -5;
-}
+} */
 </style>

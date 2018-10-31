@@ -22,18 +22,26 @@ import Mlt from "../components/components/mlt"
 import Cxg from "../components/components/cxg"
 import Bzzp from '../components/components/bzzp'
 import Shopdetail from '../components/components/shopdetail'
-import Critic from '../components/components/critic'
+import Swiper from '../components/components/swiper'
 import LoginDetail from '../components/home/loginDetail'
 import SetUsername  from '../components/home/setusername'
 import Address  from '../components/home/address'
 import Add  from '../components/home/add'
 import AddDetail  from '../components/home/adddetail'
 import Forget from '../components/home/forget'
+import Dpdetail from '../components/components/dpdetail'
+import Shopsafe from '../components/components/shopsafe'
+import Zsd from '../components/components/zsd'
 
 Vue.use(Router)
 
 export default new Router({
   routes: [
+{
+  path:"/zsd",
+  component:Zsd
+}
+    ,
     {
       path: '/head',
       name: 'hd',
@@ -91,6 +99,11 @@ export default new Router({
       component:Points
     },
     {
+      path:"/swiper",
+      name:"swiper",
+      component:Swiper
+    },
+    {
       path:"/wd",
       name:"wd",
       component:Wd
@@ -140,9 +153,14 @@ export default new Router({
       component:Shopdetail
     },
     {
-      path:"/critic",
-      component:Critic,
-      name:"critic"
+      path:"/shopdetail/dpdetail",
+      name:"dpdetail",
+      component:Dpdetail
+    },
+    {
+path:"/shopdetail/dpdetail/shopsafe",
+name:"shopsafe",
+component:Shopsafe
     },
     {
       path:'/mine/logindetail',
