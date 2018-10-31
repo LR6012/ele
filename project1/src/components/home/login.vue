@@ -89,8 +89,7 @@ export default {
         //给vuex保存用户信息
         // this.$router.push({ name: "mine"});
         if(res.data.message){
-          //  alert(res.data.message);
-            console.log(res.data.message);
+           alert(res.data.message);
         }else{
           this.$store.commit("change",true)
           this.$store.commit("changeusermsg",res.data)

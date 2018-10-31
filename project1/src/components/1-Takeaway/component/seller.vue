@@ -29,6 +29,8 @@
                                 show-score
                                 text-color="#ff9900"
                                 score-template="{value}">
+
+                                
                                 </el-rate>
                             <span id="seller_sale">月售{{item.recent_order_num}}单</span>
                         </div>

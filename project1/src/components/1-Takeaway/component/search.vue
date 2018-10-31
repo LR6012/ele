@@ -16,7 +16,7 @@
         </div>
         <ul>
             
-            <li class="search_li" v-for="(item,index) in add" :key="index" @click="choose(item.geohash,item.name,inputValue)">
+            <li class="search_li" v-for="(item,index) in add" :key="index" @click="choose(item.geohash,item.name,item.address)">
                 <router-link to="/Takeaway">
                     <h4>{{item.name}}</h4>
                     <p>{{item.address}}</p>
@@ -27,12 +27,14 @@
         <div v-show="Action">
             <header id="search_history">搜索历史</header> 
             <ul>
-                <li class="search_li">
-                    <h4>银盛泰·国贸大厦</h4>
-                    <p>山东省青岛市城阳区正阳中路192号</p>
+                <li class="search_li" v-for="item in history" :key=item.id  @click="choose(item.geohash,item.name,item.address)">
+                    <router-link to="/Takeaway">
+                        <h4>{{item.name}}</h4>
+                        <p>{{item.address}}</p>
+                    </router-link>
                 </li>
             </ul>
-        <footer id="search_clear_history">清空所有</footer>
+        <footer id="search_clear_history" @click="clear">清空所有</footer>
         </div>
         
     </div>
@@ -45,10 +47,10 @@
             return{
                 data:[],
                 inputValue:"",
-                arr:[],
                 add:"",
                 Action:true,
-                cityname:localStorage.getItem("cityname")
+                cityname:localStorage.getItem("cityname"),
+                history:[]
             }
         },
         methods: {
@@ -69,19 +71,39 @@
                 });
                 
             },
-            choose(geohash,name,inputValue){
+            choose(geohash,name,address){
                 // console.log(geohash);
                 // vuex传值
                 // this.$store.commit("receivegeohash",geohash);
-                var value = inputValue;
-                this.arr.push(value);
-                console.log(this.arr);
-                value = "";
                 //存储到localstorage中
                 localStorage.setItem("geohash",geohash);
                 localStorage.setItem("locationname",name);
+                // 历史记录
+                 var comment = {name: name,address:address,geohash:geohash};
+                 var list = JSON.parse(localStorage.getItem("cmts")||"[]");
+                //unshift() 方法可向数组的开头添加一个或更多元素，并返回新的长度
+                 list.unshift(comment);
+                 localStorage.setItem("cmts",JSON.stringify(list));
+                 this.name = this.address = this.geohash = '';    
+            },
+            clear(){
+                this.history = [];
+                localStorage.removeItem("cmts");
+            },
+            // 去重的方法
+            dedup(arr) {
+                let hashTable = {};
+                return arr.filter(el => {
+                    let key = JSON.stringify(el);
+                    let match = Boolean(hashTable[key]);
+                    return match ? false : (hashTable[key] = true);
+                });
 
             }
+        },
+        created () {
+                //获取本地存储的值如果是复杂类型的数据的字符串使用JSON.parse(复杂类型字符串) 转成JS能够识别的复杂类型对象 或者数组
+                this.history= this.dedup(JSON.parse(localStorage.getItem("cmts")));
         }
     }
 </script>

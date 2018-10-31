@@ -60,10 +60,6 @@ export default {
     {title:"超赞商家",id:18,name:"awesomeRestaurantCaption"},
     {title:"匿名购买",id:19,name:"anonymousBuyCaption"},
     {title:"活动问题",id:20,name:"activityCaption"},
-    
-    
-
-
           ]
       }
   }
@@ -79,10 +75,9 @@ export default {
   background-color:#3190e8;
   position: relative;
 }
-.sp1{
-  color:white;
-  font-size: 0.25rem;
-  margin-left: 0.05rem;
+.sp1 img{
+  margin-top: 0.05rem;
+  width: 0.25rem;
 }
 .sp2{
   position: absolute;

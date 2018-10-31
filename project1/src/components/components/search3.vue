@@ -10,8 +10,11 @@
         </div>
         <div class="sh">
             <div class="search1">
-            <input type="search" placeholder="请输入商家或美食名称"  id='input1' v-model="title">
+            <form action="">
+              <input type="search" placeholder="请输入商家或美食名称"  id='input1' v-model="title">
+            
             <button @click="submit()">提交</button>
+            </form>
         </div>
   
     </div>
@@ -54,15 +57,12 @@ export default {
   },
   methods: {
     submit() {
+      //隐藏搜索历史
       this.Action = false;
       var id = localStorage.id;
       console.log(id);
-      var search =
-        "https://elm.cangdu.org/v1/pois?city_id=" +
-        id +
-        "&keyword=" +
-        this.title +
-        "&type=search";
+      //请求搜索的东西
+      var search ="https://elm.cangdu.org/v1/pois?city_id=" +id +"&keyword=" +this.title +"&type=search";
       this.$http.get(search).then(data => {
         this.message = data.data;
         // console.log(this.message);
@@ -75,7 +75,7 @@ export default {
         title: this.title
       };
       this.arr.push(data);
-      this.title = "";
+      // this.title = "";
       $("ul").css("display", "block");
     },
 
@@ -138,6 +138,9 @@ export default {
   position: absolute;
   top: -0.31rem;
 }
+.search1 button{
+  float:right
+}
 .search {
   height: 0.46rem;
   line-height: 0.46rem;
@@ -161,9 +164,9 @@ export default {
 .search1 {
   text-align: center;
   position: relative;
-  left: 0.2rem;
+  /* left: -0.5rem; */
   /* border: 1px solid red; */
-  width: 90%;
+  width: 100%;
 }
 input,
 button {

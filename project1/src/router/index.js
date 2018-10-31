@@ -7,7 +7,7 @@ import Order from '../components/home/order'
 import Search3 from '../components/components/search3'
 import Mine from '../components/home/mine'
 import Balance from '../components/home/balance'
-import Benefit from '../components/home/benefit'
+import Benefit from '../components/1-Takeaway/benefit'
 import Points from '../components/home/points'
 import Wd from '../components/home/wd'
 import Login from '../components/home/login'
@@ -26,8 +26,8 @@ import Address from '../components/home/address'
 import Add from '../components/home/add'
 import AddDetail from '../components/home/adddetail'
 import Forget from '../components/home/forget'
-import Hongbao from '../components/home/hongbao'
-import Daijinquan from '../components/home/daijinquan'
+import Hongbao from '../components/1-Takeaway/hongbao'
+import Daijinquan from '../components/1-Takeaway/daijinquan'
 import PayLine from '../components/home/payline'
 import VipDescription from '../components/home/vipdescription'
 import Record from '../components/home/record'
@@ -59,6 +59,7 @@ export default new Router({
         },
         {
           path: "/order",
+          name:'order',
           component: Order
         },
         {
