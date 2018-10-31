@@ -7,9 +7,17 @@
           </router-link>        
  </div>
  <div id="hao2">
+<<<<<<< HEAD
      <router-link to="/search3"> 
               <span>请选择地址...</span>
           </router-link>
+=======
+<<<<<<< HEAD
+    <router-link to='/' id="span1"><span>{{locationname}}</span></router-link>
+=======
+    <router-link to='/search' id="span1"><span>{{locationname}}</span></router-link>
+>>>>>>> ee5aa4fd482151d053b84ac24c295d577962da23
+>>>>>>> 47ab1e2ee1160f441a3834ddc0bc608776052f25
  </div>
  <div id="hao1">
      <router-link to="/login"> 
@@ -115,6 +123,10 @@ export default {
           name: "bzzp",id:16}
  
     ],
+<<<<<<< HEAD
+=======
+     locationname:localStorage.getItem("locationname"),
+>>>>>>> 47ab1e2ee1160f441a3834ddc0bc608776052f25
     swiperOption: {
       notNextTick: true,
       loop: true,
@@ -140,7 +152,11 @@ export default {
     swiperSlides: [1, 2]
   }),
   getIndex(index){
+<<<<<<< HEAD
     console.log(index);
+=======
+    // console.log(index);
+>>>>>>> 47ab1e2ee1160f441a3834ddc0bc608776052f25
 },
   created() {
        let loadingInstance = Loading.service({
@@ -155,7 +171,11 @@ export default {
         loadingInstance.close();
 
       this.data = data.data;
+<<<<<<< HEAD
       console.log(data.data);
+=======
+      // console.log(data.data);
+>>>>>>> 47ab1e2ee1160f441a3834ddc0bc608776052f25
     });
   },
   computed: {
@@ -164,7 +184,11 @@ export default {
     }
   },
   mounted() {
+<<<<<<< HEAD
     console.log("this is current swiper instance object", this.swiper);
+=======
+    // console.log("this is current swiper instance object", this.swiper);
+>>>>>>> 47ab1e2ee1160f441a3834ddc0bc608776052f25
   }
 };
 </script>
@@ -220,6 +244,7 @@ export default {
 }
 #hao2{
   /* border: 1px solid black; */
+<<<<<<< HEAD
   width:1.5rem;
   height: 0.25rem;
   float: left;
@@ -230,6 +255,29 @@ export default {
 }
 #hao2 span {
   font-size: 0.2rem;
+=======
+  width:1.8rem;
+  height: 0.2rem;
+  float: left;
+   white-space: nowrap; 
+   text-overflow: ellipsis;
+   overflow: hidden;
+  text-align: center;
+  margin-top: 0.15rem;
+  margin-left: 0.35rem;
+  /* line-height: 0.2rem; */
+<<<<<<< HEAD
+  font-size: 0.11rem
+}
+#hao2 span {
+  font-size: 0.16rem;
+=======
+  /* font-size: 0.11rem */
+}
+#hao2 span {
+  font-size: 0.15rem;
+>>>>>>> ee5aa4fd482151d053b84ac24c295d577962da23
+>>>>>>> 47ab1e2ee1160f441a3834ddc0bc608776052f25
   color: white;
  
 }
@@ -253,11 +301,23 @@ export default {
 .swiper-slide {
   height: 2rem;
 }
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> 47ab1e2ee1160f441a3834ddc0bc608776052f25
 * {
   margin: 0;
   padding: 0;
 }
+<<<<<<< HEAD
 
+=======
+/* #span1{
+  overflow: hidden;
+  text-overflow: ellipsis;
+   border: 1px solid black; 
+} */
+>>>>>>> 47ab1e2ee1160f441a3834ddc0bc608776052f25
 </style>
 <style>
 /* .el-rate__icon {
@@ -265,3 +325,11 @@ export default {
   z-index: -5;
 } */
 </style>
+<<<<<<< HEAD
+=======
+=======
+
+</style>
+
+>>>>>>> ee5aa4fd482151d053b84ac24c295d577962da23
+>>>>>>> 47ab1e2ee1160f441a3834ddc0bc608776052f25

@@ -10,8 +10,14 @@ import VueAxios from 'vue-axios'
 // import store from './store'
 import ElementUI from 'element-ui';
 import 'element-ui/lib/theme-chalk/index.css';
+<<<<<<< HEAD
 import VueAwesomeSwiper from 'vue-awesome-swiper'
 import 'swiper/dist/css/swiper.css'
+=======
+
+import 'swiper/dist/css/swiper.css'
+import VueAwesomeSwiper from 'vue-awesome-swiper'
+>>>>>>> 47ab1e2ee1160f441a3834ddc0bc608776052f25
 
 Vue.use(VueAwesomeSwiper)
 Vue.use(ElementUI);
@@ -23,7 +29,6 @@ new Vue({
   el: '#app',
   router,
   store,
-  // store,
   components: { App },
   template: '<App/>'
 })

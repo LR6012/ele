@@ -1,6 +1,6 @@
 <template>
 <div class="search">
-  <router-link to="/search2">
+  <router-link to="/mine">
     <span class="sp1">
     <img :src="img2" alt="">
     </span>

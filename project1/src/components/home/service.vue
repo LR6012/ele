@@ -2,7 +2,9 @@
     <div>
        <div class="search">
   <router-link to="/mine">
-  <span class="sp1"><</span>
+  <span class="sp1">
+    <img :src="img" alt="">
+    </span>
   </router-link>
   <span class="sp2">服务中心</span>
 </div>
@@ -27,16 +29,16 @@
         </li>
     </ul>
 </div>
-
-
     </div>
 </template>
 
 <script>
+import img2 from './imgs/左 (1).png'
 export default {
   name:"service",
   data(){
       return{
+          img:img2,
           arr:[
     {title:"超级会员权益问题",id:1,name:"supervipCaption"},
     {title:"签到规则",id:2,name:"signCaption"},
@@ -58,10 +60,6 @@ export default {
     {title:"超赞商家",id:18,name:"awesomeRestaurantCaption"},
     {title:"匿名购买",id:19,name:"anonymousBuyCaption"},
     {title:"活动问题",id:20,name:"activityCaption"},
-    
-    
-
-
           ]
       }
   }
@@ -77,10 +75,9 @@ export default {
   background-color:#3190e8;
   position: relative;
 }
-.sp1{
-  color:white;
-  font-size: 0.25rem;
-  margin-left: 0.05rem;
+.sp1 img{
+  margin-top: 0.05rem;
+  width: 0.25rem;
 }
 .sp2{
   position: absolute;

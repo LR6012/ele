@@ -10,13 +10,23 @@
         </div>
         <div class="sh">
             <div class="search1">
-            <input type="search" placeholder="请输入商家或美食名称"  id='input1' v-model="title">
+            <form action="">
+              <input type="search" placeholder="请输入商家或美食名称"  id='input1' v-model="title">
+            
             <button @click="submit()">提交</button>
+            </form>
         </div>
   
     </div>
-
-    <ol class="liu" else>
+    <ul id="search_ul"> 
+            <li class="search_li" v-for="(item,index) in message" :key="index" @click="choose(item.geohash,item.name)">
+                <router-link to="">
+                    <h4>{{item.name}}</h4>
+                    <p>{{item.address}}</p>
+                </router-link>
+            </li>
+    </ul>
+    <ol class="liu" v-show="Action">
         <ul>
             <h4 v-show="bbol" class="ss">搜索历史</h4>
         <!-- <h4 v-show="!bbol">很抱歉,没有搜索结果</h4> -->
@@ -40,17 +50,30 @@ export default {
       bol: false,
       title: this.title,
       arr: [],
-      bbol: false
+      bbol: false,
+      message: [],
+      Action:true
     };
   },
   methods: {
     submit() {
+      //隐藏搜索历史
+      this.Action = false;
+      var id = localStorage.id;
+      console.log(id);
+      //请求搜索的东西
+      var search ="https://elm.cangdu.org/v1/pois?city_id=" +id +"&keyword=" +this.title +"&type=search";
+      this.$http.get(search).then(data => {
+        this.message = data.data;
+        // console.log(this.message);
+      });
+
       this.bol = !this.bol;
       this.bbol = true;
       // console.log("我要这天,再遮不住我眼");
       var data = {title: this.title};
       this.arr.push(data);
-      this.title = "";
+      // this.title = "";
       $("ul").css("display", "block");
     },
     change() {
@@ -60,8 +83,14 @@ export default {
     },
     handle(index) {
       this.arr.splice(index, 1);
-    }
+    },
+    choose(geohash,name){
+    this.Action = true;
+    localStorage.shopgeohash = geohash;
+    // console.log(localStorage.shopgeohash);
   }
+  }
+  
 };
 </script>
 
@@ -105,6 +134,9 @@ export default {
   position: absolute;
   top: -0.31rem;
 }
+.search1 button{
+  float:right
+}
 .search {
   height: 0.46rem;
   line-height: 0.46rem;
@@ -128,9 +160,9 @@ export default {
 .search1 {
   text-align: center;
   position: relative;
-  left: 0.2rem;
+  /* left: -0.5rem; */
   /* border: 1px solid red; */
-  width: 90%;
+  width: 100%;
 }
 input,
 button {
@@ -159,5 +191,34 @@ input {
   font-weight: 700;
   padding: 0.1rem;
   margin-left: -0.1rem;
+}
+
+#search_ul{
+  margin-top: .65rem;
+}
+.search_li {
+  height: 0.56rem;
+  padding-top: 0.15rem;
+  border-bottom: 0.01rem solid #e4e4e4;
+  background-color: #fff;
+}
+.search_li h4 {
+  text-align: left;
+  height: 0.2rem;
+  font-size: 0.16rem;
+  line-height: 0.18rem;
+  margin: 0 0.2rem 0.1rem 0.2rem;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+.search_li p {
+  text-align: left;
+  font-size: 0.13rem;
+  margin: 0 0.2rem 0.1rem 0.2rem;
+  color: #999;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
 }
 </style>

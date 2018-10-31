@@ -2,7 +2,9 @@
     <div>   
  <div class="search">
   <router-link to="/mine">
-  <span class="sp1"><</span>
+   <span class="sp1">
+    <img :src="img01" alt="">
+    </span>
   </router-link>
   <span class="sp2">我的余额</span>
   </div>
@@ -25,11 +27,13 @@
 
 <script>
 import img1 from './imgs/下载.png'
+import img01 from './imgs/左 (1).png'
 export default {
   name:'balance',
   data(){
       return {
           img:img1,
+          img01:img01
       }
   }
 }
@@ -44,11 +48,9 @@ export default {
   background-color: #3190e8;
   position: relative;
 }
-.sp1 {
-  color: white;
-  margin-left: 0.05rem;
-  font-size: 0.27rem;
-  /* border: 1px solid black; */
+.sp1 img{
+  margin-top: 0.05rem;
+  width: 0.25rem;
 }
 .sp2 {
   position: absolute;

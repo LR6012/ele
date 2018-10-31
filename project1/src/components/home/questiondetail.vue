@@ -2,14 +2,8 @@
     <div>
         <h1>你好</h1>
 <ol>
-    <li v-for="item in data" :key="item.id">{{item.supervipContent}}</li>
-    
-    
+    <li v-for="item in data" :key="item.id">{{item.supervipContent}}</li> 
 </ol>
-
-
-
-
     </div>
 
 
