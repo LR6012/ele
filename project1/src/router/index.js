@@ -40,7 +40,6 @@ import PayLine from '../components/home/payline'
 import VipDescription from '../components/home/vipdescription'
 import Record from '../components/home/record'
 import UseCard from '../components/home/usecard'
-import Shopdetail from '../components/components/shopdetail'
 import Dpdetail from '../components/components/dpdetail'
 import Shopsafe from '../components/components/shopsafe'
 

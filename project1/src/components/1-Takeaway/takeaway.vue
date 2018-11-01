@@ -10,10 +10,7 @@
     </div>
 </template>
 <script>
-<<<<<<< HEAD
-=======
 // import Hd from '../../components/components/hd'
->>>>>>> 47ab1e2ee1160f441a3834ddc0bc608776052f25
 import Seller from "./component/seller.vue";
 import Swiper from '../../components/components/swiper'
 export default {
@@ -25,10 +22,7 @@ export default {
   },
   components: {
     Seller,
-<<<<<<< HEAD
-=======
     // Hd
->>>>>>> 47ab1e2ee1160f441a3834ddc0bc608776052f25
     Swiper
   }
   /*
