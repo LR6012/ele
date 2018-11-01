@@ -13,8 +13,7 @@
             <router-link to="/benefit/daijinquan" class="title"><span class="title_span">商家代金券</span></router-link>
          </div>
          <div id="unuse"></div>
-         <router-view></router-view>
-         
+         <router-view></router-view>  
     </div>
 
 </template>

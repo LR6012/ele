@@ -7,13 +7,13 @@
     <img src="../../../static/img/右.png" alt="">
     </router-link>
     </span>
-  <span class="sp2">包子粥店</span>
+  <span class="sp2">{{cartName}}</span>
 </div>    
   <!-- 分类导航 -->
   <ul class="dh">
   <ul class="ddh">
     <li @click="change()">
-      包子粥店
+      {{cartName}}
       <img src="../../../static/img/下.png" alt="">
       </li>
     <li @click="change1()">排序
@@ -96,6 +96,7 @@ export default {
   name: "bzzp",
   data() {
     return {
+      cartName:localStorage.getItem('cart_name'),
       arr: [],
       data: [],
       flag1: false,
@@ -270,8 +271,8 @@ export default {
 }
 
 .ddh {
-  padding: 0.1rem 0;
-  margin-top: -0.1rem;
+  padding: 0.05rem 0;
+  margin-top: -0.2rem;
 }
 .search {
   height: 0.46rem;

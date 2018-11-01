@@ -1,7 +1,6 @@
 <template>
-    <div>
-<div class="wrap">
-    
+<div>
+<div class="wrap">  
 </div>
 <div class="hd">
   <router-link to="/takeaway">
@@ -17,59 +16,56 @@
 </div>
 <div class="nav">
     <div class="sc" v-show="!bol"></div>
-    <span @click="handle()">商品</span>
-    
-    
+    <span @click="handle()">商品</span>  
     <span @click="change()">
       评价
 <div class="sc2" v-show="bol"></div>
-    </span>
-   
-    
-    
-    <span @click="change()">
-      评价
-<div class="sc2" v-show="bol"></div>
-    </span>
+    </span>   
 </div>
 <div class="lll" v-show="!bol">
- <ul class="bk" @click="slide(index)">
-   <div class="slide"></div>
-    <li  v-for="(itemss, index) in da" :key="index">
-      
-    <span>{{itemss.name}}</span>
+ <!-- <ul class="bk" @click="slide()"> -->
+ <ul class="bk">
+  <!-- <div class="slide"></div> -->
+  <li v-for="(itemss,index) in da" :key="index">
+    <!-- <span>{{itemss.name}}</span> -->
+    <a :href="'#top'+itemss.id">{{itemss.name}}</a>
   </li>
-  
  </ul>
-<div class="hd2">
+<div class="content">
+<div class="boby">
+  <li v-for="(itemsss,index) in da" :key="index" class="lk">
+  <div class="hd2" :id="'top'+itemsss.id">
   <li>
-    <strong>热销榜</strong>
-  <span class="sp1">往事纷争,你总太天真</span>
+  <strong>{{itemsss.name}}</strong>
+  <span class="sp1">{{itemsss.description}}</span>
   <span class="sp2">...</span>
   </li>
 </div>
-<div class="boby">
-  <li v-for="(itemsss,index) in da" :key="index" class="lk">
-
-    <p class="rx">热销</p>
-
+<!-- <p class="rx">热销</p> -->
+<div v-for="(val,ind) in itemsss.foods" :key='ind'>
   <img src="../../../static/img/小帅.jpg" class="th">
-<p class="rg">{{itemsss.foods[0].name}}</p>
-<p class="zp">{{itemsss.name}}</p>
-<p class="ms">{{itemsss.description}}</p>
-<p class="ll">
-  <span>月售{{itemsss.foods[0].rating_count}}份</span>
-  <span>好评率{{itemsss.foods[0].satisfy_rate}}%</span>
-</p>
-<p class="mm">{{itemsss.description}}</p>
+  <p class="rg">{{val.name}}</p>
+  <p class="zp">{{val.name}}</p>
+  <p class="ms">{{val.description}}</p>
+  <p class="ll">
+    <span>月售{{val.rating_count}}份</span>
+    <span>好评率{{val.satisfy_rate}}%</span>
+  </p>
+  <p class="mm">{{val.description}}</p>
 
-<img src="../../../static/img/减.png" alt="" class="jt"  @click.stop="jj()">
-<p class="pppp" @click.prevent="gwc()">{{vall}}</p>
-<img src="../../../static/img/加.png" alt="" class="jh" @click="gwc()">
-<span class="sj">${{itemsss.foods[0].specfoods[0].price}}</span>
+  <img src="../../../static/img/减.png" alt="" class="jt"  @click.stop="jj()"  @click="oddNums(val.name,val._id,val.count)">
+  <!-- <p class="pppp" @click.stop="gwc()">{{count1}}</p> -->
+  <p class="pppp">{{val.count}}</p>
+  <img src="../../../static/img/加.png" alt="" class="jh" @click="get(val.name,val._id,val.count)">
+  <!-- <img src="../../../static/img/加.png" alt="" class="jh" @click="gwc()"> -->
+  <span class="sj">${{val.specfoods[0].price}}</span>
+</div>
   </li>
 </div>
 </div>
+</div>
+
+
 
 <div v-show="bol">
 <div class="wp" >
@@ -106,7 +102,7 @@
 <div class="bb">
     <ul class="boby1" v-for="(item, index) in dat" :key="index">
 <li>
-<img :src="'https://fuss10.elemecdn.com/'+item.avatar+'.jpeg'" class="img1">
+<img :src="'https://fuss10.elemecdn.com/1/5f/'+item.avatar" class="img1">
 </li>     
 <li>
 <p class="bp1">
@@ -131,77 +127,118 @@
 </li>
 <li class="bq">
    <span v-for="(ite,index) in item" :key="index">
-     <span v-for="(it, index) in ite" :key="index">{{it.food_name}}</span>
-     
+     <span v-for="(it, index) in ite" :key="index">{{it.food_name}}</span>     
    </span>
 
 </li>
     </ul>
 </div>
 </div>
-  <div class="db">
+  <div class="db" @click="appr()">
    <img src="../../../static/img/购物车空.png" alt="" class="gwc">
    <li class="ii" >
-
-     <img src="../../../static/img/购物车空.png" alt="" class="gwc2" @click="show()">
+  <img src="../../../static/img/购物车空.png" alt="" class="gwc2">
      <span @click="show()" class="sz">{{val}}</span>
    </li>
-<div class="ppp1" v-model="count">${{count}}</div>
-<div class="ppp2">运送费$5</div>
-<p class="js">去结算</p>
-
-  </div>
-   
-
-
-     <img src="../../../static/img/购物车空.png" alt="" class="gwc2" @click="show()">
-     <span @click="show()" class="sz">{{val}}</span>
-   </li>
-<div class="ppp1" v-model="count">${{count}}</div>
+<div class="ppp1">${{20*count1}}</div>
 <div class="ppp2">运送费$5</div>
 <p class="js">去结算</p>
   </div>
-    </div>
+  <ul class="aa" v-show="flag">
+    <li v-for="(value,index) in newData" :key="index">
+      <p>{{value.name}}</p>
+      <p>{{value.count1}}</p>
+    </li>
+  </ul>
+  </div>
 </template>
 
 <script>
 import $ from "jquery";
-
+import Vue from "vue"
 export default {
   name: "shopdetail",
   data() {
     return {
+      newData:[
+        {
+          name:'',
+          count1:''
+        }
+      ],
       data: [],
+      flag:false,
       bol: false,
       // value5: 4.5,
       datas: [],
       dat: [],
       da: [],
-      count: 0,
+      count:0,
       val:0,
-      vall:0,
-     shopname:localStorage.getItem('shop_name') 
-      
+      // vall:0,
+      shopname:localStorage.getItem('shop_name'),
+      name:'',
+      arr:[],
+      count1:0
     };
   },
-
   methods: {
-change(shopname){
-        localStorage.shop_name=shopname;
-        console.log(localStorage.shop_name);
-    }
-    ,
-    jj(){
-      if(this.val<=0|this.count<=0|this.vall<=0){
-alert("不能再减了");
-      }else{
-this.val--;
-      this.count -= 20;
-      this.vall-=1;
+    appr(){
+      this.flag = !this.flag;
+    },
+    //点击+号  购物车中显示商品
+    get(n,id,cont){
+      this.name = n;
+      this.da.forEach((value)=>{
+        value.foods.forEach((val)=>{
+          if (val._id == id){
+            val.count += 1;
+            val.isHave= true;
+            this.count1 += 1;
+          }
+        })
+      })
+      //点击按钮时,更改对象中的name和count值
+      var news = {
+         name:this.name,
+         count1:this.count1
       }
-      
-    }
-    ,
+      this.newData.push(news);
+      this.$store.commit("shopFoods",this.da)
+    },
+    //减号 点击数量减少
+    oddNums(n,id,cont){
+      this.da.forEach((value)=>{
+        value.foods.forEach((val)=>{
+          if (val._id == id){
+            if(val.count != 0){
+              val.count-=1;
+              this.count1 -= 1;
+            }
+            if(val.count == 0){
+              val.count =0
+              val.isHave =false
+            }
+          }
+        })
+      })
+      var news = {
+         name:this.name,
+         count1:this.count1
+      }
+      this.newData.pop(news);
+      this.$store.commit("shopFoods",this.da)
+    },
+    jj(){
+      // if(this.val<=0|this.count<=0|this.vall<=0){
+      //  alert("不能再减了");
+      // }else{
+      // this.val--;
+      // this.count -= 20;
+      // this.vall-=1;
+      // } 
+    },
+   
     gwc() {
       this.vall+=1;
       this.val++;
@@ -218,40 +255,54 @@ this.val--;
     },
     handle() {
       this.bol = false;
-    },
-    slide() {
-      $(".slide").css(
-        {
-          top: -$(this.li).index() * $(".slide").height() + "px"
-        },
-        500
-      );
-      console.log($(this).index());
     }
+    // slide() {
+    //   $(".slide").css(
+    //     {
+    //       top: -$(this.li).index() * $(".slide").height() + "px"
+    //     },
+    //     500
+    //   );
+    //   console.log($(this).index());
+    // }
   },
   created() {
-    let api = "https://elm.cangdu.org/ugc/v2/restaurants/1/ratings/scores";
+    var _this=this
+    var shopId = localStorage.getItem('shop_id');
+    let api = 'https://elm.cangdu.org/ugc/v2/restaurants/'+shopId +'/ratings/scores';
     this.$http.get(api).then(data => {
-      this.data = data.data;
+      _this.data = data.data;
       // console.log(data.data);
     });
-    let apl = "https://elm.cangdu.org/ugc/v2/restaurants/1/ratings/tags";
+    let apl = 'https://elm.cangdu.org/ugc/v2/restaurants/'+shopId+'/ratings/tags';
     this.$http.get(apl).then(data => {
-      this.datas = data.data;
+      _this.datas = data.data;
       // console.log(data.data);
     });
     let bod =
-      "https://elm.cangdu.org/ugc/v2/restaurants/1/ratings?offset=0&limit=10";
+      'https://elm.cangdu.org/ugc/v2/restaurants/'+shopId+'/ratings?offset=0&limit=10';
     this.$http.get(bod).then(data => {
-      this.dat = data.data;
+      _this.dat = data.data;
       // console.log(data.data);
     });
-    let dp = "https://elm.cangdu.org/shopping/v2/menu?restaurant_id=1";
+    let dp = 'https://elm.cangdu.org/shopping/v2/menu?restaurant_id='+shopId;
     this.$http.get(dp).then(data => {
-      this.da = data.data;
-      // console.log(data.data[0].foods[0].name);
-      console.log(this.da[0].foods[0].attributes[1].icon_name);
+      var shopFoods =data.data
+      shopFoods.forEach((value)=>{
+        value.foods.forEach((val)=>{
+          Vue.set(val,"count",0)
+          Vue.set(val,"isHave",false)
+        })
+      })
+      _this.$store.commit("shopFoods",shopFoods)
+      _this.da = shopFoods
     });
+
+  },
+  watch:{
+    da(news){
+      console.log(news)
+    }
   }
 };
 </script>
@@ -458,9 +509,8 @@ padding: 0;
   font-size: 0.16rem;
   font-weight: 700;
   margin: -0.7rem 0 0.5rem 0.7rem;
-  
   border: 0.01rem dotted red;
-  float: left;
+  float:left;
 }
 .mm {
   border: 0.01rem dotted red;
@@ -504,7 +554,7 @@ padding: 0;
 
   z-index: -1;
 }
-.rg {
+.rg{
   margin: -0.75rem 0 0 0.8rem;
   font-size: 0.18rem;
 }
@@ -516,7 +566,6 @@ padding: 0;
   width: 100%;
   height: 2rem;
   margin-bottom: 0.05rem;
-  background-color: white;
   padding-bottom: 0.1rem;
   overflow: hidden;
 }
@@ -526,8 +575,27 @@ padding: 0;
   width: 73%;
   position: absolute;
   right: 0;
-  top: 2.3rem;
+  /* top: 2.3rem; */
+  top:1.67rem;
+  /* border:1px solid red; */
+    /* background-color: white; */
 }
+.hd2{
+  /* border:1px solid black; */
+  /* margin-bottom: 0.6rem; */
+  padding: 0.07rem;
+  /* background-color: gainsboro; */
+}
+/* .hd2 {
+  border: 1px solid balck;
+  width: 0.2rem; 
+  float: right;
+  position: absolute;
+  left: 1rem;
+  left: 0.05rem;
+  padding: 0.2rem;
+  font-size: 0.12rem;
+} */
 .th {
   width: 0.6rem;
   margin: 0.05rem 0 0 0.05rem;
@@ -546,16 +614,6 @@ strong {
   right: -0.5rem;
   top: 0.08rem;
 }
-.hd2 {
-  border: 1px solid balck;
-  /* width: 0.2rem; */
-  /* float: right; */
-  position: absolute;
-  left: 1rem;
-  padding: 0.2rem;
-  /* font-size: 0.12rem; */
-}
-
 .slide {
   width: 0.05rem;
   height: 0.55rem;
@@ -662,5 +720,30 @@ h4 {
   left: 0.1rem;
   /* border: 1px solid black; */
   z-index: 2;
+}
+/*  设置超出滚动  父级设置:overflow:hidden  */
+.content{
+  /* border: 1px solid red; */
+  overflow: scroll;
+  height: 4rem;
+}
+.content::-webkit-scrollbar{
+  display: none;
+}
+a{
+  color:black;
+}
+.aa{
+  width: 100%;
+  /* height: 1rem; */
+  border:1px solid rebeccapurple;
+  position: fixed;
+  left: 0;
+  bottom:0.8rem;
+  background-color: white;
+}
+.aa li{
+  border-bottom: 0.01rem solid rgb(207, 205, 205);
+
 }
 </style>

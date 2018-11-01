@@ -18,7 +18,7 @@
  </div>
 <swiper id="d6" :options="swiperOption" ref="mySwiper">
        <swiper-slide id="d1" >
-         <div class="s1" v-for="item in imgs1" :key="item.id">
+         <div class="s1" v-for="item in imgs1" :key="item.id" @click="get(item.title)">
            <router-link :to="{name:item.name,params:{id:item.id}}">
          <img  width="40"  :src="item.src" alt="">
          </router-link>
@@ -26,7 +26,7 @@
          </div>
          </swiper-slide>
          <swiper-slide id="d2">
-         <div class="s1" v-for="(item,index) in imgs2" :key="index">
+         <div class="s1" v-for="(item,index) in imgs2" :key="index" @click="get(item.title)">
            <router-link :to="{name:item.name,params:{id:item.id}}">
          <img  width="40"  :src="item.src" alt="">
          </router-link>
@@ -136,8 +136,10 @@ export default {
     },
     swiperSlides: [1, 2]
   }),
-  getIndex(index){
-    // console.log(index);
+  methods:{
+    get(n){
+      localStorage.setItem('cart_name',n);
+    }
 },
   created() {
        let loadingInstance = Loading.service({

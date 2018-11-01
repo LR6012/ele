@@ -35,6 +35,12 @@ import UseCard from '../components/home/usecard'
 import Shopdetail from '../components/components/shopdetail'
 import Dpdetail from '../components/components/dpdetail'
 import Shopsafe from '../components/components/shopsafe'
+import Exchange from '../components/1-Takeaway/exchange'
+import Commend from '../components/1-Takeaway/commend'
+import Hbhistory from '../components/1-Takeaway/hbHistory'
+import HbDescription from '../components/1-Takeaway/hbDescription'
+import DjqDescription from '../components/1-Takeaway/djqDescription'
+ 
 Vue.use(Router)
 
 export default new Router({
@@ -196,5 +202,29 @@ export default new Router({
       name: "shopsafe",
       component: Shopsafe
     },
+    {
+      path:'/benefit/hongbao/exchange',
+      component:Exchange
+    },
+    {
+      path:'/benefit/hongbao/commend',
+      component:Commend
+    },
+    {
+      path:'/benefit/hongbao/hbHistory',
+      component:Hbhistory
+    },
+    {
+      path:'/benefit/hongbao/hbDescription',
+      component:HbDescription
+    },
+    {
+      path:'/benefit/daijinquan',
+      component:Daijinquan
+    },
+    {
+      path:'/benefit/daijinquan/djqDescription',
+      component:DjqDescription
+    }
   ]
 });

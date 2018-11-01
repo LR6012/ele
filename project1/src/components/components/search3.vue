@@ -111,7 +111,7 @@ export default {
   background-color: #fff;
   position: absolute;
   top: 1.5rem;
-  width: 100%;
+  width: 99%;
   border: 0.006rem solid gainsboro;
 }
 .liu p {
@@ -123,8 +123,8 @@ export default {
 }
 .sh {
   /* border: 1px solid black; */
-  padding: 0.1rem 0;
-  width: 100%;
+  padding: 0.5%;
+  width: 98%;
   background-color: #fff;
   position: absolute;
   top: 0.46rem;
@@ -174,9 +174,9 @@ button {
   background-color: #3190e8;
   color: white;
   border: 0.01rem solid #3190e8;
-  border-image-repeat: 0.015rem;
+  /* border-image-repeat: 0.015rem; */
   padding: 0.05rem 0.14rem;
-  margin-left: 0.1rem;
+  /* margin-left: 0.1rem; */
 }
 .result {
   color: black;

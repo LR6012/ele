@@ -3,9 +3,9 @@ let getters = {
       //普通函数
         // vipTodos(state){},
         //箭头函数
-        vipTodos:(state)=>{
-            return state.todos.filter(todo => todo.vip)
-          }
+        // names:(state)=>{
+        //     return state.todos.filter(todo => todo.name)
+        //   }
 };
 export {getters};
 

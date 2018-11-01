@@ -7,9 +7,6 @@
    changeusermsg(state, value) {
      state.usermsg = value;
    },
-   editinfo(state, value) {
-     state.info = value;
-   },
    //receiveid
    receiveid(state, value) {
      alert(value)
@@ -17,9 +14,8 @@
    },
    receivegeohash(state, value) {
      state.geohash = value;
-   }
-   // 赋值测试
-   // 方法名(state,参数){
-   //   this.state.state中接收数据的变量 = 参数;
-   // }
+   },
+   shopFoods(state,el){
+    state.shopFoods = el
+  },
  }
