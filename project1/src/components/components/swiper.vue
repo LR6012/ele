@@ -7,7 +7,7 @@
           </router-link>        
  </div>
  <div id="hao2">
-    <router-link to='/search' id="span1"><span>{{locationname}}</span>
+    <router-link to='/search' ><span>{{locationname}}</span>
     </router-link>
  </div>
  <div id="hao1">
@@ -222,12 +222,16 @@ export default {
   float: left;
   text-align: center;
   margin-top: 0.15rem;
-  margin-left: 0.35rem;
+  margin-left: 0.45rem;
   line-height: 0.25rem;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
 }
 #hao2 span {
-  font-size: 0.15rem;
+  font-size: 0.18rem;
   color: white;
+  
 }
 #hao img {
   width: 0.3rem;
