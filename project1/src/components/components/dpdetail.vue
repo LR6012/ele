@@ -93,7 +93,6 @@ show(){
     this.bol=!this.bol;
     $('.dd').css('display','block');
     // $('.dd').css('filter','blur(0.05rem)');
-
 }
 }
 };
@@ -109,11 +108,9 @@ display: none;
 }
 .zz{
 position: absolute;
-z-index: 6;
+z-index: 16;
 top:2.4rem;
 width: 100%;
-
-  
 }
 .footer p img {
   width: 0.25rem;

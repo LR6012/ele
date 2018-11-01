@@ -7,7 +7,8 @@
           </router-link>        
  </div>
  <div id="hao2">
-    <router-link to='/search' id="span1"><span>{{locationname}}</span></router-link>
+    <router-link to='/search' id="span1"><span>{{locationname}}</span>
+    </router-link>
  </div>
  <div id="hao1">
      <router-link to="/login"> 
@@ -64,16 +65,13 @@ let Swiper = {
   //组件名
   name: "swiper"
 };
-
 //导出模块:组件必须是default
 export default {
   Swiper,
   components: {
     swiper,
-    swiperSlide,
-   
+    swiperSlide, 
   },
-
   data: () => ({
     data: [],
      imgs1: [
@@ -152,7 +150,6 @@ export default {
     this.$http.get(api).then(data => {
         //在成功的时候,关闭加载提示
         loadingInstance.close();
-
       this.data = data.data;
       // console.log(data.data);
     });
@@ -218,7 +215,6 @@ export default {
   z-index: 6;
 }
 #hao2{
-
   width:1.5rem;
   height: 0.25rem;
   float: left;
@@ -228,25 +224,8 @@ export default {
   line-height: 0.25rem;
 }
 #hao2 span {
-  font-size: 0.2rem;
-
-  width:1.8rem;
-  height: 0.2rem;
-  float: left;
-   white-space: nowrap; 
-   text-overflow: ellipsis;
-   overflow: hidden;
-  text-align: center;
-  margin-top: 0.15rem;
-  margin-left: 0.35rem;
-  /* line-height: 0.2rem; */
-  /* font-size: 0.11rem */
-}
-#hao2 span {
   font-size: 0.15rem;
-
   color: white;
- 
 }
 #hao img {
   width: 0.3rem;
@@ -268,8 +247,4 @@ export default {
 .swiper-slide {
   height: 2rem;
 }
-
-
 </style>
-
-

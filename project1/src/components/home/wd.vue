@@ -1,12 +1,38 @@
 <template>
     <div class="wd">
-        <li v-for="item in arr" :key="item.id">
-          <router-link :to="item.path">
-            <img :src="item.src" alt="" class="img">
-    <span>{{item.title}}</span>
+    <li>
+    <router-link to="/order">
+    <img  src="../../../static/img/订单.png" alt="" class="img">
+    <span>我的订单</span>
     <img src="../../../static/img/左箭头 (1).png">
     </router-link>
-        </li>
+    </li>
+    <li>
+    <img src="../../../static/img/购物袋.png" alt="" class="img">
+    <span>积分商城</span>
+    <img src="../../../static/img/左箭头 (1).png">
+    </li>
+    <li>
+    <router-link :to="this.path">
+     <img src="../../../static/img/皇冠.png" alt="" class="img">
+    <span>饿了么会员卡</span>
+    <img src="../../../static/img/左箭头 (1).png">
+    </router-link>
+    </li>
+    <li>
+    <router-link to="/service">
+    <img src="../../../static/img/订单.png" alt="" class="img">
+    <span>服务中心</span>
+    <img src="../../../static/img/左箭头 (1).png">
+    </router-link>
+    </li>
+    <li>
+    <router-link to="/download">
+    <img src="../../../static/img/图标.png" alt="" class="img">
+    <span>下载饿了么APP</span>
+    <img src="../../../static/img/左箭头 (1).png">
+    </router-link>
+    </li>
     </div>
 </template>
 <script>
@@ -14,39 +40,17 @@ export default {
   name: "wd",
   data() {
     return {
-      arr: [
-        {
-          src: "../../../static/img/订单.png",
-          title: "我的订单",
-          id: 1,
-          path: "/order"
-        },
-        {
-          src: "../../../static/img/购物袋.png",
-          title: "积分商城",
-          id: 2,
-          path: ""
-        },
-        {
-          src: "../../../static/img/皇冠.png",
-          title: "饿了么会员卡",
-          id: 3,
-          path: "/vipcard"
-        },
-        {
-          src: "../../../static/img/订单.png",
-          title: "服务中心",
-          id: 4,
-          path: "/service"
-        },
-        {
-          src: "../../../static/img/图标.png",
-          title: "下载饿了么APP",
-          id: 5,
-          path: "/download"
-        }
-      ]
+      path:'',
+      path1:'/vipcard1',
+      path2:'/vipcard'
     };
+  },
+  created(){
+    if(this.$store.state.denglu){
+      this.path = this.path2;
+    }else{
+      this.path = this.path1;
+    }
   }
 };
 </script>
