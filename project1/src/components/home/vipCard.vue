@@ -67,6 +67,7 @@
 </div>
 </template>
 <script>
+import $ from 'jquery'
 import img01 from './imgs/左 (1).png'
 import img1 from "./imgs/左箭头 (1).png";
 import img2 from "./imgs/省.png";

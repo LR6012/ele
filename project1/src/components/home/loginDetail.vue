@@ -240,6 +240,7 @@ input[type="file"]{
 .sp1 img {
   /* border: 1px solid red; */
   margin-top: 0.05rem;
+  width: 0.2rem;
 }
 .sp2 {
   position: absolute;

@@ -1,7 +1,11 @@
 <template>
 <div>
 <div class="search">
-  <span class="sp1" @click="aa"><</span>
+  <router-link to="/mine">
+    <span class="sp1">
+            <img :src="img01" alt="">
+            </span>
+  </router-link>
   <span class="sp2">下载</span>
 </div>
 <div class="download">
@@ -23,9 +27,6 @@ export default {
       }
   },
   methods:{
-      aa(){
-          this.$router.go(-1);
-      },
       open(){
            this.$confirm('IOS用户请前往AppStore下载', {
           confirmButtonText: '确定',
