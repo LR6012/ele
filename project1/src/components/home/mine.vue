@@ -31,7 +31,7 @@
      </router-link>
 <router-link to="/benefit/hongbao">
     <li class="yue2">
-       <span><b>0</b>个</span>
+       <span><b>{{count}}</b>个</span>
        <span class="aaa">我的优惠</span>
      </li>
 </router-link>
@@ -55,6 +55,7 @@ export default {
   name: "mine",
   data() {
     return {
+      count:'',
       img: img01,
       img1:img02,
       img2:img1,
@@ -75,12 +76,14 @@ export default {
       this.username = this.$store.state.usermsg.username;
       // 图片地址需要拼接
       this.img = 'https://elm.cangdu.org/img/'+this.$store.state.usermsg.avatar,
-      console.log(this.img);
+      // console.log(this.img);
       this.router = this.router2;
+      this.count = 3;    
     }else{
       this.username = this.defaultusername;
       this.img = this.defaultsrcc;
       this.router = this.router1;
+      this.count = 0;
     }
   }
 };

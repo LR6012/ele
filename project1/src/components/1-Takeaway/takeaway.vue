@@ -35,7 +35,7 @@ export default {
 <style scoped>
   #seller_header{
     padding: 0.1rem .1rem;
-    /* margin-top: 0rem; */
+    margin-top: 0.2rem;
     background-color: white;
   }
   #seller_header img{

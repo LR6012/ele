@@ -1,7 +1,7 @@
 <template>
     <div>
       <header class="hongbao_title">
-        <span>有<span id="span3">n</span>个红包即将到期</span>
+        <span>有<span id="span3">3</span>个红包即将到期</span>
         <div>
           <img src="../../../static/img/问号.png" alt="">
           <router-link to="/benefit/hongbao/hbDescription">
@@ -10,14 +10,13 @@
         </div>  
       </header>
       <Redpacket></Redpacket>
-      <Redpacket></Redpacket>
-      <Redpacket></Redpacket>
+      <!-- <Redpacket></Redpacket>
+      <Redpacket></Redpacket> -->
       <div class="check_history">
         <router-link to="/benefit/hongbao/hbHistory">
           <span class="history">查看历史红包</span>
           <span class="history">></span>
-        </router-link>
-        
+        </router-link>  
       </div>
       <div class="footer">
            <a href="#/benefit/hongbao/exchange">兑换红包</a>
@@ -67,6 +66,8 @@ import Redpacket from './redpacket'
   font-size: 0.12rem;
   text-align: center;
   color: #999;
+  /* border: 1px solid red; */
+  margin-top: 82%;
 }
 .footer{
   position: fixed;

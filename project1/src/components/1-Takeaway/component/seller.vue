@@ -1,6 +1,6 @@
 <template>
     <ol class="ll">
-        <li v-for="item in data" :key="item.id" class="total" @click="change(item.name)">
+        <li v-for="item in data" :key="item.id" class="total"  @click="change(item.id,item.name)">
           <router-link to="/shopdetail" >
             <div id="div1">
                 <div id="div1_1">
@@ -68,9 +68,9 @@ export default {
     };
   },
   methods:{
-    change(shopname){
-        localStorage.shop_name=shopname;
-        console.log(localStorage.shop_name);
+       change(id,name){
+        localStorage.shop_id = id;
+        localStorage.shop_name = name;
     }
   },
   created() {
@@ -105,7 +105,7 @@ div#div1 {
     border-top-color: transparent;
     border-right-color: transparent;
     border-left-color: transparent;
-
+padding-top: 0.25rem;
 }
 #div1 {
   height: 0.7rem;
@@ -113,7 +113,7 @@ div#div1 {
   padding: 0.15rem 0.1rem;
   display: flex;
   justify-content: space-between;
-
+color: black
 }
 #div1_1 {
   width: 0.63rem;
