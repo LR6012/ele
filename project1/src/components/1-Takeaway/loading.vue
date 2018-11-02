@@ -41,7 +41,7 @@
   .img{
     height: 100%;
     width: 100%;
-    background: url('../../images/loading.png') no-repeat;
+    background: url('../../../static/img/loading.png') no-repeat;
     background-size:100%;
     animation: myf 5.6s infinite;
   }

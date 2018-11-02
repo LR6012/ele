@@ -1,14 +1,18 @@
 <template>
 <div class="search">
-  <router-link to="/mine">
-    <span class="sp1">
-    <img :src="img2" alt="">
-    </span>
-  </router-link>
-  <span class="sp2">订单列表</span>
+  <loading v-if="number != 1"></loading>
+  <div id="posiition">
+    <router-link to="/mine">
+      <span class="sp1">
+      <img :src="img2" alt="">
+      </span>
+    </router-link>
+    <span class="sp2">订单列表</span>
+  </div>
+  <div id="unuse"></div>
   <div class="orderList">
     <!-- 订单列表展示 -->
-    <ul>
+    <ul id="margin">
       <div v-for="item in data" :key="item.id" class="div1">
       <li>
         <!-- 图片地址需要拼接  查看原网页地址格式 -->
@@ -35,6 +39,7 @@
 </div>
 </template>
 <script>
+import Loading from "../1-Takeaway/loading";
 import img2 from './imgs/左 (1).png'
 import img1 from './imgs/小箭头.png'
 export default {
@@ -43,16 +48,22 @@ export default {
     return {
       data: [],
       img:img1,
-      img2:img2
+      img2:img2,
+      number:1
     };
   },
+  components: {
+    Loading
+  },
   created() {
+    this.number -= 1;
     let api = "https://elm.cangdu.org/bos/orders?offset=0&limit=10";
     this.$http.get(api).then(data => {
       // console.log(data);       
       this.data = data.data;
       // console.log(this.data[0]);
       // console.log(this.data[0].basket.group[0][0].name);
+      this.number += 1;
     });
   }
 };
@@ -64,8 +75,16 @@ export default {
   /* border: 1px solid red; */
   line-height: 0.46rem;
   color: white;
-  background-color: #3190e8;
+  /* background-color: #3190e8; */
   position: relative;
+ 
+}
+#posiition{
+  width: 100%;
+  position: fixed;
+  top: 0;
+  background-color: #3190e8;
+  z-index: 16;
 }
 .sp1 img{
   margin-top: 0.05rem;
@@ -78,11 +97,16 @@ export default {
   font-size: 0.19rem;
   font-weight: 700;
 }
+#unuse{
+  height: .51rem;
+}
 /*订单列表*/
 .orderList {
   /* border: 1px solid red; */
   /* background-color: white; */
+  margin-bottom: .79rem;
 }
+
 .orderList .img1 {
   width: 0.47rem;
   height: 0.47rem;

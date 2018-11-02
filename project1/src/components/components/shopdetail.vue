@@ -1,11 +1,13 @@
 <template>
 <div>
+  <loading v-if="number != 1"></loading>
 <div class="wrap">  
 </div>
 <div class="hd">
-  <router-link to="/takeaway">
-    <img src="../../../static/img/zuo.png" class="oneImg">
-</router-link>
+  <!-- <router-link to="/takeaway"> -->
+    <img src="../../../static/img/zuo.png" class="oneImg" @click="hh()">
+<!-- </router-link> -->
+
     <img src="../../../static/img/小帅.jpg" alt="" class="twoImg">
 <h4>{{shopname}}</h4>
 <p class="one">商家配送／分钟送达／配送费¥5</p>
@@ -64,9 +66,6 @@
 </div>
 </div>
 </div>
-
-
-
 <div v-show="bol">
 <div class="wp" >
 <li class="l1" v-for="item in data" :key="item.id">
@@ -140,107 +139,113 @@
   <img src="../../../static/img/购物车空.png" alt="" class="gwc2">
      <span @click="show()" class="sz">{{val}}</span>
    </li>
-<div class="ppp1">${{20*count1}}</div>
+<div class="ppp1">${{20*count2}}</div>
 <div class="ppp2">运送费$5</div>
+<router-link to="/zf">
 <p class="js">去结算</p>
+</router-link>
   </div>
   <ul class="aa" v-show="flag">
     <li v-for="(value,index) in newData" :key="index">
-      <p>{{value.name}}</p>
-      <p>{{value.count1}}</p>
+      <p>食品名称:{{value.name}}</p>
+      <p>食品数量:{{value.count1}}</p>
     </li>
   </ul>
   </div>
 </template>
 
 <script>
+import Loading from "../1-Takeaway/loading";
 import $ from "jquery";
-import Vue from "vue"
+import Vue from "vue";
+
 export default {
   name: "shopdetail",
   data() {
     return {
-      newData:[
-        {
-          name:'',
-          count1:''
-        }
-      ],
+      number: 1,
+      newData: [],
       data: [],
-      flag:false,
+      flag: false,
       bol: false,
-      // value5: 4.5,
       datas: [],
       dat: [],
       da: [],
-      count:0,
-      val:0,
-      // vall:0,
-      shopname:localStorage.getItem('shop_name'),
-      name:'',
-      arr:[],
-      count1:0
+      count: 0,
+      val: 0,
+      shopname: localStorage.getItem("shop_name"),
+      name: "",
+      arr: [],
+      count1: 0,
+      count2: 0
     };
   },
   methods: {
-    appr(){
+hh(){
+  this.$router.go(-1)
+}
+    ,
+    appr() {
       this.flag = !this.flag;
     },
     //点击+号  购物车中显示商品
-    get(n,id,cont){
+    get(n, id, cont) {
       this.name = n;
-      this.da.forEach((value)=>{
-        value.foods.forEach((val)=>{
-          if (val._id == id){
+      this.da.forEach(value => {
+        value.foods.forEach(val => {
+          if (val._id == id) {
             val.count += 1;
-            val.isHave= true;
-            this.count1 += 1;
+            val.isHave = true;
+            this.count1 = val.count;
+            // this.count2 += cont;
           }
-        })
-      })
+        });
+      });
+      this.count2 += this.count1;
       //点击按钮时,更改对象中的name和count值
       var news = {
-         name:this.name,
-         count1:this.count1
-      }
+        name: this.name,
+        count1: this.count1
+      };
       this.newData.push(news);
-      this.$store.commit("shopFoods",this.da)
+      this.$store.commit("shopFoods", this.da);
     },
     //减号 点击数量减少
-    oddNums(n,id,cont){
-      this.da.forEach((value)=>{
-        value.foods.forEach((val)=>{
-          if (val._id == id){
-            if(val.count != 0){
-              val.count-=1;
-              this.count1 -= 1;
+    oddNums(n, id, cont) {
+      this.da.forEach(value => {
+        value.foods.forEach(val => {
+          if (val._id == id) {
+            if (val.count != 0) {
+              val.count -= 1;
+              this.count1 = val.count;
             }
-            if(val.count == 0){
-              val.count =0
-              val.isHave =false
+            if (val.count == 0) {
+              alert("不能再减了");
+              val.count = 0;
+              val.isHave = false;
             }
           }
-        })
-      })
+        });
+      });
+      this.count2 -= this.count1;
       var news = {
-         name:this.name,
-         count1:this.count1
-      }
+        name: this.name,
+        count1: this.count1
+      };
       this.newData.pop(news);
-      this.$store.commit("shopFoods",this.da)
+      this.$store.commit("shopFoods", this.da);
     },
-    jj(){
+    jj() {
       // if(this.val<=0|this.count<=0|this.vall<=0){
       //  alert("不能再减了");
       // }else{
       // this.val--;
       // this.count -= 20;
       // this.vall-=1;
-      // } 
+      // }
     },
-   
     gwc() {
-      this.vall+=1;
+      this.vall += 1;
       this.val++;
       this.count += 20;
       $(".gwc2").css({
@@ -256,70 +261,71 @@ export default {
     handle() {
       this.bol = false;
     }
-    // slide() {
-    //   $(".slide").css(
-    //     {
-    //       top: -$(this.li).index() * $(".slide").height() + "px"
-    //     },
-    //     500
-    //   );
-    //   console.log($(this).index());
-    // }
   },
   created() {
-    var _this=this
-    var shopId = localStorage.getItem('shop_id');
-    let api = 'https://elm.cangdu.org/ugc/v2/restaurants/'+shopId +'/ratings/scores';
+    this.number -= 1;
+    var _this = this;
+    var shopId = localStorage.getItem("shop_id");
+    let api =
+      "https://elm.cangdu.org/ugc/v2/restaurants/" + shopId + "/ratings/scores";
     this.$http.get(api).then(data => {
       _this.data = data.data;
       // console.log(data.data);
     });
-    let apl = 'https://elm.cangdu.org/ugc/v2/restaurants/'+shopId+'/ratings/tags';
+    let apl =
+      "https://elm.cangdu.org/ugc/v2/restaurants/" + shopId + "/ratings/tags";
     this.$http.get(apl).then(data => {
       _this.datas = data.data;
-      // console.log(data.data);
     });
     let bod =
-      'https://elm.cangdu.org/ugc/v2/restaurants/'+shopId+'/ratings?offset=0&limit=10';
+      "https://elm.cangdu.org/ugc/v2/restaurants/" +
+      shopId +
+      "/ratings?offset=0&limit=10";
     this.$http.get(bod).then(data => {
       _this.dat = data.data;
       // console.log(data.data);
     });
-    let dp = 'https://elm.cangdu.org/shopping/v2/menu?restaurant_id='+shopId;
-    this.$http.get(dp).then(data => {
-      var shopFoods =data.data
-      shopFoods.forEach((value)=>{
-        value.foods.forEach((val)=>{
-          Vue.set(val,"count",0)
-          Vue.set(val,"isHave",false)
-        })
-      })
-      _this.$store.commit("shopFoods",shopFoods)
-      _this.da = shopFoods
-    });
 
+    let dp = "https://elm.cangdu.org/shopping/v2/menu?restaurant_id=" + shopId;
+    this.$http.get(dp).then(data => {
+      console.log(data.data);
+      //-----------------------
+      var shopFoods = data.data;
+      shopFoods.forEach(value => {
+        value.foods.forEach(val => {
+          Vue.set(val, "count", 0);
+          Vue.set(val, "isHave", false);
+        });
+      });
+      _this.$store.commit("shopFoods", shopFoods);
+      _this.da = shopFoods;
+       this.number += 1;
+    });
   },
-  watch:{
-    da(news){
-      console.log(news)
+  watch: {
+    da(news) {
+      // console.log(news);
     }
+  },
+  components: {
+    Loading
   }
 };
 </script>
 
 <style scoped>
-.pppp{
+.pppp {
   margin: 0.2rem 2.3rem;
   width: 0.2rem;
   /* display: none; */
 }
-.jt{
-width: 0.2rem;
-margin: 0rem 1rem -0.5rem 1.9rem;
-padding: 0;
-/* display: none; */
+.jt {
+  width: 0.2rem;
+  margin: 0rem 1rem -0.5rem 1.9rem;
+  padding: 0;
+  /* display: none; */
 }
-.sz{
+.sz {
   background-color: red;
   width: 0.18rem;
   height: 0.18rem;
@@ -332,9 +338,8 @@ padding: 0;
   line-height: 0.15rem;
   display: none;
 }
-.ii img{
+.ii img {
   background-color: #3190e8;
-
 }
 .jh {
   /* position: absolute; */
@@ -342,7 +347,6 @@ padding: 0;
   width: 0.2rem;
 }
 .ppp1 {
-  
   overflow: hidden;
   margin: 0.05rem 0.9rem 0 -0.2rem;
   font-size: 0.2rem;
@@ -510,7 +514,7 @@ padding: 0;
   font-weight: 700;
   margin: -0.7rem 0 0.5rem 0.7rem;
   border: 0.01rem dotted red;
-  float:left;
+  float: left;
 }
 .mm {
   border: 0.01rem dotted red;
@@ -537,8 +541,12 @@ padding: 0;
   border: 0.01rem dotted red;
   padding: 0 0.1rem;
   border-radius: 0.3rem;
+  width: 0.5rem;
   font-size: 0.16rem;
   margin-top: -0.15rem;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  overflow: hidden;
 }
 .boby img {
   padding: 0.1rem;
@@ -554,7 +562,7 @@ padding: 0;
 
   z-index: -1;
 }
-.rg{
+.rg {
   margin: -0.75rem 0 0 0.8rem;
   font-size: 0.18rem;
 }
@@ -576,11 +584,11 @@ padding: 0;
   position: absolute;
   right: 0;
   /* top: 2.3rem; */
-  top:1.67rem;
+  top: 1.67rem;
   /* border:1px solid red; */
-    /* background-color: white; */
+  /* background-color: white; */
 }
-.hd2{
+.hd2 {
   /* border:1px solid black; */
   /* margin-bottom: 0.6rem; */
   padding: 0.07rem;
@@ -610,9 +618,8 @@ strong {
 .sp2 {
   font-size: 0.2rem;
   border: 1px solid balck;
-  position: absolute;
-  right: -0.5rem;
-  top: 0.08rem;
+  /* position: absolute; */
+  float: right;
 }
 .slide {
   width: 0.05rem;
@@ -722,28 +729,27 @@ h4 {
   z-index: 2;
 }
 /*  设置超出滚动  父级设置:overflow:hidden  */
-.content{
+.content {
   /* border: 1px solid red; */
   overflow: scroll;
   height: 4rem;
 }
-.content::-webkit-scrollbar{
+.content::-webkit-scrollbar {
   display: none;
 }
-a{
-  color:black;
+a {
+  color: black;
 }
-.aa{
+.aa {
   width: 100%;
   /* height: 1rem; */
-  border:1px solid rebeccapurple;
+  border: 1px solid rebeccapurple;
   position: fixed;
   left: 0;
-  bottom:0.8rem;
+  bottom: 0.8rem;
   background-color: white;
 }
-.aa li{
+.aa li {
   border-bottom: 0.01rem solid rgb(207, 205, 205);
-
 }
 </style>

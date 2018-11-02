@@ -1,11 +1,11 @@
 <template>
     <div>
     <div class="search">
-  <router-link to="/address">
+  <!-- <router-link to="/address"> -->
       <span class="sp1">
-    <img :src="img" alt="">
+    <img :src="img" alt="" @click="hh()">
     </span>
-  </router-link>
+  <!-- </router-link> -->
   <span class="sp2">新增地址</span>
 </div>
 <div class="adddetail">
@@ -38,6 +38,9 @@ export default {
       }
   },
   methods:{
+      hh(){
+this.$router.go(-1)
+      },
       edit(){
         $('.p1').text('请输入正确的手机号');
         $('.p1').css({

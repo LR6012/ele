@@ -6,9 +6,7 @@
             </router-link> 
             <span>{{cityname}}</span>
             
-            <router-link to="/city">
-                <span>切换城市</span>
-            </router-link>
+            <router-link to="/city"><span>切换城市</span></router-link>
         </div> 
         <div id="search_box">
             <form action="">
@@ -26,7 +24,7 @@
             </li>
             
         </ul>
-         <div v-show="Action">
+        <div v-show="Action">
             <header id="search_history">搜索历史</header> 
             <ul>
                 <li class="search_li" v-for="item in history" :key=item.id  @click="choose(item.geohash,item.name,item.address)">
@@ -35,7 +33,7 @@
                         <p>{{item.address}}</p>
                     </router-link>
                 </li>
-        </ul>
+            </ul>
         <footer id="search_clear_history" @click="clear">清空所有</footer>
         </div>
         
@@ -198,7 +196,7 @@
 #search_clear_history {
   height: 0.464rem;
   line-height: 0.464rem;
-  text-align: center;  
+  text-align: center;
   font-size: 0.17rem;
   color: #666;
   background-color: #fff;

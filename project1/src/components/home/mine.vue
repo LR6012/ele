@@ -1,11 +1,11 @@
 <template>
 <div>
 <div class="search">
-  <router-link to="/order">
+  <!-- <router-link to="/order"> -->
   <span class="sp1">
-    <img :src="img2" alt="">
+    <img :src="img2" alt="" @click="hh()">
     </span>
-  </router-link>
+  <!-- </router-link> -->
   <span class="sp2">我的</span>
   </div>
     <ul class="uu">
@@ -29,7 +29,7 @@
        <span  class="aaa">我的积分</span>
      </li>
      </router-link>
-<router-link to="/benefit/hongbao">
+<router-link :to="this.path">
     <li class="yue2">
        <span><b>{{count}}</b>个</span>
        <span class="aaa">我的优惠</span>
@@ -65,11 +65,19 @@ export default {
       defaultphone:"暂无绑定手机号",
       router:'',
       router1:'/login',
-      router2:'/mine/logindetail'
+      router2:'/mine/logindetail',
+      path:'',
+      path1:'/benefit/hongbao',
+      path2:'/benefit1'
     };
   },
   components:{
       Wd,
+  },
+  methods:{
+hh(){
+  this.$router.go(-1)
+}
   },
   created(){
     if(this.$store.state.denglu){
@@ -78,11 +86,13 @@ export default {
       this.img = 'https://elm.cangdu.org/img/'+this.$store.state.usermsg.avatar,
       // console.log(this.img);
       this.router = this.router2;
+      this.path = this.path1;
       this.count = 3;    
     }else{
       this.username = this.defaultusername;
       this.img = this.defaultsrcc;
       this.router = this.router1;
+     this.path = this.path2;
       this.count = 0;
     }
   }

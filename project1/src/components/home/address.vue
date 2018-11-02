@@ -1,11 +1,11 @@
 <template>
     <div>
  <div class="search">
-  <router-link to="/mine/logindetail">
-      <span class="sp1">
-    <img :src="img" alt="">
+  <!-- <router-link to="/mine/logindetail"> -->
+      <span class="sp1" >
+    <img :src="img" alt="" @click="hh()">
     </span>
-  </router-link>
+  <!-- </router-link> -->
   <span class="sp2">收货地址</span>
   <span class="sp3" v-if="bol" @click="change()">编辑</span>
   <span class="sp3" v-else  @click="change()">完成</span>
@@ -45,6 +45,9 @@ export default {
        }
    },
    methods:{
+       hh(){
+           this.$router.go(-1)
+       },
        change(){
            //点击,当前布尔值取反    
            this.bol = !this.bol;
