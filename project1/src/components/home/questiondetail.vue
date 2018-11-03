@@ -3,13 +3,13 @@
         <div class="search">
   
   <span class="sp1">
-    <img src="../../../static/img/zuo.png" alt="" @click="hh()">
+    <img :src="img" alt="" @click="hh()">
     </span>
   
   <span class="sp2">服务中心</span>
 </div>
 <ol>
-    <li v-for="item in data" :key="item.id">{{item}}</li> 
+    <li v-for="item in data" :key="item.id">{{item.supervipContent}}</li> 
 </ol>
     </div>
 
@@ -17,13 +17,13 @@
 </template>
 
 <script>
-// import img2 from '../../../static/img/左箭头.png'
+import img2 from './imgs/左 (1).png'
 export default {
   name: "questiondetail",
   data() {
     return {
       data: [],
-    
+      img:img2
     };
   },
   methods:{
@@ -34,7 +34,7 @@ hh(){
   created() {
     let api = "https://elm.cangdu.org/v3/profile/explain";
     this.$http.get(api).then(data => {
-      console.log(data);
+      // console.log(data);
       this.data = data;
     });
   }

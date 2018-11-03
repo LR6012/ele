@@ -1,11 +1,9 @@
 <template>
     <div>
 <div class="search">
-  <!-- <router-link to="/vipcard"> -->
   <span class="sp1">
-    <img :src="img2" alt="" >
+    <img :src="img2" alt="" @click="fun()">
     </span>
-  <!-- </router-link> -->
   <span class="sp2">在线支付</span>
   </div>
   <div class="time">
@@ -68,6 +66,9 @@ export default {
     }
   },
   methods:{
+      fun(){
+          this.$router.go(-1);
+      },
       change(){
           this.bol = !this.bol;
       },

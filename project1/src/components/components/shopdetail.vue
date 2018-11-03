@@ -55,10 +55,10 @@
     <span>好评率{{val.satisfy_rate}}%</span>
   </p>
   <p class="mm">{{val.description}}</p>
-  <img src="../../../static/img/减.png" alt="" class="jt"  @click.stop="jj()"  @click="oddNums(val.name,val._id,val.count)">
+  <img src="../../../static/img/减.png" alt="" class="jt"  @click.stop="jj()"  @click="oddNums(val.name,val._id,val.count,val.specfoods[0].price)">
   <!-- <p class="pppp" @click.stop="gwc()">{{count1}}</p> -->
   <p class="pppp">{{val.count}}</p>
-  <img src="../../../static/img/加.png" alt="" class="jh" @click="get(val.name,val._id,val.count)">
+  <img src="../../../static/img/加.png" alt="" class="jh" @click="get(val.name,val._id,val.count,val.specfoods[0].price)">
   <!-- <img src="../../../static/img/加.png" alt="" class="jh" @click="gwc()"> -->
   <span class="sj">${{val.specfoods[0].price}}</span>
 </div>
@@ -137,18 +137,20 @@
    <img src="../../../static/img/购物车空.png" alt="" class="gwc">
    <li class="ii" >
   <img src="../../../static/img/购物车空.png" alt="" class="gwc2">
-     <span @click="show()" class="sz">{{val}}</span>
+  <span @click="show()" class="sz">{{count}}</span>
    </li>
-<div class="ppp1">${{20*count2}}</div>
+<div class="ppp1">${{totle}}</div>
 <div class="ppp2">运送费$5</div>
-<router-link to="/zf">
+<router-link to="/shopdetail/zf">
 <p class="js">去结算</p>
 </router-link>
   </div>
-  <ul class="aa" v-show="flag">
-    <li v-for="(value,index) in newData" :key="index">
-      <p>食品名称:{{value.name}}</p>
-      <p>食品数量:{{value.count1}}</p>
+   <ul class="aa" v-show="flag">
+    <p><span>已选商品</span><span @click="clearData()">清空购物车</span></p>
+    <li v-for="(value,index) in cartData" :key="index">
+      <span>{{value.name}}</span> 
+      <span>{{value.price}}</span> 
+      <span>{{value.count1}}</span>
     </li>
   </ul>
   </div>
@@ -158,7 +160,6 @@
 import Loading from "../1-Takeaway/loading";
 import $ from "jquery";
 import Vue from "vue";
-
 export default {
   name: "shopdetail",
   data() {
@@ -171,43 +172,74 @@ export default {
       datas: [],
       dat: [],
       da: [],
-      count: 0,
+      // count: 0,
       val: 0,
       shopname: localStorage.getItem("shop_name"),
-      name: "",
       arr: [],
+      //购物车的存储的对象属性 name,count1,price,id
+      name: "",
       count1: 0,
-      count2: 0
+      price: 0,
+      id:0,
+      totalPrice:0,
     };
+  },
+  //使用计算属性取出vuex中的数据
+  computed: {
+    //总数量
+    count() {
+      return this.$store.getters.totleCount;
+    },
+    //总价格
+    totle() {
+      return this.$store.getters.totlePrice;
+    },
+    //购物车中的数据
+    cartData() {
+      return this.$store.state.cartData;
+    }
   },
   methods: {
     appr() {
       this.flag = !this.flag;
     },
+    clearData(){
+      this.$store.commit('clearCart');
+    },
+    //---------------------
     //点击+号  购物车中显示商品
-    get(n, id, cont) {
+      get(n,id,cont,price) {
       this.name = n;
+      //如果商品ID存在(购物车的id和传进来的ID比对)，就设置count++
       this.da.forEach(value => {
         value.foods.forEach(val => {
           if (val._id == id) {
             val.count += 1;
             val.isHave = true;
             this.count1 = val.count;
-            // this.count2 += cont;
           }
+          //获取商品价格
+          val.specfoods.forEach(item => {
+            if (item.price == price) {
+              this.price = item.price;
+            }
+          });
         });
       });
-      this.count2 += this.count1;
-      //点击按钮时,更改对象中的name和count值
       var news = {
-        name: this.name,
-        count1: this.count1
+            name: this.name,
+            count1: this.count1,
+            price: this.price,
+            id:this.id
       };
-      this.newData.push(news);
+      //触发addCartData,循环购物车数据
+      this.$store.commit('addCartData',news)
       this.$store.commit("shopFoods", this.da);
     },
+    //-------------------------
     //减号 点击数量减少
-    oddNums(n, id, cont) {
+    oddNums(n,id,cont,price) {
+      this.name = n;
       this.da.forEach(value => {
         value.foods.forEach(val => {
           if (val._id == id) {
@@ -216,19 +248,26 @@ export default {
               this.count1 = val.count;
             }
             if (val.count == 0) {
-              alert("不能再减了");
               val.count = 0;
               val.isHave = false;
             }
           }
+          //获取商品价格
+          val.specfoods.forEach(item => {
+            if (item.price == price) {
+              this.price = item.price;
+            }
+          });
         });
       });
-      this.count2 -= this.count1;
       var news = {
-        name: this.name,
-        count1: this.count1
+            name: this.name,
+            count1: this.count1,
+            price: this.price,
+            id:this.id
       };
-      this.newData.pop(news);
+      //触发deleteCartData,循环购物车数据
+      this.$store.commit('deleteCartData',news)
       this.$store.commit("shopFoods", this.da);
     },
     jj() {
@@ -746,20 +785,29 @@ a {
 .aa {
   width: 100%;
   /* height: 1rem; */
-  border: 1px solid rebeccapurple;
+  /* border: 1px solid rebeccapurple; */
   position: fixed;
   left: 0;
   bottom: 0.8rem;
   background-color: white;
 }
 .aa li {
+  padding: 0.05rem 0.1rem;
+  font-size: 0.15rem;
+  line-height: 0.15rem;
+  display: flex;
+  justify-content: space-between;
   border-bottom: 0.01rem solid rgb(207, 205, 205);
+}
+.aa > p {
+  background-color: gainsboro;
+  padding: 0.1rem;
+  display: flex;
+  justify-content: space-between;
 }
 .ds{
   /* border:1px solid black; */
   overflow: hidden;
-  z-index: -19;
-
-  
+  z-index: -19; 
 }
 </style>

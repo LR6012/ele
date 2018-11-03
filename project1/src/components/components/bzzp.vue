@@ -240,7 +240,7 @@ console.log(index);
 
 .ddh {
   padding: 0.05rem 0;
-  margin-top: -0.2rem;
+  /* margin-top: -0.2rem; */
   /* border-bottom: 0.001rem solid black */
   
 }
@@ -256,7 +256,7 @@ console.log(index);
   /* margin-bottom: 0.1rem; */
 }
 #unuse{
-  height: .96rem;
+  height: 0.96rem;
   background-color: #555;
 }
 .sp1 img {

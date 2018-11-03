@@ -3,9 +3,9 @@
     <div class="hongbao" v-for="(item,index) in data" :key="index">
         <div class="hongbao_left">
             <span>¥</span>
-            <span>{{item.amount}}</span>
+            <span>{{Math.floor(item.amount)}}</span>
             <span>.</span>
-            <span>0</span>
+            <span>{{(item.amount-Math.floor(item.amount))*10}}</span> 
             <p>{{item.description_map.sum_condition}}</p>
         </div>
         <div class="hongbao_right">
@@ -38,7 +38,7 @@ export default {
       "/hongbaos?limit=20&offset=0";
       this.$http.get(api).then(data => {
       this.data = data.data;
-      console.log(this.data);
+      // console.log(this.data);
     });
   }
 };

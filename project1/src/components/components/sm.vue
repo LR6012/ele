@@ -3,7 +3,6 @@
          <div class="search">
       <span class="sp1">
         <router-link to="/points">
-
     <img src="../../../static/img/右.png" alt="" >
     </router-link>
     </span>

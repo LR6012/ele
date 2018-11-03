@@ -4,6 +4,7 @@ import City from '../components/1-Takeaway/component/city'
 import SearchPath from '../components/1-Takeaway/component/search'
 import Takeaway from '../components/1-Takeaway/takeaway'
 import Order from '../components/home/order'
+import Order1 from '../components/home/order1'
 import Search3 from '../components/components/search3'
 import Mine from '../components/home/mine'
 import Balance from '../components/home/balance'
@@ -44,7 +45,7 @@ import DjqDescription from '../components/1-Takeaway/djqDescription'
  import Benefit1 from '../components/1-Takeaway/benefit1'
  import Sm from '../components/components/sm'
 import Invoice from '../components/components/invoice'
-import Remarks from '../components/components/remarks'
+import Remark from '../components/components/remarks'
 Vue.use(Router)
 
 export default new Router({
@@ -71,6 +72,10 @@ export default new Router({
           path: "/order",
           name:'order',
           component: Order
+        },
+        {
+          path: "/order1",
+          component: Order1
         },
         {
           path: "/mine",
@@ -114,8 +119,9 @@ export default new Router({
       component: Login
     },
     {
-path:"/zf",
-component:Zf
+      path: "/shopdetail/zf",
+      name:'zf',
+      component: Zf
     },
     {
       path: "/vipcard",
@@ -249,7 +255,7 @@ component:Zf
     },
     {
       path:"/remarks",
-      component:Remarks
+      component:Remark
     }
   ]
 });

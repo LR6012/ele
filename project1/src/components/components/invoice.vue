@@ -3,7 +3,7 @@
 <!-- 头部 -->
  <div class="search">
       <span class="sp1">
-    <router-link to="/shopdetail">
+    <router-link to="/shopdetail/zf">
     <img src="../../../static/img/右.png" alt="">
     </router-link>
 
@@ -14,13 +14,17 @@
     <span>选择发票抬头</span>
     <input type="radio" class="ra">
 </div>
-<router-link to="/zf"><button>确定</button></router-link>
+<button @click="confim()">确定</button>
     </div>
 </template>
 
 <script>
 export default {
-
+   methods:{
+       confim(){
+            this.$router.push({name:'zf'});
+       }
+   }
 }
 </script>
 
@@ -38,9 +42,6 @@ border-radius: 0.05rem;
     padding: 0.15rem;
     background-color: white;
     font-size: 0.16rem
-}
-div{
-    
 }
 .ra{
     float: right;

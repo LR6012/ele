@@ -1,7 +1,7 @@
 <template>
     <div class="wd">
     <li>
-    <router-link to="/order">
+    <router-link :to="this.router">
     <img  src="../../../static/img/订单.png" alt="" class="img">
     <span>我的订单</span>
     <img src="../../../static/img/左箭头 (1).png">
@@ -42,14 +42,19 @@ export default {
     return {
       path:'',
       path1:'/vipcard1',
-      path2:'/vipcard'
+      path2:'/vipcard',
+      router:'',
+      router1:'/order1',
+      router2:'/order',
     };
   },
   created(){
     if(this.$store.state.denglu){
       this.path = this.path2;
+      this.router = this.router2;
     }else{
       this.path = this.path1;
+      this.router = this.router1;
     }
   }
 };

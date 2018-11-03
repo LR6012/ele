@@ -4,37 +4,23 @@
     <!-- 头部 -->
  <div class="search">
       <span class="sp1">
-    <router-link to="/zf">
+    <router-link to="/shopdetail/zf">
     <img src="../../../static/img/右.png" alt="">
     </router-link>
-
     </span>
   <span class="sp2">订单备注</span>
 </div> 
 <ul class="u1">
     <p>快速选择</p>
-    <!-- <li >
-<span>不要辣</span>
-<span>少点辣</span>
-<span>多点辣</span>
-<span>不要香菜</span>
-<span>不要洋葱</span>
-<span>不要醋</span>
-<span>不要葱</span>
-<span>去冰</span>
-<span>少冰</span>
-    </li> -->
     <li class="lk">
-        <span v-for="(item, index) in data" :key="index" @click="ll(index)" >{{item.title}}</span>
+        <span v-for="(item, index) in data" :key="index" @click="ll(index,item.title)" >{{item.title}}</span>
     </li>
 </ul>
 <ul class="u2">
     <h3>其他备注</h3>
     <textarea name="" id="" cols="40" rows="10" placeholder="请输入备注内容(可不选)" class="tx"></textarea>
 </ul>
-<router-link to="/zf">
-<button>确定</button>
-</router-link>
+<button @click="confim()">确定</button>
 
 </div>
 
@@ -48,6 +34,7 @@ export default {
   name: "remarks",
   data() {
     return {
+      datas:[],
       data: [
         {
           title: "不要辣",
@@ -94,23 +81,20 @@ export default {
     };
   },
   methods: {
-    ll(index) {
-      console.log(index);
+    ll(index,el) {
+      // console.log(index,el);
       $(".lk span")
         .eq(index)
         .css({
           backgroundColor: "red"
         });
+        this.datas.push(el);
+    },
+    confim(){
+       this.$router.push({name:'zf'});
+       this.$store.commit('changeOrdermsg',this.datas);
+       }
     }
-  }
-  // created(){
-  //     let api = "https://elm.cangdu.org/v1/carts/1/remarks";
-  //     this.$http.get(api).then(data=>{
-  // this.data=data.data.remarks;
-  // console.log(data.data)
-  //     })
-
-  // }
 };
 </script>
 

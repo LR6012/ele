@@ -43,7 +43,7 @@ export default {
 .el-message-box__status::before {
     width: 1rem;
     height: 1rem;
-    padding-left: 1px;
+    /* padding-left: 1px; */
     font-size: 0.7rem;
 }
 .el-icon-warning:before {
@@ -52,19 +52,20 @@ export default {
 /* 设置p标签字体大小*/
 .el-message-box__message p {
     margin: 0;
-    line-height: 24px;
+    /* line-height: 24px; */
     color: black;
-    font-size: 0.18rem;
+    font-size: 0.16rem;
 }
 .el-message-box__btns button:first-child{
    display: none;
 }
 .el-message-box__btns button:nth-child(2) {
-     width: 2.5rem;
+    width: 2.5rem;
     height: 0.3rem;
+    line-height: 0.15rem;
     background-color: #4cd964;
     margin-top: 0.02rem;
-    font-size: 0.16rem;
+    font-size: 0.18rem;
 }
 /* 设置弹框绝对定位*/
 .el-message-box {
@@ -73,16 +74,16 @@ export default {
     left:10%;
     top:40%;
     display: inline-block;
-    width: 3rem;
+    width:80%;
     height: 1.8rem;
-    padding-bottom: 10px;
+    /* padding-bottom: 10px; */
     vertical-align: middle;
     background-color: #fff;
     border-radius:0.1rem;
-    border: 1px solid #ebeef5;
-    font-size: 18px;
+    /* border: 1px solid #ebeef5; */
+    /* font-size: 18px;
     -webkit-box-shadow: 0 2px 12px 0 rgba(0,0,0,.1);
-    box-shadow: 0 2px 12px 0 rgba(0,0,0,.1);
+    box-shadow: 0 2px 12px 0 rgba(0,0,0,.1); */
     text-align: left;
     overflow: hidden;
     -webkit-backface-visibility: hidden;

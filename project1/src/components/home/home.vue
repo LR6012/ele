@@ -39,7 +39,7 @@ export default {
           title: "订单",
           src1: require("./imgs/订单.png"),
           src2: require("./imgs/订单1.png"),
-          path:'/order',
+          path:'/order1',
           flag:true,
           id: 3
         },

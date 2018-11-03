@@ -1,11 +1,20 @@
 let getters = {
-     //筛选vip用户
-      //普通函数
-        // vipTodos(state){},
-        //箭头函数
-        // names:(state)=>{
-        //     return state.todos.filter(todo => todo.name)
-        //   }
+      //购物车商品数量计算
+      totleCount(state){
+        let count = 0;
+        state.cartData.forEach( (goods) => {
+          count += goods.count1;
+        })
+        return count
+      },
+      //总价格
+      totlePrice(state){
+        let price = 0;
+        state.cartData.forEach((goods) => {
+          price += goods.price;
+        })
+        return price;
+      }
 };
 export {getters};
 
