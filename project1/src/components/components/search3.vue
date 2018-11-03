@@ -90,7 +90,7 @@ export default {
                 // this.$store.commit("receivegeohash",geohash);
                 //存储到localstorage中
                 localStorage.setItem("geohash1",geohash);
-                localStorage.setItem("locationname1",name);
+                localStorage.setItem("shop_name",name);
                 // 历史记录
                  var comment = {name: name,address:address,geohash:geohash};
                  var list1 = JSON.parse(localStorage.getItem("historys")||"[]");

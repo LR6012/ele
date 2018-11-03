@@ -1,11 +1,11 @@
 <template>
     <div>
        <div class="search">
-  <router-link to="/mine">
+  <!-- <router-link to="/mine"> -->
   <span class="sp1">
-    <img :src="img" alt="">
+    <img :src="img" alt="" @click="hh()">
     </span>
-  </router-link>
+  <!-- </router-link> -->
   <span class="sp2">服务中心</span>
 </div>
 <ul class="tx">
@@ -19,15 +19,15 @@
     </li>
 </ul>
 <div>
-    <h3>热门问题</h3>
+    <h3>热门问题</h3><router-link to="/service/questiondetail">
     <ul class="two">
         <li v-for="item in arr" :key="item.id">
-        <router-link to="/service/questiondetail">
+        
             <span>{{item.title}}</span>
             <img src="../../../static/img/左箭头 (1).png" alt="">
-            </router-link>
+            
         </li>
-    </ul>
+    </ul></router-link>
 </div>
     </div>
 </template>
@@ -62,11 +62,19 @@ export default {
     {title:"活动问题",id:20,name:"activityCaption"},
           ]
       }
-  }
+  },
+  methods:{
+      hh(){
+          this.$router.go(-1)
+      }
+  },
 }
 </script>
 
 <style scoped>
+.two li span{
+color:black;
+}
 .search{
   height: 0.46rem;
   /* border: 1px solid red; */

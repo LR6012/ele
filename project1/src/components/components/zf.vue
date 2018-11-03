@@ -65,13 +65,17 @@
 <li>
     <span>订单备注</span>
     <span>多点辣多点醋
+        <router-link to="/remarks">
         <img src="../../../static/img/右箭头.png" alt="">
+        </router-link>
     </span>
 </li>
 <li>
    <span>发票抬头</span>
     <span>不需要开发票
+        <router-link to="/invoice">
         <img src="../../../static/img/右箭头.png" alt="">
+        </router-link>
     </span> 
 </li>
 </ul>

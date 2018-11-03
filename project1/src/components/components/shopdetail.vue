@@ -1,12 +1,13 @@
 <template>
 <div>
   <loading v-if="number != 1"></loading>
-<div class="wrap">  
+<div class="dfd">
+  <div class="wrap">  
 </div>
 <div class="hd">
-  <!-- <router-link to="/takeaway"> -->
-    <img src="../../../static/img/zuo.png" class="oneImg" @click="hh()">
-<!-- </router-link> -->
+  <router-link to="/takeaway">
+    <img src="../../../static/img/zuo.png" class="oneImg">
+</router-link>
 
     <img src="../../../static/img/小帅.jpg" alt="" class="twoImg">
 <h4>{{shopname}}</h4>
@@ -24,12 +25,12 @@
 <div class="sc2" v-show="bol"></div>
     </span>   
 </div>
+</div>
+
+
 <div class="lll" v-show="!bol">
- <!-- <ul class="bk" @click="slide()"> -->
  <ul class="bk">
-  <!-- <div class="slide"></div> -->
   <li v-for="(itemss,index) in da" :key="index">
-    <!-- <span>{{itemss.name}}</span> -->
     <a :href="'#top'+itemss.id">{{itemss.name}}</a>
   </li>
  </ul>
@@ -44,7 +45,7 @@
   </li>
 </div>
 <!-- <p class="rx">热销</p> -->
-<div v-for="(val,ind) in itemsss.foods" :key='ind'>
+<div v-for="(val,ind) in itemsss.foods" :key='ind' class="ds">
   <img src="../../../static/img/小帅.jpg" class="th">
   <p class="rg">{{val.name}}</p>
   <p class="zp">{{val.name}}</p>
@@ -54,7 +55,6 @@
     <span>好评率{{val.satisfy_rate}}%</span>
   </p>
   <p class="mm">{{val.description}}</p>
-
   <img src="../../../static/img/减.png" alt="" class="jt"  @click.stop="jj()"  @click="oddNums(val.name,val._id,val.count)">
   <!-- <p class="pppp" @click.stop="gwc()">{{count1}}</p> -->
   <p class="pppp">{{val.count}}</p>
@@ -181,10 +181,6 @@ export default {
     };
   },
   methods: {
-hh(){
-  this.$router.go(-1)
-}
-    ,
     appr() {
       this.flag = !this.flag;
     },
@@ -314,6 +310,10 @@ hh(){
 </script>
 
 <style scoped>
+.dfd{
+  position: fixed;
+  top: 0;
+}
 .pppp {
   margin: 0.2rem 2.3rem;
   width: 0.2rem;
@@ -333,10 +333,10 @@ hh(){
   text-align: center;
   border-radius: 50%;
   color: white;
-  margin: -0.6rem 0 0rem -0.65rem;
+  margin: -0.2rem 0 0rem -0.7rem;
   display: block;
   line-height: 0.15rem;
-  display: none;
+  /* display: none; */
 }
 .ii img {
   background-color: #3190e8;
@@ -470,8 +470,9 @@ hh(){
 }
 .pl {
   width: 99.9%;
-  height: 1.7rem;
-  margin-top: 0.2rem;
+  padding-top: 0.1rem;
+  height: 1.8rem;
+  margin-top: 2.7rem;
   background-color: white;
   border: 1px solid rgb(235, 233, 233);
 }
@@ -480,11 +481,15 @@ hh(){
   text-align: center;
   margin: 0.1rem 0 0 0rem;
   position: absolute;
-  top: 1.8rem;
+  top: 2.4rem;
+  
 }
 .wp {
   background-color: white;
-  height: 1.6rem;
+  height: 1.3rem;
+  /* overflow: scroll; */
+ 
+  
 }
 .pl li:nth-child(1) {
   background-color: #3190e8;
@@ -492,8 +497,12 @@ hh(){
 .l2 {
   width: 49%;
   float: right;
-  margin: 0.4rem 0rem 0 0rem;
+  height: 1rem;
   font-size: 0.14rem;
+  margin-top: 2.5rem;
+  /* overflow: auto; */
+  z-index: -1;
+
 }
 .p1 {
   font-size: 0.5rem;
@@ -553,17 +562,17 @@ hh(){
 }
 .rx {
   width: 0.4rem;
-  padding: 0.3rem 0.18rem 0.1rem;
+  padding: 0.1rem 0.18rem 0.1rem;
   transform: rotate(-45deg);
-  margin: -0.25rem;
+  margin: -0.5rem 0 0 0 ;
   background-color: #4cd964;
   color: white;
   font-size: 0.12rem;
 
-  z-index: -1;
+  /* z-index: -1; */
 }
 .rg {
-  margin: -0.75rem 0 0 0.8rem;
+  margin: -0.8rem 0 0 0.8rem;
   font-size: 0.18rem;
 }
 .boby strong {
@@ -572,38 +581,28 @@ hh(){
 }
 .lk {
   width: 100%;
-  height: 2rem;
+  height: 7rem;
   margin-bottom: 0.05rem;
   padding-bottom: 0.1rem;
-  overflow: hidden;
+  /* overflow: hidden; */
+   overflow: scroll;
 }
 .boby {
-  width: 1rem;
-  height: 1.2rem;
+  /* width: 1rem; */
+  height: 3.7rem;
   width: 73%;
-  position: absolute;
+  position:fixed;
+  float: right;
   right: 0;
-  /* top: 2.3rem; */
-  top: 1.67rem;
-  /* border:1px solid red; */
-  /* background-color: white; */
+  top: 2.2rem;
+  overflow: hidden;
 }
 .hd2 {
   /* border:1px solid black; */
   /* margin-bottom: 0.6rem; */
   padding: 0.07rem;
-  /* background-color: gainsboro; */
+  background-color: gainsboro;
 }
-/* .hd2 {
-  border: 1px solid balck;
-  width: 0.2rem; 
-  float: right;
-  position: absolute;
-  left: 1rem;
-  left: 0.05rem;
-  padding: 0.2rem;
-  font-size: 0.12rem;
-} */
 .th {
   width: 0.6rem;
   margin: 0.05rem 0 0 0.05rem;
@@ -619,7 +618,9 @@ strong {
   font-size: 0.2rem;
   border: 1px solid balck;
   /* position: absolute; */
+  /* position: fixed; */
   float: right;
+  z-index: -19;
 }
 .slide {
   width: 0.05rem;
@@ -628,12 +629,15 @@ strong {
   position: absolute;
 }
 .bk {
-  position: relative;
-  top: 0;
+  /* position: relative; */
+  position: absolute;
+  top: 2.1rem;
   float: left;
+  z-index: -1;
 }
 .bk li {
   width: 0.6rem;
+  
   padding: 0.2rem;
   border-bottom: 0.001rem solid rgb(207, 205, 205);
   border-right: 0.001rem solid rgb(207, 205, 205);
@@ -642,11 +646,16 @@ strong {
   font-size: 0.15rem;
   /* font-weight: 700; */
 }
+.bk{
+   overflow: hidden;
+  /* overflow-y:visible */
+}
+
 .sc {
   width: 0.35rem;
   height: 0.03rem;
   position: absolute;
-  top: 1.55rem;
+  top: 2rem;
   left: 0.75rem;
   background-color: #3190e8;
   font-size: 0.12rem;
@@ -655,8 +664,8 @@ strong {
   width: 0.36rem;
   height: 0.03rem;
   position: absolute;
-  top: 1.55rem;
-  left: 2.62rem;
+  top: 2rem;
+  left: 2.65rem;
   background-color: #3190e8;
   font-size: 0.12rem;
 }
@@ -669,7 +678,6 @@ strong {
   display: flex;
   font-size: 0.16rem;
   padding: 0.15rem 0;
-  margin-top: 0rem;
   background-color: white;
   border-bottom: 0.006rem solid gainsboro;
 }
@@ -703,25 +711,21 @@ h4 {
 .twoImg {
   width: 0.8rem;
   padding: 0.12rem;
-  position: absolute;
-  top: 0.1rem;
-  left: 0rem;
+  position: fixed;
+  top: 0.15rem;
+  left: 0.05rem;
 }
 .wrap {
-  width: 100%;
-  z-index: -1;
-  height: 1.2rem;
+  width: 3.75rem;
+  height: 1.6rem;
   background: url(../../../static/img/小帅.jpg) repeat-y;
   background-size: cover;
-  /* -webkit-filter: blur(0.05rem);
-  -moz-filter: blur(0.05rem);
-  -o-filter: blur(0.05rem);
-  -ms-filter: blur(0.05rem);
-  filter: blur(0.05rem); */
+
 }
 .oneImg {
+  
   width: 0.22rem;
-  position: absolute;
+  position: fixed;
   /* padding: 0.15rem; */
   top: 0.05rem;
   left: 0.1rem;
@@ -730,9 +734,8 @@ h4 {
 }
 /*  设置超出滚动  父级设置:overflow:hidden  */
 .content {
-  /* border: 1px solid red; */
   overflow: scroll;
-  height: 4rem;
+  height: 2rem;
 }
 .content::-webkit-scrollbar {
   display: none;
@@ -751,5 +754,12 @@ a {
 }
 .aa li {
   border-bottom: 0.01rem solid rgb(207, 205, 205);
+}
+.ds{
+  /* border:1px solid black; */
+  overflow: hidden;
+  z-index: -19;
+
+  
 }
 </style>

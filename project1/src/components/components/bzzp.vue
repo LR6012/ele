@@ -34,9 +34,9 @@
           <span>{{item.count}} <img src="../../../static/img/左箭头 (1).png" alt=""></span> 
         </li>
       </div>
-      <div>
+      <div class="llo()" @click="llo()">
         <li v-for="value in data" :key="value.id">{{value.name}}
-          <span>{{value.count}}</span>
+          <span >{{value.count}}</span>
         </li>
       </div>
     </ul>
@@ -111,6 +111,10 @@ export default {
     Seller
   },
   methods: {
+llo(){
+  $(".llo").slideUp(200)
+}
+    ,
 cc(){
   this.$router.go(-1)
 } ,
@@ -203,9 +207,7 @@ console.log(index);
     console.log('点击了..');
      $(".info2").slideUp(200);
  this.flag3=!this.falg3;
-
     },
-
     noshow() {
       $(".info2").slideUp(200, function() {
         console.log("动画执行完毕");
@@ -238,7 +240,7 @@ console.log(index);
 
 .ddh {
   padding: 0.05rem 0;
-  /* margin-top: -0.2rem; */
+  margin-top: -0.2rem;
   /* border-bottom: 0.001rem solid black */
   
 }
@@ -326,6 +328,7 @@ console.log(index);
 }
 .dh .info1 {
   /* border: 1px solid red; */
+  font-size: 0.16rem
 }
 .dh .info1 li {
   width: 100%;
@@ -379,6 +382,7 @@ console.log(index);
   display: flex;
   justify-content: space-evenly;
   background-color: #f1f1f1;
+  font-size: 0.16rem;
 }
 .dh .info2 .last button {
   outline: none;
@@ -387,6 +391,7 @@ console.log(index);
   padding: 0.1rem;
   background-color: #56d176;
   color: white;
+  font-size: 0.16rem
 }
 .dh .info2 .last button:nth-of-type(1) {
   background-color: white;

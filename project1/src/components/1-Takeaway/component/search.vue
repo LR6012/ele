@@ -119,7 +119,7 @@
         },
         created () {
                 //获取本地存储的值如果是复杂类型的数据的字符串使用JSON.parse(复杂类型字符串) 转成JS能够识别的复杂类型对象 或者数组
-                this.history= this.dedup(JSON.parse(localStorage.getItem("cmts")) || []);
+                this.allhistory= this.dedup(JSON.parse(localStorage.getItem("historys")) || []);
         }
     }
 </script>

@@ -42,6 +42,9 @@ import HbDescription from '../components/1-Takeaway/hbDescription'
 import DjqDescription from '../components/1-Takeaway/djqDescription'
  import Zf from '../components/components/zf'
  import Benefit1 from '../components/1-Takeaway/benefit1'
+ import Sm from '../components/components/sm'
+import Invoice from '../components/components/invoice'
+import Remarks from '../components/components/remarks'
 Vue.use(Router)
 
 export default new Router({
@@ -234,6 +237,19 @@ component:Zf
     {
       path:'/benefit1',
       component:Benefit1
+    },
+    {
+      path:"/sm",
+      component:Sm
+    }
+    ,
+    {
+      path:"/invoice",
+      component:Invoice
+    },
+    {
+      path:"/remarks",
+      component:Remarks
     }
   ]
 });

@@ -14,7 +14,8 @@
     <li v-for="(item,index) in data" :key="index" class="list1">
         <p>{{item.name}}</p>
         <p>{{item.address}}</p>
-        <a href="#" @click="clear(index)">X</a>
+        <!-- <p>{{item.id}}</p> -->
+        <a href="#" @click="clear(index,item.id)">X</a>
     </li>
 </ul>
   <div class="addsite">
@@ -31,46 +32,63 @@
 </template>
 
 <script>
-import $ from 'jquery'
-import img2 from './imgs/左 (1).png'
-import img1 from "./imgs/左箭头 (1).png"
+import $ from "jquery";
+import img2 from "./imgs/左 (1).png";
+import img1 from "./imgs/左箭头 (1).png";
 export default {
-   name:'adrs',
-   data(){
-       return {
-           img:img2,
-           img2:img1,
-           bol:true,
-           data:[]
-       }
-   },
-   methods:{
-       hh(){
-           this.$router.go(-1)
-       },
-       change(){
-           //点击,当前布尔值取反    
-           this.bol = !this.bol;
-           $(".list a").css('display','block');        
-       },
-       clear(n){
-           $(".list .list1").eq(n).hide();
-       }
-   },
-   created(){
-       var userId = this.$store.state.usermsg.user_id;
-       let api = 'https://elm.cangdu.org/v1/users/'+userId+'/addresses';
-       this.$http.get(api).then(data => {
-           this.data = data.data;
-           console.log(this.data);
-       });
-       if(this.data.length === 0){
-         $('.list').css('display','none');
-       }else{
-         $('.list').css('display','block');
-       }
-   }
-}
+  name: "adrs",
+  data() {
+    return {
+      img: img2,
+      img2: img1,
+      bol: true,
+      data: [],
+      datas:[]
+    };
+  },
+  methods: {
+    hh() {
+      this.$router.go(-1);
+    },
+    
+    change() {
+      //点击,当前布尔值取反
+      this.bol = !this.bol;
+      $(".list a").css("display", "block");
+    },
+    clear(n, m) {
+      $(".list .list1").eq(n).hide();
+      var userId = this.$store.state.usermsg.user_id;
+      var address_id = m;
+      let apI =
+        "https://elm.cangdu.org/v1/users/" +
+        userId +
+        "/addresses/" +
+        address_id;
+      this.$http.delete(apI).then(data => {
+        this.datas = data.data;
+        if(this.datas.success){
+            console.log("删除地址成功")
+            // alert('删除地址成功');
+        }else{
+            console.log(this.datas.message);
+        }
+      })
+    }
+  },
+  created() {
+    var userId = this.$store.state.usermsg.user_id;
+    let api = "https://elm.cangdu.org/v1/users/" + userId + "/addresses";
+    this.$http.get(api).then(data => {
+      this.data = data.data;
+    });
+    if (this.data.length === 0) {
+      $(".list").css("display", "none");
+    } else {
+      $(".list").css("display", "block");
+    }
+  }
+};
 </script>
 
 <style scoped>
@@ -101,52 +119,52 @@ export default {
   font-size: 0.19rem;
   font-weight: 700;
 }
-.sp3{
-   margin-right: 0.1rem;
+.sp3 {
+  margin-right: 0.1rem;
 }
-.addsite{
-    border-top:0.01rem solid gainsboro;
+.addsite {
+  border-top: 0.01rem solid gainsboro;
 }
-.addsite p{
-    margin-top: 0.1rem;
-    background: white;
-    display: flex;
-    justify-content: space-between;
-    padding: 0.15rem;
-    border:0.01rem solid #d9d9d9;
+.addsite p {
+  margin-top: 0.1rem;
+  background: white;
+  display: flex;
+  justify-content: space-between;
+  padding: 0.15rem;
+  border: 0.01rem solid #d9d9d9;
 }
-.addsite p .img2{
-    width: 0.15rem;
-    /* border: 1px solid red; */
+.addsite p .img2 {
+  width: 0.15rem;
+  /* border: 1px solid red; */
 }
-.aa{
-    color:black;
+.aa {
+  color: black;
 }
-.list{
-    /* border: 1px solid red; */
-    /* padding: 0.1rem;     */
-    background-color: #fff8c3;
-    /* display: none;  */
+.list {
+  /* border: 1px solid red; */
+  /* padding: 0.1rem;     */
+  background-color: #fff8c3;
+  /* display: none;  */
 }
-.list li{
-    border-bottom:0.01rem solid gainsboro;
-     background-color:white;
-     position: relative;
+.list li {
+  border-bottom: 0.01rem solid gainsboro;
+  background-color: white;
+  position: relative;
 }
-.list li:first-child{
-     background-color: #fff8c3;
+.list li:first-child {
+  background-color: #fff8c3;
 }
-.list p{
-    padding: 0.05rem;
-    margin-left: 0.1rem;
-    line-height: 0.15rem;
-    font-size: 0.15rem;
+.list p {
+  padding: 0.05rem;
+  margin-left: 0.1rem;
+  line-height: 0.15rem;
+  font-size: 0.15rem;
 }
-.list a{
-    display: none;
-    position:absolute;
-    right:0.1rem;
-    top:0.15rem;;
-    color:#999
+.list a {
+  display: none;
+  position: absolute;
+  right: 0.1rem;
+  top: 0.15rem;
+  color: #999;
 }
 </style>

@@ -51,8 +51,6 @@ export default {
       let api = 'https://elm.cangdu.org/v1/pois?city_id='+id+'&keyword='+this.val+'&type=search';
       this.$http.get(api).then(data => {
            this.data = data.data;
-           console.log(this.data.name);
-           console.log(this.data.address);
       })
   },
   add(item){

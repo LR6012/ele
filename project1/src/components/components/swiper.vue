@@ -198,6 +198,7 @@ export default {
   flex-wrap: wrap;
   justify-content: space-around;
   margin-top: 0.5rem;
+  font-size: 0.16rem
 }
 #d2 {
   /* border:1px solid black; */
@@ -206,6 +207,7 @@ export default {
   flex-wrap: wrap;
   justify-content: space-around;
   margin-top: 0.5rem;
+  font-size: 0.16rem
 }
 #hao3 {
   /* border: 1px solid black; */
@@ -248,6 +250,7 @@ export default {
   color: white;
   margin-top: 0.2rem;
   margin-right: 0.15rem;
+  font-size: 0.16rem;
 }
 .swiper-slide {
   height: 2rem;
