@@ -1,7 +1,7 @@
 <template>
   <div>
 <!-- 头部 -->
- <div class="search">
+ <header class="search">
       <span class="sp1">
         <!-- <router-link to="/takeaway"> -->
 
@@ -9,9 +9,9 @@
     <!-- </router-link> -->
     </span>
   <span class="sp2">{{cartName}}</span>
-</div>    
+</header>  
   <!-- 分类导航 -->
-  <ul class="dh">
+  <div class="dh">
   <ul class="ddh">
     <li @click="change()">
       {{cartName}}
@@ -70,7 +70,8 @@
         <button @click="noshow()">确定</button>
       </li>
     </ul>
-    </ul>
+    </div>
+    <div id="unuse"></div>  
    <Seller></Seller>
   </div>
 </template>
@@ -244,21 +245,29 @@ console.log(index);
   
 }
 .search {
-  height: 0.46rem;
-  line-height: 0.46rem;
+  height: 0.2rem;
+  width: 100%;
+  /* line-height: 0.46rem; */
   color: white;
   background-color: #3190e8;
-  position: relative;
-  margin-bottom: 0.1rem;
+  position: fixed;
+  z-index: 16;
+  padding: .16rem .1rem .2rem .1rem;
+  /* margin-bottom: 0.1rem; */
+}
+#unuse{
+  height: .96rem;
+  background-color: #555;
 }
 .sp1 img {
-  margin-top: 0.05rem;
+  width: .25rem;
+  height: 0.25rem;
 }
 .sp2 {
   position: absolute;
-  right: 50%;
-  top: 0;
-  font-size: 0.19rem;
+  right: 46%;
+  line-height: .25rem;
+  font-size: 0.18rem;
   font-weight: 700;
 }
 .dh > ul:nth-of-type(1) {
@@ -391,9 +400,11 @@ console.log(index);
 .img1 {
   /* border: 1px solid red; */
 }
-.dh {
-  z-index: 1;
-  position: absolute;
+.dh{
+  position: fixed;
+  z-index: 16;
+  top: 0.56rem;
   width: 100%;
+  border-bottom: .01rem solid #ccc;
 }
 </style>

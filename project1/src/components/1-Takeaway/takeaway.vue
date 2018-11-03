@@ -5,7 +5,10 @@
         <img src="../../../static/img/商家.png" alt="">
         <p>附近商家</p>
       </div>
+      <div id="margin">
         <Seller></Seller>
+      </div>
+        
     </div>
 </template>
 <script>
@@ -47,5 +50,8 @@ export default {
     display: inline;
     font-size: .13rem; 
     
+  }
+  #margin{
+    margin-bottom: .68rem;
   }
 </style>

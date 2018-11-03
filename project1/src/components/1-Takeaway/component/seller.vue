@@ -1,4 +1,6 @@
-<template>
+<template >
+<div>
+  <loading v-if="number != 1"></loading>
     <ol class="ll">
         <li v-for="item in data" :key="item.id" class="total"  @click="change(item.id,item.name)">
           <router-link to="/shopdetail" >
@@ -56,16 +58,22 @@
             </div>  
           </router-link>   
         </li>
-    </ol> 
+    </ol>
+</div>     
 </template>
 
 <script>
+import Loading from "../loading";
 export default {
   name: "seller",
   data() {
     return {
-      data: []
+      data: [],
+      number: 1
     };
+  },
+  components: {
+     Loading
   },
   methods:{
        change(id,name){
@@ -74,18 +82,22 @@ export default {
     }
   },
   created() {
+    this.number -= 1;
     let api =
       "https://elm.cangdu.org/shopping/restaurants?latitude=31.22967&longitude=121.4762";
     this.$http.get(api).then(data => {
-      // console.log(data);
+      // console.log(data); 
+      
       this.data = data.data;
+      
       // console.log(this.data);
       for(var i=0;i<this.data.length;i++){
          this.data[i].image ='https://elm.cangdu.org/img/'+this.data[i].image_path;
       };
       // console.log(this.data[1].supports[0].icon_name);
+       this.number += 1;
     });
-    
+   
   }
 };
 </script>

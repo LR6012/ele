@@ -10,11 +10,14 @@
     </span>
   <span class="sp2">支付页面</span>
 </div> 
+<router-link to="/address">
 <div class="header">
 <img src="../../../static/img/location.png" class="la">
 <span>请添加一个收货地址</span>
 <img src="../../../static/img/右箭头.png" alt="" class="you">
+
 </div>
+</router-link>
 <div  class="nav">
 <li class="cl"> 
     <h3>送达时间</h3>

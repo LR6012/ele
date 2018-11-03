@@ -50,6 +50,7 @@ export default {
     hh() {
       this.$router.go(-1);
     },
+    
     change() {
       //点击,当前布尔值取反
       this.bol = !this.bol;
