@@ -1,9 +1,9 @@
 <template>
     <div>
         <div class="header">
-            <img src="../../../static/img/问号.png" alt="">
+            <img class="img2" src="../../../static/img/问号.png" alt="">
             <router-link to="/benefit/daijinquan/djqDescription">
-                <span>商家代金券说明</span>
+                <span class="sp1">商家代金券说明</span>
             </router-link>
             
         </div>
@@ -25,12 +25,17 @@
 
 <style scoped>
 .header{
-    height: 0.464rem;
-    line-height: .464rem;
-    position: absolute;
-    right: .1rem;
+    height: 0.2rem;
+    padding: .1rem .1rem;
+    line-height: .264rem;
     font-size: .12rem;
     color: #3190e8;
+    position: absolute;
+    left: 2.5rem;
+}
+.img2{
+    width: .14rem;
+    height: .14rem;
 }
 .unable_use{
     height: 1.873rem;
@@ -44,6 +49,10 @@
    width: 1.4rem;
    height: .8rem;
    line-height: .8rem;
+}
+.sp1{
+    color: #3190e8;
+    line-height: .25rem;
 }
 .p1{
     color: #666;

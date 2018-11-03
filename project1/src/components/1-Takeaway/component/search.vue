@@ -6,7 +6,7 @@
             </router-link> 
             <span>{{cityname}}</span>
             
-            <router-link to="/city"><span>切换城市</span></router-link>
+            <router-link to="/"><span>切换城市</span></router-link>
         </div> 
         <div id="search_box">
             <form action="">
@@ -14,6 +14,8 @@
             </form>
             <input type="button" id="search_box2" @click="submit(inputValue)" value="提交">
         </div>
+        <li class="null" v-show="l">搜索内容不能为空</li>
+        <li class="no" v-show="n">很抱歉!无此搜索结果</li>
         <ul>
             
             <li class="search_li" v-for="(item,index) in add" :key="index" @click="choose(item.geohash,item.name,item.address)">
@@ -48,6 +50,8 @@
                 data:[],
                 inputValue:"",
                 add:"",
+                l:false,
+                n:false,
                 Action:true,
                 cityname:localStorage.getItem("cityname"),
                 history:[]
@@ -63,13 +67,25 @@
                 return newObj;
             },
             submit(inputValue){
-                this.Action = false;
-                var id1 = localStorage.getItem("cityid");
-                var search = "https://elm.cangdu.org/v1/pois?city_id="+id1+"&keyword="+inputValue+"&type=search";
-                this.$http.get(search).then(data =>{
-                    this.add = this.objKeySort(data.data);
-                });
-                
+                if(inputValue == ""){
+                    // alert("搜索内容不能为空!");
+                    this.l = true;
+                    this.Action = false;
+                }else{
+                    this.l = false;
+                    this.Action = false;
+                    var id1 = localStorage.getItem("cityid");
+                    var search = "https://elm.cangdu.org/v1/pois?city_id="+id1+"&keyword="+inputValue+"&type=search";
+                    this.$http.get(search).then(data =>{
+                        if(data.data.name == "GET_ADDRESS_ERROR"){
+                            this.n = true;
+                        }else{
+                            this.n = false;
+                            this.add = this.objKeySort(data.data);
+                            // console.log(data);
+                        };
+                    });
+               } 
             },
             choose(geohash,name,address){
                 // console.log(geohash);
@@ -80,7 +96,7 @@
                 localStorage.setItem("locationname",name);
                 // 历史记录
                  var comment = {name: name,address:address,geohash:geohash};
-                 var list = JSON.parse(localStorage.getItem("cmts")||"[]");
+                 var list = JSON.parse(localStorage.getItem("cmts")||[]);
                 //unshift() 方法可向数组的开头添加一个或更多元素，并返回新的长度
                  list.unshift(comment);
                  localStorage.setItem("cmts",JSON.stringify(list));
@@ -103,7 +119,7 @@
         },
         created () {
                 //获取本地存储的值如果是复杂类型的数据的字符串使用JSON.parse(复杂类型字符串) 转成JS能够识别的复杂类型对象 或者数组
-                this.history= this.dedup(JSON.parse(localStorage.getItem("cmts")));
+                this.history= this.dedup(JSON.parse(localStorage.getItem("cmts")) || []);
         }
     }
 </script>
@@ -159,6 +175,13 @@
   color: #fff;
   background-color: #3190e8;
   outline: none;
+}
+.null,.no{
+    height: .25rem;
+    line-height: .25rem;
+    text-align: center;
+    background-color: #fff;
+    border-bottom: 1px solid #ccc;
 }
 #search_history {
   height: 0.134rem;

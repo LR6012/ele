@@ -11,6 +11,9 @@
             <button id="search_box2"  @click="submit(inputValue)">提交</button>
             
         </div>
+        <div id="unuse"></div>
+        <li class="null" v-show="l">搜索内容不能为空</li>
+        <li class="no" v-show="n">很抱歉!无此搜索结果</li>
         <ul> 
             <li class="search_li" v-for="(item,index) in add" :key="index" @click="choose(item.geohash,item.name,item.address)">
                 <router-link to="/shopdetail">
@@ -19,6 +22,7 @@
                 </router-link>
             </li>
         </ul>
+        
     <div  v-show="Action" >
         <header id="search_history">搜索历史</header>
         <ul>
@@ -42,6 +46,8 @@ export default {
       data:[],
       inputValue:"",
       add:"",
+      l:false,
+      n:false,
       Action:true,
       allhistory:[]
     }
@@ -60,16 +66,23 @@ export default {
             },
             submit(inputValue){
                 if(inputValue == ""){
-                    alert("搜索内容不能为空!");
-                    return;
+                    // alert("搜索内容不能为空!");
+                    this.l = true;
+                    this.Action = false;
+                }else{
+                  this.l = false;
+                  this.Action = false;
+                  var id1 = localStorage.getItem("cityid");
+                  var search = "https://elm.cangdu.org/v1/pois?city_id="+id1+"&keyword="+inputValue+"&type=search";
+                  this.$http.get(search).then(data =>{
+                    if(data.data.name == "GET_ADDRESS_ERROR"){
+                      this.n = true;
+                    }else{
+                      this.n = false;
+                      this.add = this.objKeySort(data.data);
+                    }
+                  });
                 }
-                this.Action = false;
-                var id1 = localStorage.getItem("cityid");
-                var search = "https://elm.cangdu.org/v1/pois?city_id="+id1+"&keyword="+inputValue+"&type=search";
-                this.$http.get(search).then(data =>{
-                    this.add = this.objKeySort(data.data);
-                });
-                
             },
             choose(geohash,name,address){
                 // console.log(geohash);
@@ -112,8 +125,11 @@ export default {
 <style scoped>
 #search_header {
   height: 0.257rem;
+  width: 100%;
   background-color: #3190e8;
   padding: 0.1rem;
+  position: fixed;
+  top: 0;
   
 }
 #search_header img {
@@ -131,10 +147,14 @@ export default {
   justify-content: center;
 }
 #search_box {
+  width: 3.75rem;
   padding: 0.1rem 0.1rem;
   background-color: #fff;
   display: flex;
   justify-content: space-between;
+  position: fixed;
+  top:.457rem;
+  border-bottom: .01rem solid #ccc;
 }
 #search_box1,
 #search_box2 {
@@ -154,6 +174,19 @@ export default {
   color: #fff;
   background-color: #3190e8;
   outline: none;
+  margin-right: .2rem;
+
+}
+#unuse{
+  height:.986rem;
+}
+.null,.no{
+    height: .25rem;
+    line-height: .25rem;
+    text-align: center;
+    background-color: #fff;
+    border-top: 1px solid #ccc;
+    border-bottom: 1px solid #ccc;
 }
 #search_history {
   height: 0.134rem;
@@ -174,6 +207,7 @@ export default {
   font-size: 0.16rem;
   line-height: 0.18rem;
   margin: 0 0.2rem 0.1rem 0.2rem;
+  color: #999;
   overflow: hidden;
   text-overflow: ellipsis;
   white-space: nowrap;

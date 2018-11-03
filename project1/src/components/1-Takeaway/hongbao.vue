@@ -3,7 +3,7 @@
       <header class="hongbao_title">
         <span>有<span id="span3">3</span>个红包即将到期</span>
         <div>
-          <img src="../../../static/img/问号.png" alt="">
+          <img id="img" src="../../../static/img/问号.png" alt="">
           <router-link to="/benefit/hongbao/hbDescription">
             <span id="span4">红包说明</span>
           </router-link>
@@ -55,6 +55,7 @@ import Redpacket from './redpacket'
   color:#ff5340; 
 }
 #span4{
+  line-height: .1rem;
   color:#3190e8; 
 }
 .history{
@@ -67,7 +68,7 @@ import Redpacket from './redpacket'
   text-align: center;
   color: #999;
   /* border: 1px solid red; */
-  margin-top: 82%;
+  margin-top: 65%;
 }
 .footer{
   position: fixed;
@@ -87,5 +88,9 @@ import Redpacket from './redpacket'
 }
 .footer a:nth-last-of-type(1){
   border-right: 1px solid rgb(245, 245, 245);
+}
+#img{
+  width: 0.14rem;
+  height: 0.14rem;
 }
 </style>

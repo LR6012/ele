@@ -18,6 +18,7 @@
     <footer class="hongbao_footer">
            <p>限品类：快餐便当、特色菜系、小吃夜宵、甜品饮品、异国料理</p> 
         </footer>
+    <div id="unuse"></div>
 </div>
 </template>
 
@@ -62,6 +63,8 @@ export default {
   border-top-right-radius: 0.1rem;
   display: flex;
   justify-content: space-between;
+  margin-top: .15rem;
+  border-radius: .1rem;
 }
 .hongbao_left {
   width: 0.8rem;
@@ -121,5 +124,10 @@ export default {
   border-bottom-left-radius: 0.1rem;
   border-bottom-right-radius: 0.1rem;
   color: #999;
+  
+
+}
+.unuse{
+  height: .5rem;
 }
 </style>

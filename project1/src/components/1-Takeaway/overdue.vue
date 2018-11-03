@@ -16,9 +16,9 @@
         </div>
         <img class="hongbao_time" src="../../../static/img/过期.png" alt=""> 
     </div>
-    <!-- <footer class="hongbao_footer">
+    <footer class="hongbao_footer">
            <p>限品类：快餐便当、特色菜系</p> 
-        </footer> -->
+        </footer>
 </div>
 </div>
 </template>

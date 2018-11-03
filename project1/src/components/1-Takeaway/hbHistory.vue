@@ -8,6 +8,7 @@
           </router-link>
           <span class="sp2">历史红包</span>
         </div>
+        <div id="unuse"></div>
         <Overdue></Overdue>
         <!-- <Overdue></Overdue>
         <Overdue></Overdue> -->
@@ -27,12 +28,15 @@ import Overdue from './overdue'
 <style scoped>
 .search {
   height: 0.46rem;
+  width: 100%;
   /* border: 1px solid red; */
   line-height: 0.46rem;
   color: white;
   background-color: #3190e8;
   position: relative;
   margin-bottom: .2rem;
+  position: fixed;
+  top: 0;
 }
 .sp1 img{
   margin-top: 0.1rem;
@@ -44,5 +48,8 @@ import Overdue from './overdue'
   top: 0;
   font-size: 0.19rem;
   font-weight: 600;
+}
+#unuse{
+  height: .66rem;
 }
 </style>
