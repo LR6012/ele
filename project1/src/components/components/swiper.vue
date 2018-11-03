@@ -7,7 +7,7 @@
           </router-link>        
  </div>
  <div id="hao2">
-    <router-link to='/search' id="span1"><span>{{locationname}}</span>
+    <router-link to='/search' ><span>{{locationname}}</span>
     </router-link>
  </div>
  <div id="hao1">
@@ -42,7 +42,7 @@
 <script>
 
 //引入loading样式
-import { Loading } from "element-ui";
+// import { Loading } from "element-ui";
 import { swiper, swiperSlide } from "vue-awesome-swiper";
 import img1 from "../../../static/img/1 (1).jpeg";
 import img2 from "../../../static/img/1 (2).jpeg";
@@ -142,18 +142,17 @@ export default {
     }
 },
   created() {
-       let loadingInstance = Loading.service({
-        fullscreen:true
-      });
+      //  let loadingInstance = Loading.service({
+      //   fullscreen:true
+      // });
    
     let api =
       "https://elm.cangdu.org/shopping/restaurants?latitude=31.22967&longitude=121.4762";
     //promise写法
     this.$http.get(api).then(data => {
         //在成功的时候,关闭加载提示
-        loadingInstance.close();
+        // loadingInstance.close();
       this.data = data.data;
-      // console.log(data.data);
     });
   },
   computed: {
@@ -162,7 +161,7 @@ export default {
     }
   },
   mounted() {
-    // console.log("this is current swiper instance object", this.swiper);
+    
   }
 };
 </script>
@@ -199,6 +198,7 @@ export default {
   flex-wrap: wrap;
   justify-content: space-around;
   margin-top: 0.5rem;
+  font-size: 0.16rem
 }
 #d2 {
   /* border:1px solid black; */
@@ -207,6 +207,7 @@ export default {
   flex-wrap: wrap;
   justify-content: space-around;
   margin-top: 0.5rem;
+  font-size: 0.16rem
 }
 #hao3 {
   /* border: 1px solid black; */
@@ -217,18 +218,21 @@ export default {
   z-index: 6;
 }
 #hao2{
-  /* border: 1px solid black; */
   width:1.5rem;
   height: 0.25rem;
   float: left;
   text-align: center;
   margin-top: 0.15rem;
-  margin-left: 0.35rem;
+  margin-left: 0.45rem;
   line-height: 0.25rem;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
 }
 #hao2 span {
-  font-size: 0.15rem;
+  font-size: 0.18rem;
   color: white;
+  
 }
 #hao img {
   width: 0.3rem;
@@ -246,6 +250,7 @@ export default {
   color: white;
   margin-top: 0.2rem;
   margin-right: 0.15rem;
+  font-size: 0.16rem;
 }
 .swiper-slide {
   height: 2rem;

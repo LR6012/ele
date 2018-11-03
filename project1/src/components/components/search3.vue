@@ -1,200 +1,166 @@
 <template>
-    <div>
-        <div class="search">
-            <router-link to="/mine">
-                <span class="sp1">
-                    <img src="../home/imgs/左 (1).png" alt="">
-                </span>
-            </router-link>
-            <span class="sp2">搜索</span>
+  <div>
+        <div id="search_header">
+            <img @click="aa()" src="../home/imgs/左 (1).png" alt="">
+            <span>搜索</span>
         </div>
-        <div class="sh">
-            <div class="search1">
+        <div id="search_box">
             <form action="">
-              <input type="search" placeholder="请输入商家或美食名称"  id='input1' v-model="title">
-            
-            <button @click="submit()">提交</button>
+              <input type="search" placeholder="请输入商家或美食名称"  id="search_box1" v-model.trim="inputValue">
             </form>
+            <button id="search_box2"  @click="submit(inputValue)">提交</button>
+            
         </div>
-  
-    </div>
-    <ul id="search_ul"> 
-            <li class="search_li" v-for="(item,index) in message" :key="index" @click="choose(item.geohash,item.name)">
-                <router-link to="">
+        <ul> 
+            <li class="search_li" v-for="(item,index) in add" :key="index" @click="choose(item.geohash,item.name,item.address)">
+                <router-link to="/shopdetail">
                     <h4>{{item.name}}</h4>
                     <p>{{item.address}}</p>
                 </router-link>
             </li>
-    </ul>
-    <ol class="liu" v-show="Action">
-        <ul>
-            <h4 v-show="bbol" class="ss">搜索历史</h4>
-        <!-- <h4 v-show="!bbol">很抱歉,没有搜索结果</h4> -->
-            <li v-for="(item,index) in arr" :key=index >
-                <span v-show="bbol" @click="handle(index)" >x</span>
-                <h3>{{item.title}}</h3>
-            </li>
-            <p @click="change()" v-show="bbol">清空历史记录</p>
         </ul>
-    </ol>
+    <div  v-show="Action" >
+        <header id="search_history">搜索历史</header>
+        <ul>
+            <li class="search_li"  v-for="item in allhistory" :key=item.id @click="choose(item.geohash,item.name,item.address)" >
+              <router-link to="/shopdetail">
+                  <h4>{{item.name}}</h4>
+                  <p>{{item.address}}</p>
+                </router-link>
+            </li>    
+        </ul>
+         <footer id="search_clear_history" @click="clear">清空所有历史记录</footer>
     </div>
-    
+  </div> 
 </template>
 
 <script>
-import $ from "jquery";
 export default {
   name: "search2",
   data() {
     return {
-      bol: false,
-      title: this.title,
-      arr: [],
-      bbol: false,
-      message: [],
-      Action:true
-    };
+      data:[],
+      inputValue:"",
+      add:"",
+      Action:true,
+      allhistory:[]
+    }
   },
   methods: {
-    submit() {
-      //隐藏搜索历史
-      this.Action = false;
-      var id = localStorage.id;
-      console.log(id);
-      //请求搜索的东西
-      var search ="https://elm.cangdu.org/v1/pois?city_id=" +id +"&keyword=" +this.title +"&type=search";
-      this.$http.get(search).then(data => {
-        this.message = data.data;
-        // console.log(this.message);
-      });
+    aa(){
+      this.$router.go(-1);
+    },
+    objKeySort(arys) {
+                var newkey = Object.keys(arys).sort();
+                var newObj = {};
+                for (var i = 0; i < newkey.length; i++) {
+                    newObj[newkey[i]] = arys[newkey[i]];
+                }
+                return newObj;
+            },
+            submit(inputValue){
+                if(inputValue == ""){
+                    alert("搜索内容不能为空!");
+                    return;
+                }
+                this.Action = false;
+                var id1 = localStorage.getItem("cityid");
+                var search = "https://elm.cangdu.org/v1/pois?city_id="+id1+"&keyword="+inputValue+"&type=search";
+                this.$http.get(search).then(data =>{
+                    this.add = this.objKeySort(data.data);
+                });
+                
+            },
+            choose(geohash,name,address){
+                // console.log(geohash);
+                // vuex传值
+                // this.$store.commit("receivegeohash",geohash);
+                //存储到localstorage中
+                localStorage.setItem("geohash1",geohash);
+                localStorage.setItem("shop_name",name);
+                // 历史记录
+                 var comment = {name: name,address:address,geohash:geohash};
+                 var list1 = JSON.parse(localStorage.getItem("historys")||"[]");
+                //unshift() 方法可向数组的开头添加一个或更多元素，并返回新的长度
+                 list1.unshift(comment);
+                 localStorage.setItem("historys",JSON.stringify(list1));
+                 this.name = this.address = this.geohash = '';    
+            },
+    clear(){
+                this.allhistory = [];
+                localStorage.removeItem("historys");
+            },
+            // 去重的方法
+            dedup(arr) {
+                let hashTable = {};
+                return arr.filter(el => {
+                    let key = JSON.stringify(el);
+                    let match = Boolean(hashTable[key]);
+                    return match ? false : (hashTable[key] = true);
+                });
 
-      this.bol = !this.bol;
-      this.bbol = true;
-      // console.log("我要这天,再遮不住我眼");
-      var data = {title: this.title};
-      this.arr.push(data);
-      // this.title = "";
-      $("ul").css("display", "block");
-    },
-    change() {
-      $("li").remove();
-      $("ul").css("display", "none");
-      this.title = "";
-    },
-    handle(index) {
-      this.arr.splice(index, 1);
-    },
-    choose(geohash,name){
-    this.Action = true;
-    localStorage.shopgeohash = geohash;
-    // console.log(localStorage.shopgeohash);
-  }
-  }
+            }
+  },
+  created () {
+                //获取本地存储的值如果是复杂类型的数据的字符串使用JSON.parse(复杂类型字符串) 转成JS能够识别的复杂类型对象 或者数组
+                this.allhistory= this.dedup(JSON.parse(localStorage.getItem("historys")) || []);
+        }
   
 };
 </script>
 
 <style scoped>
-.oo {
-  position: fixed;
-  top: 3rem;
-}
-.liu span {
-  float: right;
-}
-.liu li {
-  border-bottom: 0.006rem solid gainsboro;
-  padding: 0.2rem;
-}
-.liu {
-  /* text-align: center; */
-  background-color: #fff;
-  position: absolute;
-  top: 1.5rem;
-  width: 99%;
-  border: 0.006rem solid gainsboro;
-}
-.liu p {
-  font-size: 0.21rem;
-  text-align: center;
-  padding: 0.16rem;
-  color: #3190e8;
-  font-weight: 600;
-}
-.sh {
-  /* border: 1px solid black; */
-  padding: 0.5%;
-  width: 98%;
-  background-color: #fff;
-  position: absolute;
-  top: 0.46rem;
-}
-.ss {
-  font-weight: 700;
-  position: absolute;
-  top: -0.31rem;
-}
-.search1 button{
-  float:right
-}
-.search {
-  height: 0.46rem;
-  line-height: 0.46rem;
-  color: white;
+#search_header {
+  height: 0.257rem;
   background-color: #3190e8;
-  position: relative;
-  /* border: 1px solid rebeccapurple; */
-  margin-bottom: 0.1rem;
+  padding: 0.1rem;
+  
 }
-.sp1 img {
-  margin-top: 0.05rem;
-  width: 0.25rem;
+#search_header img {
+  width: 0.346rem;
+  height: 0.23rem;
+  float: left;
 }
-.sp2 {
-  position: absolute;
-  right: 50%;
-  top: 0;
+#search_header span:nth-last-child(1) {
+  margin-right: .446rem;
   font-size: 0.19rem;
   font-weight: 700;
+  line-height: 0.25rem;
+  color: #fff;
+  display: flex;
+  justify-content: center;
 }
-.search1 {
-  text-align: center;
-  position: relative;
-  /* left: -0.5rem; */
-  /* border: 1px solid red; */
-  width: 100%;
+#search_box {
+  padding: 0.1rem 0.1rem;
+  background-color: #fff;
+  display: flex;
+  justify-content: space-between;
 }
-input,
-button {
-  /* 去除输入框点击时的默认样式  outline:none */
+#search_box1,
+#search_box2 {
+  height: 0.328rem;
+  border: 0.01rem solid #e4e4e4;
+  border-radius: 0.05rem;
+}
+#search_box1 {
+  width: 2.8rem;
+  padding: 0 0.1rem;
+  font-size: 0.16rem;
   outline: none;
 }
-.search1 button {
+#search_box2 {
+  width: .7rem;
   font-size: 0.16rem;
+  color: #fff;
   background-color: #3190e8;
-  color: white;
-  border: 0.01rem solid #3190e8;
-  /* border-image-repeat: 0.015rem; */
-  padding: 0.05rem 0.14rem;
-  /* margin-left: 0.1rem; */
+  outline: none;
 }
-.result {
-  color: black;
-  display: none;
-  text-align: center;
-}
-input {
+#search_history {
+  height: 0.134rem;
+  font-size: 0.13rem;
+  padding: 0.035rem;
+  border-bottom: 0.01rem solid #e4e4e4;
   background-color: #f5f5f5;
-  width: 2.7rem;
-  height: 0.35rem;
-  font-size: 0.15rem;
-  font-weight: 700;
-  padding: 0.1rem;
-  margin-left: -0.1rem;
-}
-
-#search_ul{
-  margin-top: .65rem;
 }
 .search_li {
   height: 0.56rem;
@@ -220,5 +186,13 @@ input {
   overflow: hidden;
   text-overflow: ellipsis;
   white-space: nowrap;
+}
+#search_clear_history {
+  height: 0.464rem;
+  line-height: 0.464rem;
+  text-align: center;
+  font-size: 0.17rem;
+  color: #666;
+  background-color: #fff;
 }
 </style>

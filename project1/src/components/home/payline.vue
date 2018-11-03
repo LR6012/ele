@@ -3,7 +3,7 @@
 <div class="search">
   <router-link to="/vipcard">
   <span class="sp1">
-    <img :src="img2" alt="">
+    <img :src="img2" alt="" >
     </span>
   </router-link>
   <span class="sp2">在线支付</span>
@@ -91,7 +91,7 @@ export default {
         _this.timer = msg;
       } else {
         clearInterval(timer);
-        alert("支付超时,请重新支付");
+        // alert("支付超时,请重新支付");
       }
     }
     getNumber();

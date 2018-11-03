@@ -10,7 +10,11 @@
   </div>
   <div class="info">
       <div id='div1'>
-          <li><span class="sp3">当前积分</span><span>积分说明</span></li>
+          <li><span class="sp3">当前积分</span>
+          <router-link to="/sm">
+          <span>积分说明</span>
+          </router-link>
+          </li>
           <p><b>0</b><span>分</span></p>
           <p class="p1">积分兑换商品</p>
       </div>

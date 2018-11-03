@@ -104,7 +104,7 @@ show(){
   /* border: 1px solid blue; */
 margin: -7.2rem 0;
 background-color: rgba(13, 13, 14, 0.1);
-display: none;
+/* display: none; */
 }
 .zz{
 position: absolute;

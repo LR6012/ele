@@ -1,11 +1,11 @@
 <template>
     <div>
     <div class="search">
-  <router-link to="/address">
+  <!-- <router-link to="/address"> -->
       <span class="sp1">
-    <img :src="img" alt="">
+    <img :src="img" alt="" @click="hh()">
     </span>
-  </router-link>
+  <!-- </router-link> -->
   <span class="sp2">新增地址</span>
 </div>
 <div class="adddetail">
@@ -23,62 +23,65 @@
 </template>
 
 <script>
-import  $ from 'jquery'
-import img2 from './imgs/左 (1).png'
+import $ from "jquery";
+import img2 from "./imgs/左 (1).png";
 export default {
-  name:'adds',
-  data(){
-      return {
-          img:img2,
-          address:localStorage.getItem('address'),
-          name:'',
-          detail:'',
-          phone:'',
-          spare:''
-      }
+  name: "adds",
+  data() {
+    return {
+      img: img2,
+      address: localStorage.getItem("address"),
+      name: "",
+      detail: "",
+      phone: "",
+      spare: "",
+    };
   },
-  methods:{
-      edit(){
-        $('.p1').text('请输入正确的手机号');
-        $('.p1').css({
-            'color':'#ea3106',
-            'font-size':'0.15rem',
-            'margin-top':'0.05rem'
-        });
-      },
-      change(){
-          $('.p1').text('');
-      },
-    plus(){
-    var userId = this.$store.state.usermsg.user_id;
-    let api = 'https://elm.cangdu.org/v1/users/'+userId+'/addresses';
-    this.$http({
-        method:'post',
-        url:api,
+  methods: {
+    hh() {
+      this.$router.go(-1);
+    },
+    edit() {
+      $(".p1").text("请输入正确的手机号");
+      $(".p1").css({
+        color: "#ea3106",
+        "font-size": "0.15rem",
+        "margin-top": "0.05rem"
+      });
+    },
+    change() {
+      $(".p1").text("");
+    },
+    plus() {
+      var userId = this.$store.state.usermsg.user_id;
+      let api = "https://elm.cangdu.org/v1/users/" + userId + "/addresses";
+      this.$http({
+        method: "post",
+        url: api,
         withCredentials: true, // 默认的
-        data:{
-            user_id:userId,
-            address:this.address,
-            address_detail:'345453',
-            geohash:'11',
-            name:this.name,
-            phone:this.phone,
-            tag:'12',
-            sex:1,
-            phone_bk:'',
-            tag_type:'2'
+        data: {
+          user_id: userId,
+          address: this.address,
+          address_detail: "345453",
+          geohash: "11",
+          name: this.name,
+          phone: this.phone,
+          tag: "12",
+          sex: 1,
+          phone_bk: "",
+          tag_type: "2"
         }
-    }).then(res => {
-        if(res.data.message){
-            alert(res.data.message);
-        }else{
-            alert('添加地址成功');
-            this.$router.push({name:'address'});
+      }).then(res => {
+        if (res.data.message) {
+          alert(res.data.message);
+        } else {
+              alert("添加地址成功");
+          this.$router.push({ name: "address" });
         }
-    })
+      });
+    }
   }
-}
-}
+};
 </script>
 
 <style scoped>
@@ -109,35 +112,36 @@ export default {
   font-size: 0.19rem;
   font-weight: 700;
 }
-.adddetail{
-    margin-top: 0.1rem;
-    background-color: white;
-    /* border: 1px solid red; */
-    padding-left:0.12rem;
+.adddetail {
+  margin-top: 0.1rem;
+  background-color: white;
+  /* border: 1px solid red; */
+  padding-left: 0.12rem;
 }
-input{
-    background-color: #f2f2f2;
-    width: 95%;
-    padding: 0.1rem;
-    margin-top: 0.15rem;
-    font-size: 0.16rem;
+input {
+  background-color: #f2f2f2;
+  width: 95%;
+  padding: 0.1rem;
+  margin-top: 0.15rem;
+  font-size: 0.16rem;
 }
-input,button{
-    outline: none;
-    border: none;
+input,
+button {
+  outline: none;
+  border: none;
 }
-input:last-child{
-    margin-bottom: 0.1rem;
+input:last-child {
+  margin-bottom: 0.1rem;
 }
-button{
-    width: 95%;
-    margin: 2%;
-    padding: 0.1rem;
-    color:white;
-    border-radius: 0.03rem;
-    background-color: #4cd964;; 
-    font-size: 0.15rem;
-    margin-top: 0.15rem;
+button {
+  width: 95%;
+  margin: 2%;
+  padding: 0.1rem;
+  color: white;
+  border-radius: 0.03rem;
+  background-color: #4cd964;
+  font-size: 0.15rem;
+  margin-top: 0.15rem;
 }
 /* .p1{
     margin-top: 0.05rem;

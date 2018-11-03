@@ -40,7 +40,11 @@ import Commend from '../components/1-Takeaway/commend'
 import Hbhistory from '../components/1-Takeaway/hbHistory'
 import HbDescription from '../components/1-Takeaway/hbDescription'
 import DjqDescription from '../components/1-Takeaway/djqDescription'
- 
+ import Zf from '../components/components/zf'
+ import Benefit1 from '../components/1-Takeaway/benefit1'
+ import Sm from '../components/components/sm'
+import Invoice from '../components/components/invoice'
+import Remarks from '../components/components/remarks'
 Vue.use(Router)
 
 export default new Router({
@@ -108,6 +112,10 @@ export default new Router({
     {
       path: "/login",
       component: Login
+    },
+    {
+path:"/zf",
+component:Zf
     },
     {
       path: "/vipcard",
@@ -225,6 +233,23 @@ export default new Router({
     {
       path:'/benefit/daijinquan/djqDescription',
       component:DjqDescription
+    },
+    {
+      path:'/benefit1',
+      component:Benefit1
+    },
+    {
+      path:"/sm",
+      component:Sm
+    }
+    ,
+    {
+      path:"/invoice",
+      component:Invoice
+    },
+    {
+      path:"/remarks",
+      component:Remarks
     }
   ]
 });
