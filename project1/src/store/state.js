@@ -6,5 +6,6 @@ export default {
     //购物车
     shopFoods:[],//存储接口获取的数据
     cartData:[],//存储购物车商品数据
-    ordermsg:[]//存放订单备注的信息
+    ordermsg:[],//存放订单备注的信息
+    addressmsg:[]//存储失焦时的地址信息
 }

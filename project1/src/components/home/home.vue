@@ -14,6 +14,7 @@
 </div>
 </template>
 <script>
+import $ from 'jquery'
 export default {
   name: "home",
   data() {
@@ -39,7 +40,7 @@ export default {
           title: "订单",
           src1: require("./imgs/订单.png"),
           src2: require("./imgs/订单1.png"),
-          path:'/order1',
+          path:'/order',
           flag:true,
           id: 3
         },
@@ -56,13 +57,13 @@ export default {
   },
   methods:{
     handle(index){
-      // 循环数组中的所有对象,将flag全部置为true   把当前点击元素的flag设为false
+      // 循环数组中的所有对象,将flag全部置为true  把当前点击元素的flag设为false
       this.imgs.map(function(item,index){
         return item.flag = true;
       })
       this.imgs[index].flag = false;
     }
-  }
+  },
 };
 </script>
 
@@ -72,7 +73,7 @@ export default {
   bottom: 0;
   width: 100%;
   height: 0.7rem;
-  border-top: 0.03rem solid beige;
+  /* border-top: 0.03rem solid black;  */
   display: flex;
   /* text-align: center; */
   justify-content: space-around;

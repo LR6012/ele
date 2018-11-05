@@ -59,12 +59,18 @@
     </router-link>
     <button @click="exit()">退出登录</button>
 </ul>
-  <!-- 弹框界面 -->
+  <!-- 退出登录弹框界面 -->
 <div class="content">
     <img :src="img3" alt="">
     <h2>是否退出登录</h2>
     <button @click="wait()">再等等</button>
     <button @click="unlogin()">退出登录</button>
+</div>
+  <!-- 手机弹框界面 -->
+<div class="content1">
+    <img :src="img3" alt="">
+    <h2>请在手机APP中设置</h2>
+    <button @click="confims()">确认</button>
 </div>
 </div>
 </template>
@@ -113,13 +119,11 @@ export default {
       })
   },
   change(){
-        this.$confirm('请在手机APP中设置', {
-          confirmButtonText: '确认',
-        //   cancelButtonText: '取消',
-          type: 'warning',
-          center: true//居中显示
-        });
-  }
+      $('.content1').css("display",'block');
+  },
+  confims(){
+      $('.content1').css("display",'none');
+  },
   },
   created(){
       this.username = this.$store.state.usermsg.username;
@@ -127,56 +131,6 @@ export default {
   }
 }
 </script>
-<style>
-.el-message-box__status::before {
-    width: 1rem;
-    height: 1rem;
-    padding-left: 1px;
-    font-size: 0.7rem;
-}
-.el-icon-warning:before {
-    content: "\E62E";
-}
-/* 设置p标签字体大小*/
-.el-message-box__message p {
-    margin: 0;
-    line-height: 24px;
-    color: black;
-    font-size: 0.18rem;
-}
-.el-message-box__btns button:first-child{
-   display: none;
-}
-.el-message-box__btns button:nth-child(2) {
-     width: 2.5rem;
-    height: 0.3rem;
-    background-color: #4cd964;
-    margin-top: 0.001rem;
-    font-size: 0.16rem;
-}
-/* 设置弹框绝对定位*/
-.el-message-box {
-    /* 绝对定位 */
-    position: absolute;
-    left:10%;
-    top:40%;
-    display: inline-block;
-    width: 3rem;
-    height: 1.8rem;
-    padding-bottom: 10px;
-    vertical-align: middle;
-    background-color: #fff;
-    border-radius:0.1rem;
-    border: 1px solid #ebeef5;
-    font-size: 18px;
-    -webkit-box-shadow: 0 2px 12px 0 rgba(0,0,0,.1);
-    box-shadow: 0 2px 12px 0 rgba(0,0,0,.1);
-    text-align: left;
-    overflow: hidden;
-    -webkit-backface-visibility: hidden;
-    backface-visibility: hidden;
-}
-</style>
 <style scoped>
 .aa{
     color:black;
@@ -310,5 +264,28 @@ input[type="file"]{
     border-radius:0.05rem;
     outline: none;
     border: none; 
+}
+.content1{
+    display: none;
+    position: absolute;
+    left:10%;
+    top:30%;
+    width: 80%;
+    background-color: white;
+    border:0.005rem solid gainsboro;
+    text-align:center;
+    padding:0.2rem 0;
+}
+.content1 h2{
+    margin: 0.1rem 0 0.2rem 0;
+}
+.content1  button{
+    border: none;
+    outline: none;
+    width: 70%;
+    height:0.3rem;
+    color: white;
+    background-color:#4cd964;
+    border-radius: 0.08rem;
 }
 </style>

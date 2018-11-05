@@ -81,7 +81,7 @@ export default {
   },
   beforeMount() {
     var _this = this;
-    var timer = setInterval(getNumber, 1000);
+    var timer = setInterval(getNumber,1000);
     var newtime = 15 * 60;
     function getNumber() {
       var m = Math.floor(newtime / 60);

@@ -9,7 +9,7 @@
   <span class="sp2">兑换会员</span>
 </div>
 <div class="ct">
-    <p>成功兑换后将关联到当前帐号：<span>{{name}}房贷首付</span></p>
+    <p>成功兑换后将关联到当前帐号：<span>{{name}}</span></p>
     <input type="text" placeholder="请输入10位卡号">
     <input type="text" placeholder="请输入6位卡密">
 </div>  

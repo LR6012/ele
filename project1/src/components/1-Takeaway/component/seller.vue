@@ -31,8 +31,6 @@
                                 show-score
                                 text-color="#ff9900"
                                 score-template="{value}">
-
-                                
                                 </el-rate>
                             <span id="seller_sale">月售{{item.recent_order_num}}单</span>
                         </div>
@@ -209,12 +207,16 @@ color: black
 </style>
 <style>
   .el-rate__item{
-    width: 0.094rem;
+    width: 0.06rem;
+    /* margin-top: .03rem; */
+    margin-left:0.06rem;
   }
   .el-rate__icon{
-    font-size: .1rem;
+    font-size: 0.1rem;
+    margin: 0;
   }
   .el-rate__text{ 
     font-size: 0.1rem;
+    margin-left:0.3rem;
   }
 </style>

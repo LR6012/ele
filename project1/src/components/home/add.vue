@@ -1,15 +1,15 @@
 <template>
     <div>
     <div class="search">
-  <!-- <router-link to="/address"> -->
       <span class="sp1">
-    <img :src="img" alt="" @click="hh()">
+   <router-link to="/address">
+    <img :src="img" alt="">
+    </router-link>
     </span>
-  <!-- </router-link> -->
   <span class="sp2">新增地址</span>
 </div>
 <div class="adddetail">
-    <input type="search" placeholder="请输入你的名字" v-model="name">
+    <input type="search" placeholder="请输入你的名字" v-model="name" @blur="get1()">
     <router-link to='/add/adddetail'>
     <input type="search" placeholder="小区/写字楼/学校等" v-model='address'>
     </router-link>
@@ -30,16 +30,20 @@ export default {
   data() {
     return {
       img: img2,
-      address: localStorage.getItem("address"),
-      name: "",
+      address:localStorage.getItem("address"),
+      name:"",
       detail: "",
       phone: "",
       spare: "",
     };
   },
+  created(){
+      this.name = this.$store.state.addressmsg;
+    },
   methods: {
-    hh() {
-      this.$router.go(-1);
+    //失焦时,将数据存入vuex中
+    get1(){
+       this.$store.commit('getaddressmsg',this.name);
     },
     edit() {
       $(".p1").text("请输入正确的手机号");
@@ -75,7 +79,7 @@ export default {
         if (res.data.message) {
           alert(res.data.message);
         } else {
-              alert("添加地址成功");
+          console.log("添加地址成功");
           this.$router.push({ name: "address" });
         }
       });

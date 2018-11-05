@@ -1,6 +1,9 @@
  export default {
    //store.commit("方法名",附加参数)  触发increment,会把state给带过来
    //state是自动带过来的,n是附加参数
+   changeOrdermsg(state,val){
+      state.ordermsg = val;
+   },
    change(state, value) {
      state.denglu = value;
    },
@@ -12,7 +15,7 @@
   },
    //receiveid
    receiveid(state, value) {
-     alert(value)
+    //  alert(value)
      state.id = value;
    },
    receivegeohash(state, value) {
@@ -21,7 +24,11 @@
    shopFoods(state,el){
     state.shopFoods = el
   },
-    //向购物车添加数据,循环数据
+  //地址信息
+  getaddressmsg(state,ele){
+   state.addressmsg = ele;
+  },
+   //向购物车添加数据,循环数据
   //如果商品ID存在(购物车的id和传进来的ID比对)，就设置count++
   addCartData(state,data){
     let flag = true;

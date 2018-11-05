@@ -4,7 +4,6 @@ import City from '../components/1-Takeaway/component/city'
 import SearchPath from '../components/1-Takeaway/component/search'
 import Takeaway from '../components/1-Takeaway/takeaway'
 import Order from '../components/home/order'
-import Order1 from '../components/home/order1'
 import Search3 from '../components/components/search3'
 import Mine from '../components/home/mine'
 import Balance from '../components/home/balance'
@@ -72,10 +71,6 @@ export default new Router({
           path: "/order",
           name:'order',
           component: Order
-        },
-        {
-          path: "/order1",
-          component: Order1
         },
         {
           path: "/mine",

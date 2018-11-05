@@ -2,7 +2,7 @@
 <div>
   <loading v-if="number != 1"></loading>
 <div class="dfd">
-  <div class="wrap">  
+  <div class="wrap" :style="{background:'url('+imga+') repeat'}">  
 </div>
 <div class="hd">
   <router-link to="/takeaway">
@@ -62,6 +62,7 @@
   <!-- <img src="../../../static/img/加.png" alt="" class="jh" @click="gwc()"> -->
   <span class="sj">${{val.specfoods[0].price}}</span>
 </div>
+<div id="unuse"></div>
   </li>
 </div>
 </div>
@@ -160,10 +161,12 @@
 import Loading from "../1-Takeaway/loading";
 import $ from "jquery";
 import Vue from "vue";
+import imgaa from '../../../static/img/小帅.jpg'
 export default {
   name: "shopdetail",
   data() {
     return {
+      imga:imgaa,
       number: 1,
       newData: [],
       data: [],
@@ -204,6 +207,7 @@ export default {
       this.flag = !this.flag;
     },
     clearData(){
+      //清空购物车数据
       this.$store.commit('clearCart');
     },
     //---------------------
@@ -264,7 +268,6 @@ export default {
             name: this.name,
             count1: this.count1,
             price: this.price,
-            id:this.id
       };
       //触发deleteCartData,循环购物车数据
       this.$store.commit('deleteCartData',news)
@@ -349,9 +352,14 @@ export default {
 </script>
 
 <style scoped>
+#unuse{
+  height: 1.2rem;
+  background-color: #555;
+}
 .dfd{
   position: fixed;
   top: 0;
+  z-index: 19;
 }
 .pppp {
   margin: 0.2rem 2.3rem;
@@ -672,7 +680,7 @@ strong {
   position: absolute;
   top: 2.1rem;
   float: left;
-  z-index: -1;
+  /* z-index: -1; */
 }
 .bk li {
   width: 0.6rem;
@@ -757,9 +765,9 @@ h4 {
 .wrap {
   width: 3.75rem;
   height: 1.6rem;
-  background: url(../../../static/img/小帅.jpg) repeat-y;
-  background-size: cover;
-
+  /* background: url(../../../static/img/小帅.jpg) repeat-y; */
+  /* background-size: cover; */
+z-index: 22;
 }
 .oneImg {
   

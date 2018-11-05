@@ -9,6 +9,7 @@
     </router-link>
     <span class="sp2">订单列表</span>
   </div>
+  <div v-show="bol">
   <div id="unuse"></div>
   <div class="orderList">
     <!-- 订单列表展示 -->
@@ -35,7 +36,7 @@
       </div>
     </ul>
   </div>
-
+</div>
 </div>
 </template>
 <script>
@@ -46,6 +47,7 @@ export default {
   name: "order",
   data() {
     return {
+      bol:false,
       data: [],
       img:img1,
       img2:img2,
@@ -56,6 +58,11 @@ export default {
     Loading
   },
   created() {
+    if(this.$store.state.denglu){
+        this.bol = true;
+     }else{
+        this.bol = false;
+     }
     this.number -= 1;
     let api = "https://elm.cangdu.org/bos/orders?offset=0&limit=10";
     this.$http.get(api).then(data => {
